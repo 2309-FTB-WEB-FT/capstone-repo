@@ -15,7 +15,9 @@ const Navbar = () => {
         ☰
       </div>
       <div className="sidebar">
-      <div className="logo">Replace with logo</div>
+      <div className="logo">
+          <img src="https://logodownload.org/wp-content/uploads/2015/02/burger-king-logo-6.png" alt="placeholder logo" />
+        </div>
         <ul className="nav-links">
           <li><a href="/">Home</a></li>
           <li><a href="/shows">Shows</a></li>
