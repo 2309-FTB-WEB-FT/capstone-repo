@@ -18,32 +18,58 @@
 /* Add more styling for other elements if needed */
 
 /* src/Navbar.css */
+
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
+  display: grid;
+  height: 105vh;
+  position: fixed;
+  z-index: 1;
+  left: 0px;
+  transition: transform 0.3s;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
+.sidebar {
+  width: 150px;
+  background-color: #333;
+  color: white;
+  overflow: hidden;
+  transition: width 0.3s;
 }
 
 .nav-links {
   list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
   display: flex;
-  gap: 20px;
+  flex-direction: column; 
 }
 
 .nav-links a {
-  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
   color: white;
-  transition: color 0.3s;
+  text-decoration: none;
+  transition: background-color 0.3s;
 }
 
 .nav-links a:hover {
-  color: lightgray;
+  background-color: #444;
+}
+
+.toggle-button {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+.open .sidebar {
+  width: 0;
+  overflow: hidden;
+}
+
+.open .content {
+  flex: 1;
+  margin-left: 0;
 }
