@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn }) => { // Accept isLoggedIn prop
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -21,7 +21,14 @@ const Navbar = () => {
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/Shows">Shows</Link></li>
-          <li><Link to="/Login">Login</Link></li>
+          {!isLoggedIn ? (
+            <li><Link to="/Login">Login</Link></li>
+          ) : (
+            <>
+              <li><Link to="/Profile">Profile</Link></li>
+              {/* Add Logout link if desired */}
+            </>
+          )}
         </ul>
       </div>
     </div>
