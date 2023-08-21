@@ -13,4 +13,13 @@ const createShow = async({ name, genre, image, description, averageLength }) => 
     }
 }
 
+router.get('/', async (req, res, next) => {
+    try {
+        const show = await getAllShows();
+        res.send(cats);
+    } catch (error) {
+        next(error);
+    }
+});
+
 module.exports = {createShow}
