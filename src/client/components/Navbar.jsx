@@ -1,6 +1,6 @@
-// src/Navbar.js
 import React, { useState } from 'react';
-import './style.css';
+import { Link } from 'react-router-dom';
+import './navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,13 +15,13 @@ const Navbar = () => {
         ☰
       </div>
       <div className="sidebar">
-      <div className="logo">
+        <div className="logo">
           <img src="https://logodownload.org/wp-content/uploads/2015/02/burger-king-logo-6.png" alt="placeholder logo" />
         </div>
         <ul className="nav-links">
-          <li><a href="/">Home</a></li>
-          <li><a href="/shows">Shows</a></li>
-          <li><a href="/logine">Login</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/Shows">Shows</Link></li>
+          <li><Link to="/Login">Login</Link></li>
         </ul>
       </div>
     </div>
