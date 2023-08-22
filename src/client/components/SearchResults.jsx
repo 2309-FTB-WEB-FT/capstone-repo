@@ -5,22 +5,30 @@ const SearchResults = ({ results, standalone }) => {
     return (
       <div>
         <h2>Search Results</h2>
-        {results.map((result) => (
-          <div key={result.id} className="search-result">
-            {/* Display the result content */}
-          </div>
-        ))}
+        {results.length > 0 ? (
+          results.map((result) => (
+            <div key={result.id} className="search-result">
+              {/* Display the result content */}
+            </div>
+          ))
+        ) : (
+          <p>No results</p>
+        )}
       </div>
     );
   }
 
   return (
     <div className="search-results">
-      {results.map((result) => (
-        <div key={result.id} className="search-result">
-          {/* Display the result content */}
-        </div>
-      ))}
+      {results.length > 0 ? (
+        results.map((result) => (
+          <div key={result.id} className="search-result">
+            {/* Display the result content */}
+          </div>
+        ))
+      ) : (
+        <p>No results</p>
+      )}
     </div>
   );
 };
