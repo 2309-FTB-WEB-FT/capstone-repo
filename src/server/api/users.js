@@ -21,6 +21,8 @@ usersRouter.get('/', async( req, res, next) => {
     }
 });
 
+console.log('hi')
+
 usersRouter.post('/login', async(req, res, next) => {
     const { email, password } = req.body;
     if(!email || !password) {
