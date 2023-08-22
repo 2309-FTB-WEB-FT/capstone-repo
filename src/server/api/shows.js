@@ -1,24 +1,19 @@
 const express = require(`express`);
 const router = express.Router();
 const { getAllShows, getShowsId, createShow, updateShow, deleteShow } = require('../db/shows');
+const { showData } = require(`../db/showData`)
 
-async function getAllShows(){
-    try {
-        const {shows} = await client.query(`
-            SELECT * FROM shows;
-        `);
-        return shows;
-    } catch (error) {
-        throw error;
-    }
-}
 
-router.get('/shows', async (req, res, next) => {
+
+router.get('/', async (req, res, next) => {
     try {
-        const show = await getAllShows(req.params.show);
-        console.log(show)
-        res.send(cats);
+       
+        const shows = await getAllShows();
+        console.log(shows)
+        res.send(shows);
    } catch (error) {
         next(error);
     }
 });
+
+module.exports = router
