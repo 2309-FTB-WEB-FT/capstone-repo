@@ -5,6 +5,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
+  const [signupUsername, setSignupUsername] = useState('');
   const [signupEmail, setSignupEmail] = useState('')
   const [signupPassword, setSignupPassword] = useState('')
   const [signupMessage, setSignupMessage] = useState('')
@@ -16,6 +17,10 @@ const Login = () => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+  };
+
+  const handleSignupUsernameChange = (e) => {
+    setSignupUsername(e.target.value);
   };
 
   const handleSignupEmailChange =(e) => {
@@ -59,6 +64,7 @@ const Login = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+          username: signupUsername,
           email: signupEmail,
           password: signupPassword
         })
@@ -68,6 +74,7 @@ const Login = () => {
       if (!response.ok) {
         throw result;
       }
+      setSignupUsername('');
       setSignupEmail('');
       setSignupPassword('');
     }catch(err) {
@@ -126,6 +133,15 @@ const Login = () => {
         <div>
         <h2>Sign Up</h2>
         <form onSubmit={handleSignupSubmit}>
+          <div>
+            <label htmlFor='signup-username'>Username:</label>
+            <input
+              type='text'
+              id='signup-username'
+              value={signupUsername}
+              onChange={handleSignupUsernameChange}                required
+            />
+          </div>
           <div>
             <label htmlFor='signup-email'>Email:</label>
             <input
