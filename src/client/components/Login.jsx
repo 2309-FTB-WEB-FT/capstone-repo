@@ -8,6 +8,7 @@ const Login = () => {
   const [signupEmail, setSignupEmail] = useState('')
   const [signupPassword, setSignupPassword] = useState('')
   const [signupMessage, setSignupMessage] = useState('')
+  const [showSignup, setShowSignup] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -84,6 +85,9 @@ const Login = () => {
     signup();
   };
 
+  const toggleSignup = () => {
+    setShowSignup(!showSignup);
+  };
 
   return (
     <div>
@@ -113,6 +117,13 @@ const Login = () => {
       </form>
       <p>{message}</p>
       <div>
+        {!showSignup ? (
+          <p>
+            Dont have an account?{''}
+            <button onClick={toggleSignup}>Sign up here!</button>
+          </p>
+        ) : ( 
+        <div>
         <h2>Sign Up</h2>
         <form onSubmit={handleSignupSubmit}>
           <div>
@@ -139,6 +150,8 @@ const Login = () => {
         </form>
         <p>{signupMessage}</p>
       </div>
+      )}
+     </div> 
     </div>
   );
 };
