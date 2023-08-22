@@ -30,8 +30,7 @@ const Login = () => {
         const response = await fetch('http://localhost:3000/Login', {
             method: 'POST',
             headers: {
-                'Content-Type' : 'application/json',
-                'Accept': 'application/json'
+                'Content-Type' : 'application/json'
             }, 
             body: JSON.stringify({
                 email,
@@ -56,8 +55,7 @@ const Login = () => {
       const response = await fetch('http://localhost:3000/Signup', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           email: signupEmail,
