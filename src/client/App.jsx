@@ -1,6 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useRoutes, useNavigate } from 'react-router-dom'; // Import useRoutes and useNavigate
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -21,25 +20,6 @@ function App() {
   };
 
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
-  const navigate = useNavigate(); 
-
-  
-  const routing = useRoutes([
-    { path: '/', element: <Home /> },
-    { path: '/Shows', element: <Shows /> },
-    {
-      path: '/Login',
-      element: <Login setIsLoggedIn={setIsLoggedIn} navigate={navigate} />,
-    },
-    {
-      path: '/Profile',
-      element: isLoggedIn ? <Profile /> : null,
-    },
-    {
-      path: '/SearchResults',
-      element: <SearchResults results={searchResults} standalone />,
-    },
-  ]);
 
   return (
     <BrowserRouter>
@@ -55,8 +35,22 @@ function App() {
           <SearchResults results={searchResults} standalone />
         )}
 
-        {/* Render the defined routes */}
-        {routing}
+        {/* Define your routes */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Shows" element={<Shows />} />
+          <Route
+            path="/Login"
+            element={<Login setIsLoggedIn={setIsLoggedIn} />}
+          />
+          {/* Render Profile route only when logged in */}
+          {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
+          {/* Standalone SearchResults route */}
+          <Route
+            path="/SearchResults"
+            element={<SearchResults results={searchResults} standalone />}
+          />
+        </Routes>
       </div>
     </BrowserRouter>
   );
