@@ -28,14 +28,14 @@ async function getAllShows(){
 
 
 
-router.get('/shows', async (req, res, next) => {
-    try {
-        const show = await getAllShows(req.params.show);
-        console.log(show)
-        res.send(cats);
-    } catch (error) {
-        next(error);
-    }
-});
+//router.get('/shows', async (req, res, next) => {
+    //try {
+        //const show = await getAllShows(req.params.show);
+        //console.log(show)
+       // res.send(cats);
+   // } catch (error) {
+        //next(error);
+   // }
+//});
 
-module.exports = {createShow, getAllShows}
+module.exports = {createShow}
