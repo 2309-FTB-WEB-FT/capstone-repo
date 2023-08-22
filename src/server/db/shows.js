@@ -28,14 +28,14 @@ async function getAllShows(){
     }
 }
 
-async function getShowByTitle( name, genre, image, description, averageLength ){
+async function getShowByTitle(name){
     try {
         console.log('yo')
-        const {table:[name, genre, image, description, averageLength]} = await db.query(`
+        const {rows:[title]} = await db.query(`
         SELECT * FROM shows
         WHERE name = $1 AND genre = $2 AND image = $3 AND description = $4 AND averageLength = $5
     `, [name, genre, image, description, averageLength]);
-        console.log(name)
+        console.log(title)
         return rows;
     } catch (error) {
         throw (error)
