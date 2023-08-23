@@ -7,10 +7,7 @@ const SearchBar = ({ onSearch }) => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    
     onSearch(searchQuery);
-
-    // Navigate to the search results page
     navigate('/SearchResults');
   };
 
