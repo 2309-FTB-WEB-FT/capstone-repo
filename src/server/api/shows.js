@@ -1,6 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
-const { getAllShows, getShowById, createShow, updateShow, deleteShow, getShowByID, getShowByTitle } = require('../db/shows');
+const { getAllShows, getShowByGenre, createShow, updateShow, deleteShow, getShowByID, getShowByTitle } = require('../db/shows');
 const { showData } = require(`../db/showData`)
 
 
@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/show/:name', async (req, res, next) => {
     try {
-        console.log('hello')
+        //console.log('hello')
         const show = await getShowByTitle(req.params.name);
      
         console.log(show);
@@ -30,7 +30,7 @@ router.get('/show/:name', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        console.log('yellow')
+        //console.log('yellow')
         const id = await getShowByID(req.params.id);
         console.log(id)
         res.send(id)
@@ -38,5 +38,14 @@ router.get('/:id', async (req, res, next) => {
         next (error);
     }
 });
+
+router.get('/genre/:genre', async (req, res, next) => {
+    try {
+        const genre = await getShowByGenre(req.params.genre);
+        res.send(genre)
+    } catch (error) {
+        next (error)
+    }
+})
 
 module.exports = router

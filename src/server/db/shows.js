@@ -18,12 +18,14 @@ const createShow = async({ name, genre, image, description, averageLength }) => 
 
 async function getShowByID(id){
     try {
-        const {rows: [id]} = await db.query(`
-        SELECT * FROM shows;
+        //console.log('test')
+        const {rows: [num]} = await db.query(`
+        SELECT * FROM shows
         WHERE id = $1
         `,[id])
-        console.log(id)
-        return id;
+        
+        //console.log(num);
+        return num;
     } catch(error) {
         throw error;
     }
@@ -31,7 +33,7 @@ async function getShowByID(id){
 
 async function getAllShows(){
     try {
-        console.log('hiiiiii')
+        //console.log('hiiiiii')
         const {rows} = await db.query(`
             SELECT * FROM shows;
         `);
@@ -44,7 +46,7 @@ async function getAllShows(){
 
 async function getShowByTitle(name){
     try {
-        console.log('yo')
+        //console.log('yo')
         const {rows:[title]} = await db.query(`
         SELECT * FROM shows
         WHERE name = $1 
@@ -56,5 +58,17 @@ async function getShowByTitle(name){
     }
 }
 
-
-module.exports = {createShow, getAllShows, getShowByTitle, getShowByID}
+async function getShowByGenre(genre) {
+    try {
+        console.log('test')
+        const {rows: [type]} = await db.query(`
+        SELECT name FROM shows
+        WHERE genre = $1`,
+        [genre]);
+        console.log(type)
+        return type;
+    } catch (error) {
+        throw (error)
+    }
+}
+module.exports = {createShow, getAllShows, getShowByTitle, getShowByID, getShowByGenre}
