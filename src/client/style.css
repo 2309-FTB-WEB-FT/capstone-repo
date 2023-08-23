@@ -89,3 +89,7 @@
   max-width: 100px;
   height: auto; 
 }
+
+.singleshow {
+  border:solid black 3px;
+}
