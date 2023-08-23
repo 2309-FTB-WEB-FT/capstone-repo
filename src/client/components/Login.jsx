@@ -110,6 +110,7 @@ const Login = () => {
 
   return (
     <div>
+      <h1>Login or Sign up!</h1>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
