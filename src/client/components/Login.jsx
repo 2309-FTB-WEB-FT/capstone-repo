@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
@@ -13,6 +14,10 @@ const Login = () => {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+  };
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value); 
   };
 
   const handlePasswordChange = (e) => {
@@ -33,14 +38,20 @@ const Login = () => {
 
   const login = async() => {
     try {
+      let loginIdentifier = email; 
+      if (email.includes('@')) {
+        loginIdentifier = email;
+      } else {
+        loginIdentifier = username;
+      }
         const response = await fetch('http://localhost:3000/Login', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
             }, 
             body: JSON.stringify({
-                email,
-                password
+              loginIdentifier, 
+              password
             })
         });
         const result = await response.json();
@@ -50,6 +61,7 @@ const Login = () => {
           throw(result)
         }
         setEmail('');
+        setUsername('');
         setPassword('');
     } catch (err) {
         console.error(`${err.name}: ${err.message}`);
@@ -101,9 +113,9 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor='email'>Email:</label>
+          <label htmlFor='email'>Email or Username:</label>
           <input
-            type='email'
+            type='text'
             id='email'
             value={email}
             onChange={handleEmailChange}
