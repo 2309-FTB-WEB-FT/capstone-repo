@@ -38,6 +38,9 @@ apiRouter.use(async (req, res, next) => {
 const usersRouter = require('./users');
 apiRouter.use('/users', usersRouter);
 
+const showRouter = require('./shows');
+apiRouter.use('/shows', showRouter);
+
 apiRouter.use((err, req, res, next) => {
     res.status(500).send(err)
   })
