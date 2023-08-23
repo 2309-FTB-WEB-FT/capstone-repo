@@ -24,8 +24,7 @@ return (
                     <div className="singleshow" key={show.id}>
                         <p>{show.name}</p>
                         <img src={show.image}></img>
-                        <p>{show.description}</p>
-                        <p>{show.lenth}</p>
+                        <p>{show.genre}</p>
                     </div>
                     )
                 })

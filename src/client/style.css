@@ -92,4 +92,10 @@
 
 .singleshow {
   border:solid black 3px;
+  padding: 5em;
+
+}
+
+.singleshow > p > img > genre {
+  font-size: 50px;
 }
