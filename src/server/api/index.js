@@ -21,7 +21,9 @@ apiRouter.use(async (req, res, next) => {
     
     try {
       const parsedToken = 'REPLACE_ME';
-      // TODO - Call 'jwt.verify()' to see if the token is valid. If it is, use it to get the user's 'id'. Look up the user with their 'id' and set 'req.user'
+      // TODO - Call 'jwt.verify()' to see if the token is valid. 
+      //If it is, use it to get the user's 'id'. 
+      //Look up the user with their 'id' and set 'req.user'
 
     } catch (error) {
       next(error);
