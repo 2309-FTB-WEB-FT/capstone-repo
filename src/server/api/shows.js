@@ -1,6 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
-const { getAllShows, getShowsId, createShow, updateShow, deleteShow } = require('../db/shows');
+const { getAllShows, getShowById, createShow, updateShow, deleteShow, getShowByID, getShowByTitle } = require('../db/shows');
 const { showData } = require(`../db/showData`)
 
 
@@ -11,6 +11,17 @@ router.get('/', async (req, res, next) => {
         const shows = await getAllShows();
         console.log(shows)
         res.send(shows);
+   } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/:name', async (req, res, next) => {
+    try {
+        console.log('hello')
+        const show = await getShowByTitle(req.params.name);
+        console.log(show.name);
+        res.send(show.name);
    } catch (error) {
         next(error);
     }
