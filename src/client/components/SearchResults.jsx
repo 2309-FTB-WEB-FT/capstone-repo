@@ -41,11 +41,17 @@ const SearchResults = ({ results, standalone }) => {
         {/* Genre filter dropdown */}
         <select value={filterByGenre} onChange={handleGenreChange}>
         <option value="all">All Genres</option>
-          <option value="action">Action</option>
-          <option value="drama">Drama</option>
-          <option value="romance">Romance</option>
-          <option value="comedy">Comedy</option>
-          <option value="horror">Horror</option>
+        <option value="action">Action</option>
+        <option value="adventure">Adventure</option>
+        <option value="comedy">Comedy</option>
+        <option value="crime">Crime</option>
+        <option value="drama">Drama</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="historical">Historical</option>
+        <option value="horror">Horror</option>
+        <option value="musical">Musical</option>
+        <option value="romance">Romance</option>
+        <option value="science fiction">Science Fiction</option>
           {/* ... (other genre options) */}
         </select>
 
