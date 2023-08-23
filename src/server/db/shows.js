@@ -1,5 +1,5 @@
 const db = require('./client');
-const { getShowsId, updateShow, deleteShow } = require('../db');
+const { getShow, updateShow, deleteShow } = require('../db');
 //const router = express.Router();
 
 const createShow = async({ name, genre, image, description, averageLength }) => {
@@ -28,5 +28,19 @@ async function getAllShows(){
     }
 }
 
+async function getShowByTitle(name){
+    try {
+        console.log('yo')
+        const {rows:[title]} = await db.query(`
+        SELECT * FROM shows
+        WHERE name = $1 AND genre = $2 AND image = $3 AND description = $4 AND averageLength = $5
+    `, [name, genre, image, description, averageLength]);
+        console.log(title)
+        return rows;
+    } catch (error) {
+        throw (error)
+    }
+}
 
-module.exports = {createShow, getAllShows}
+
+module.exports = {createShow, getAllShows, getShowByTitle}
