@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 const SearchResults = ({ results, standalone }) => {
   const [sortBy, setSortBy] = useState('relevance'); // Default sorting option
   const [filterByGenre, setFilterByGenre] = useState('all'); // Default genre filter
+  const [currentPage, setCurrentPage] = useState(1);
+  const resultsPerPage = 10; // Number of results to display per page
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
@@ -25,6 +27,12 @@ const SearchResults = ({ results, standalone }) => {
   const filteredResults = filterByGenre !== 'all'
     ? sortedAndFilteredResults.filter(result => result.genre === filterByGenre)
     : sortedAndFilteredResults;
+
+  const indexOfLastResult = currentPage * resultsPerPage;
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
+  const currentResults = filteredResults.slice(indexOfFirstResult, indexOfLastResult);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (standalone) {
     return (
@@ -59,14 +67,24 @@ const SearchResults = ({ results, standalone }) => {
           </select>
         </div>
 
-        {filteredResults.length > 0 ? (
-          filteredResults.map((result) => (
-            <div key={result.id} className="search-result">
-              {/* Display the sorted and filtered result content */}
-              <h3>{result.title}</h3>
-              {/* ... (other result content) */}
+        {currentResults.length > 0 ? (
+          <div>
+            {currentResults.map((result) => (
+              <div key={result.id} className="search-result">
+                {/* Display the sorted and filtered result content */}
+                <h3>{result.title}</h3>
+                {/* ... (other result content) */}
+              </div>
+            ))}
+            <div className="pagination">
+              {Array.from({ length: Math.ceil(filteredResults.length / resultsPerPage) }).map((_, index) => (
+                <button key={index} onClick={() => paginate(index + 1)}>
+                  {index + 1}
+                </button>
+              ))}
             </div>
-          ))
+            <p>{filteredResults.length} results found</p>
+          </div>
         ) : (
           <p>No results</p>
         )}
