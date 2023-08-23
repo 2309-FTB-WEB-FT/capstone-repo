@@ -28,13 +28,13 @@ async function getAllShows(){
     }
 }
 
-async function getShowByTitle(title) {
+async function getShowByName(name) {
     try {
         console.log('yo')
         const { rows } = await db.query(`
             SELECT * FROM shows
             WHERE name ILIKE $1
-        `, [`%${title}%`]);
+        `, [`%${name}%`]);
 
         return rows;
     } catch (error) {
@@ -43,4 +43,4 @@ async function getShowByTitle(title) {
 }
 
 
-module.exports = {createShow, getAllShows, getShowByTitle}
+module.exports = {createShow, getAllShows, getShowByName}
