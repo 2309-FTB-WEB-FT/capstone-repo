@@ -61,12 +61,12 @@ async function getShowByTitle(name){
 async function getShowByGenre(genre) {
     try {
         console.log('test')
-        const {rows: [type]} = await db.query(`
-        SELECT name FROM shows
+        const {rows} = await db.query(`
+        SELECT * FROM shows
         WHERE genre = $1`,
         [genre]);
-        console.log(type)
-        return type;
+        console.log(rows)
+        return rows;
     } catch (error) {
         throw (error)
     }
