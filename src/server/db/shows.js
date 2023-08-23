@@ -28,7 +28,7 @@ async function getAllShows(){
     }
 }
 
-async function getShowByName(name) {
+async function getShowByTitle(name) {
     try {
         console.log('yo')
         const { rows } = await db.query(`
@@ -43,4 +43,4 @@ async function getShowByName(name) {
 }
 
 
-module.exports = {createShow, getAllShows, getShowByName}
+module.exports = {createShow, getAllShows, getShowByTitle}
