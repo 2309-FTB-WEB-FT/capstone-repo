@@ -46,6 +46,7 @@
   appearance: none;
   width: 150px;
   cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
 .select-container select:hover {
