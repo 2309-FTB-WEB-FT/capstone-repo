@@ -4,7 +4,7 @@ const SearchResults = ({ results, standalone }) => {
   const [sortBy, setSortBy] = useState('relevance'); // Default sorting option
   const [filterByGenre, setFilterByGenre] = useState('all'); // Default genre filter
   const [currentPage, setCurrentPage] = useState(1);
-  const resultsPerPage = 10; // Number of results to display per page
+  const [resultsPerPage, setResultsPerPage] = useState(10); // Number of results to display per page
 
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
@@ -33,6 +33,11 @@ const SearchResults = ({ results, standalone }) => {
   const currentResults = filteredResults.slice(indexOfFirstResult, indexOfLastResult);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleResultsPerPageChange = (e) => {
+    setResultsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to first page when changing results per page
+  };
 
   if (standalone) {
     return (
@@ -63,11 +68,23 @@ const SearchResults = ({ results, standalone }) => {
           <option value="musical">Musical</option>
           <option value="romance">Romance</option>
           <option value="science fiction">Science Fiction</option>
-            {/* ... (other genre options) */}
+            {/* ... (other genre options?) */}
           </select>
         </div>
 
-        {currentResults.length > 0 ? (
+        <div className="select-container">
+          {/* Results per page dropdown */}
+          <select value={resultsPerPage} onChange={handleResultsPerPageChange}>
+          <option value="10"># of results</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          </select>
+        </div>
+
+         {/* Display search results, pagination, and result counter */}
+         {currentResults.length > 0 ? (
           <div>
             {currentResults.map((result) => (
               <div key={result.id} className="search-result">
