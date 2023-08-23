@@ -30,30 +30,26 @@ const SearchResults = ({ results, standalone }) => {
     return (
       <div>
         <h2>Search Results</h2>
-        {/* Sorting dropdown */}
-        <select value={sortBy} onChange={handleSortChange}>
-          <option value="relevance">Relevance</option>
-          <option value="date">Date</option>
-          <option value="mostReviewed">Most Reviewed</option>
-          <option value="alphabetical">Alphabetical</option>
-        </select>
+        <div className="select-container">
+          {/* Sorting dropdown */}
+          <select value={sortBy} onChange={handleSortChange}>
+            <option value="relevance">Relevance</option>
+            <option value="date">Date</option>
+            <option value="mostReviewed">Most Reviewed</option>
+            <option value="alphabetical">Alphabetical</option>
+          </select>
+        </div>
 
-        {/* Genre filter dropdown */}
-        <select value={filterByGenre} onChange={handleGenreChange}>
-        <option value="all">All Genres</option>
-        <option value="action">Action</option>
-        <option value="adventure">Adventure</option>
-        <option value="comedy">Comedy</option>
-        <option value="crime">Crime</option>
-        <option value="drama">Drama</option>
-        <option value="fantasy">Fantasy</option>
-        <option value="historical">Historical</option>
-        <option value="horror">Horror</option>
-        <option value="musical">Musical</option>
-        <option value="romance">Romance</option>
-        <option value="science fiction">Science Fiction</option>
-          {/* ... (other genre options) */}
-        </select>
+        <div className="select-container">
+          {/* Genre filter dropdown */}
+          <select value={filterByGenre} onChange={handleGenreChange}>
+            <option value="all">All Genres</option>
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+            {/* ... (other genre options) */}
+          </select>
+        </div>
 
         {filteredResults.length > 0 ? (
           filteredResults.map((result) => (
