@@ -2,6 +2,7 @@ const db = require('./client');
 const { showData } = require('./showData');
 const { createUser } = require('./users');
 const { createShow } = require('./shows');
+const { createReview } = require('./reviews')
 
 const users = [
   {
@@ -32,11 +33,19 @@ const users = [
   // Add more user objects as needed
 ];  
 
+const reviews = [
+  {
+    title: 'funny as hell',
+    body: 'I love this show its so funny!! cnat wiat fo r seson 2',
+  }
+]
+
 const dropTables = async () => {
     try {
         await db.query(`
         DROP TABLE IF EXISTS users;
         DROP TABLE IF EXISTS shows;
+        DROP TABLE IF EXISTS reviews;
         `)
     }
     catch(err) {
@@ -60,10 +69,16 @@ const createTables = async () => {
           genre VARCHAR(255),
           image VARCHAR(1000),
           description TEXT,
-          averageLength INTEGER)`
-      )
-    }
-    catch(err) {
+          averageLength INTEGER)`)
+      await db.query(
+        `CREATE TABLE reviews(
+          id SERIAL PRIMARY KEY,
+          title TEXT,
+          body TEXT,
+          show TEXT
+        )`)
+  
+    } catch(err) {
         throw err;
     }
 }
@@ -90,6 +105,16 @@ const insertShows = async () => {
   }
 };
 
+const insertReviews = async () => {
+  try {
+    for ( review of reviews ) {
+      await createReview({title: reviews.title, body: reviews.body, show: reviews.show})
+    }
+  } catch (error) {
+    console.log('error inserting review seed data', error);
+  }
+};
+
 const seedDatabse = async () => {
     try {
         db.connect();
@@ -97,6 +122,7 @@ const seedDatabse = async () => {
         await createTables();
         await insertUsers();
         await insertShows();
+        await insertReviews();
     }
     catch (err) {
         throw err;
