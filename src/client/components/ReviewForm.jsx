@@ -26,7 +26,7 @@ const ReviewForm = ({ onClose }) => {
   return (
     <div className="overlay">
       <div className="popup">
-        <button className="close-button" onClick={onClose}>Close</button>
+        <button className="close-button" onClick={onClose}>X</button>
         <form className="review-form" onSubmit={handleSubmit}>
           <textarea
             className="text-input"
