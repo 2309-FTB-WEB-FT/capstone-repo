@@ -1,13 +1,37 @@
-// src/components/Home.js
-import React from 'react';
+import React from "react";
+import { useState, useEffect } from "react";
 
 const Home = () => {
-  return (
-    <div>
-      <h1>Home Page</h1>
-      {/*home page content */}
-    </div>
-  );
-};
+const [allShows, setAllShows] = useState([]) 
+useEffect(() => {
+    async function fetchData() {
+        try{
+            const response = await fetch("http://localhost:3000/api/shows/")
+            const result = await response.json();
+            setAllShows(result)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    fetchData()
+}, [])    
+return (
+        <div>
+            <p>home</p>
+            {
+                allShows.map((show) => {
+                    return (
+                    <div className="singleshow" key={show.id}>
+                        <p>{show.name}</p>
+                        <img src={show.image}></img>
+                        <p>{show.description}</p>
+                        <p>{show.lenth}</p>
+                    </div>
+                    )
+                })
+            }
+        </div>
+    )
+ }
+export default Home
 
-export default Home;
