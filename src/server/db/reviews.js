@@ -1,16 +1,18 @@
 const db = require('./client');
 
-const createReview = async({title, body, show}) => {
+const createReview = async({title, body, showName, userName, timestamp}) => {
     try {
-        const { rows: [ review ] } = await db.query(`
-        INSERT INTO reviews(title, body, show)
-        VALUES($1, $2, $3)
-        RETURNING *`,  [title, body, show]);
+        const { rows } = await db.query(`
+        INSERT INTO reviews( title, body, showName, userName, timestamp )
+        VALUES($1, $2, $3, $4, $5)
+        RETURNING *`,  [title, body, showName, userName, timestamp]);
 
-        return review;
+        return rows;
     } catch (err) {
         throw err;
     }
 }
+
+
 
 module.exports = {createReview}

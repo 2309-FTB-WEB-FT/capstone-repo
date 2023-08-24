@@ -75,7 +75,9 @@ const createTables = async () => {
           id SERIAL PRIMARY KEY,
           title TEXT,
           body TEXT,
-          show TEXT
+          showName VARCHAR(255),
+          userName VARCHAR(255),
+          timestamp INTEGER
         )`)
   
     } catch(err) {
@@ -108,7 +110,7 @@ const insertShows = async () => {
 const insertReviews = async () => {
   try {
     for ( review of reviews ) {
-      await createReview({title: reviews.title, body: reviews.body, show: reviews.show})
+      await createReview({title: review.title, body: review.body, show: review.showName, user: review.userName, timestamp: review.timestamp})
     }
   } catch (error) {
     console.log('error inserting review seed data', error);
