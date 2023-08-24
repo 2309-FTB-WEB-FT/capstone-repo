@@ -152,7 +152,8 @@ const Login = () => {
               type='text'
               id='signup-username'
               value={signupUsername}
-              onChange={handleSignupUsernameChange}                required
+              onChange={handleSignupUsernameChange}
+              required
             />
           </div>
           <div>
