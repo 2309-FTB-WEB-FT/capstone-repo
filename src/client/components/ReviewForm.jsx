@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill's stylesheet
 import './ReviewForm.css';
 
 const ReviewForm = ({ onClose }) => {
@@ -6,8 +8,8 @@ const ReviewForm = ({ onClose }) => {
   const [bingeLength, setBingeLength] = useState('');
   const [bingeScale, setBingeScale] = useState('');
 
-  const handleReviewChange = (e) => {
-    setReviewText(e.target.value);
+  const handleReviewChange = (newContent) => {
+    setReviewText(newContent);
   };
 
   const handleBingeLengthChange = (e) => {
@@ -28,12 +30,10 @@ const ReviewForm = ({ onClose }) => {
       <div className="popup">
         <button className="close-button" onClick={onClose}>X</button>
         <form className="review-form" onSubmit={handleSubmit}>
-          <textarea
-            className="text-input"
-            placeholder="Write your review..."
+          <ReactQuill
             value={reviewText}
             onChange={handleReviewChange}
-            required
+            placeholder="Write your review..."
           />
           <input
             type="text"
