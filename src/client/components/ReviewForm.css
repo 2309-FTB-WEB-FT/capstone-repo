@@ -1,4 +1,5 @@
 /* Review form overlay */
+
 .overlay {
     position: fixed;
     top: 0;
@@ -42,12 +43,10 @@
   
   /* Text field */
   .text-input {
-    width: 95%;
-    height: 150px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical; /* Allow vertical resizing */
+    resize: vertical;
     font-family: inherit;
   }
   
