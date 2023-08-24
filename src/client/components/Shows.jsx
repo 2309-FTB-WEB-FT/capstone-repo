@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import ReviewForm from './ReviewForm'; // Import the ReviewForm component
+import './ReviewForm.css';
 
 const Shows = () => {
-  const [showReviewForm, setShowReviewForm] = useState(false); // State to track whether the review form should be shown
+  const [showReviewForm, setShowReviewForm] = useState(false);
 
   const handleWriteReview = () => {
-    setShowReviewForm(true); // Set the state to show the review form
+    setShowReviewForm(true);
   };
 
   return (
     <div>
       <h1>Explore Shows</h1>
-      {/* "Write a review" button */}
       <button onClick={handleWriteReview}>Write a Review</button>
-      
-      {/* Conditionally render the review form */}
+
       {showReviewForm && (
         <div className="overlay">
           <div className="popup">
@@ -23,11 +22,10 @@ const Shows = () => {
           </div>
         </div>
       )}
-      
+
       {/* Rest of the page content */}
     </div>
   );
 };
 
 export default Shows;
-
