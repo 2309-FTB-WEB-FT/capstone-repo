@@ -23,6 +23,7 @@ router.get('/show/:name', async (req, res, next) => {
      
         console.log(show);
         res.send(show);
+
    } catch (error) {
         next(error);
     }

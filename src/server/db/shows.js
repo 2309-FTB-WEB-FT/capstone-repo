@@ -15,7 +15,6 @@ const createShow = async({ name, genre, image, description, averageLength }) => 
     }
 }
 
-
 async function getShowByID(id){
     try {
         //console.log('test')
