@@ -2,8 +2,11 @@ const express = require('express');
 const apiRouter = express.Router();
 const jwt = require('jsonwebtoken');
 
+
 const volleyball = require('volleyball')
 apiRouter.use(volleyball)
+
+
 
 // TO BE COMPLETED - set `req.user` if possible, using token sent in the request header
 apiRouter.use(async (req, res, next) => {
@@ -36,6 +39,9 @@ apiRouter.use(async (req, res, next) => {
 
 const usersRouter = require('./users');
 apiRouter.use('/users', usersRouter);
+
+const showRouter = require('./shows');
+apiRouter.use('/shows', showRouter);
 
 apiRouter.use((err, req, res, next) => {
     res.status(500).send(err)

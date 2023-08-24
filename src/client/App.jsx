@@ -8,6 +8,7 @@ import Profile from './components/Profile';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 
+
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,6 +20,7 @@ function App() {
   };
 
   return (
+
     <BrowserRouter>
       <div className="App">
         <SearchBar onSearch={handleSearch} />
