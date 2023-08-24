@@ -66,11 +66,7 @@
     resize: vertical;
     transition: border-color 0.3s ease;
   }
-  
-  .dropdown select:hover {
-    border-color: #7fc041;
-    box-shadow: 0 0 5px rgba(127, 192, 65, 0.5);
-  }
+
   
   /* Custom arrow icon */
   .dropdown::after {
@@ -82,7 +78,6 @@
     pointer-events: none;
   }
   
-  /* Add hover styling */
   .submit-button {
     background-color: #9ce763;
     color: white;
@@ -94,7 +89,7 @@
     transition: background-color 0.3s ease;
   }
   
-  /* Add hover styling */
+ 
   .submit-button:hover {
     background-color: #7fc041;
   }
