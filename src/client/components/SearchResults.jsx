@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchResults = ({ results, standalone }) => {
+const SearchResults = ({ results }) => {
   const [sortBy, setSortBy] = useState('relevance'); // Default sorting option
   const [filterByGenre, setFilterByGenre] = useState('all'); // Default genre filter
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,11 +39,10 @@ const SearchResults = ({ results, standalone }) => {
     setCurrentPage(1); // Reset to first page when changing results per page
   };
 
-  if (standalone) {
-    return (
-      <div>
-        <h2>Search Results</h2>
-        <div className="select-container">
+  return (
+    <div>
+      <h2>Search Results</h2>
+      <div className="select-container">
           {/* Sorting dropdown */}
           <select value={sortBy} onChange={handleSortChange}>
             <option value="relevance">Relevance</option>
@@ -108,6 +107,5 @@ const SearchResults = ({ results, standalone }) => {
       </div>
     );
   }
-};
 
 export default SearchResults;

@@ -8,19 +8,35 @@ import Profile from './components/Profile';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 
-
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleSearch = (query) => {
-    setSearchResults([
-      { id: 1, title: 'Search Result Placeholder' },
-    ]);
+  const handleSearch = async (query) => {
+    try {
+      if (!query) {
+        console.error('Search query is empty');
+        return;
+      }
+
+      const response = await fetch(`/api/shows/show/${query}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          setSearchResults(data); // Update search results with fetched data
+        } else {
+          console.error('Empty response or invalid JSON format');
+        }
+      } else {
+        console.error('Failed to fetch show data');
+      }
+    } catch (error) {
+      console.error('Error fetching show data:', error);
+    }
   };
 
-  return (
 
+  return (
     <BrowserRouter>
       <div className="App">
         <SearchBar onSearch={handleSearch} />
@@ -34,7 +50,11 @@ function App() {
           <Route path="/Shows" element={<Shows />} />
           <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
-          <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
+          {/* Pass search results directly as a prop */}
+          <Route
+            path="/SearchResults"
+            element={<SearchResults results={searchResults} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>
