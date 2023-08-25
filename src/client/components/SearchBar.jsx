@@ -18,8 +18,8 @@ const SearchBar = ({ onSearch }) => {
         try {
           const data = await response.json();
           if (data) {
-            onSearch(data); // Pass the fetched data to the parent component
-            navigate('/SearchResults'); // Navigate to SearchResults page
+            onSearch(data);
+            navigate('/SearchResults'); 
           } else {
             console.error('Empty response or invalid JSON format');
           }
