@@ -41,14 +41,21 @@ const reviews = [
   }
 ]
 
+const comments = [
+  {
+    body: 'Wow you are so funny!!',
+    timestamp: ''
+  }
+]
+
 const dropTables = async () => {
     try {
         await db.query(`
-        DROP TABLE IF EXISTS users;
-        DROP TABLE IF EXISTS shows;
-        DROP TABLE IF EXISTS reviews;
+        DROP TABLE IF EXISTS users CASCADE;
+        DROP TABLE IF EXISTS shows CASCADE;
+        DROP TABLE IF EXISTS reviews CASCADE;
         DROP TABLE IF EXISTS comments;
-        `)
+        `);
     }
     catch(err) {
         throw err;
@@ -77,15 +84,15 @@ const createTables = async () => {
           id SERIAL PRIMARY KEY,
           title TEXT,
           body TEXT,
-          showName VARCHAR(255),
-          userName VARCHAR(255),
+          showName INTEGER REFERENCES shows(id),
+          userName INTEGER REFERENCES users(id),
           timestamp INTEGER
         )`)
       await db.query(
         `CREATE TABLE comments(
           id SERIAL PRIMARY KEY,
-          userId TEXT,
-          reviewId TEXT,
+          userId INTEGER REFERENCES users(id),
+          reviewId INTEGER REFERENCES reviews(id),
           body TEXT,
           timestamp INTEGER
         )`
@@ -146,6 +153,7 @@ const seedDatabse = async () => {
         await insertUsers();
         await insertShows();
         await insertReviews();
+        await insertComment();
     }
     catch (err) {
         throw err;
