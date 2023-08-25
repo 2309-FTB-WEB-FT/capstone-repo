@@ -70,4 +70,19 @@ async function getShowByGenre(genre) {
         throw (error)
     }
 }
-module.exports = {createShow, getAllShows, getShowByTitle, getShowByID, getShowByGenre}
+
+async function searchShowsByTitle(title) {
+    try {
+      const sanitizedTitle = `%${title}%`; // Add wildcards for partial matching
+      const { rows } = await db.query(`
+        SELECT * FROM shows
+        WHERE name ILIKE $1 
+      `, [sanitizedTitle]);
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
+  
+
+module.exports = {createShow, getAllShows, getShowByTitle, getShowByID, getShowByGenre, searchShowsByTitle}

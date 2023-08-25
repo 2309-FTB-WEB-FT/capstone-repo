@@ -13,7 +13,7 @@ const SearchBar = ({ onSearch }) => {
         return;
       }
   
-      const response = await fetch(`/api/shows/show/${searchQuery}`);
+      const response = await fetch(`/api/shows/search/${encodeURIComponent(searchQuery)}`);
       if (response.ok) {
         try {
           const data = await response.json();
