@@ -19,7 +19,7 @@ function App() {
         return;
       }
 
-      const response = await fetch(`/api/shows/show/${query}`);
+      const response = await fetch(`/api/shows/:name/${query}`);
       if (response.ok) {
         const data = await response.json();
         if (data) {

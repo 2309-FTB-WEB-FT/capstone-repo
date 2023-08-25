@@ -12,7 +12,7 @@ const SearchBar = ({ onSearch }) => {
         console.error('Search query is empty');
         return;
       }
-
+  
       const response = await fetch(`/api/shows/show/${searchQuery}`);
       if (response.ok) {
         try {
@@ -32,7 +32,7 @@ const SearchBar = ({ onSearch }) => {
     } catch (error) {
       console.error('Error fetching show data:', error);
     }
-  };
+  };  
 
   return (
     <div className="search-bar-container">
