@@ -23,6 +23,17 @@ usersRouter.get('/', async( req, res, next) => {
 
 console.log('hi')
 
+usersRouter.get('/user/:id', async (req, res, next) => {
+    try {
+        //console.log('yellow')
+        const id = await getUserByID(req.params.id);
+        console.log(id)
+        res.send(id)
+    } catch (error) {
+        next (error);
+    }
+});
+
 usersRouter.post('/login', async(req, res, next) => {
     const { email, password } = req.body;
     if(!email || !password) {
