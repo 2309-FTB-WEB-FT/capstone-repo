@@ -2,7 +2,8 @@ const db = require('./client');
 const { showData } = require('./showData');
 const { createUser } = require('./users');
 const { createShow } = require('./shows');
-const { createReview } = require('./reviews')
+const { createReview } = require('./reviews');
+const { createComment } = require('./comments')
 
 const users = [
   {
@@ -46,6 +47,7 @@ const dropTables = async () => {
         DROP TABLE IF EXISTS users;
         DROP TABLE IF EXISTS shows;
         DROP TABLE IF EXISTS reviews;
+        DROP TABLE IF EXISTS comments;
         `)
     }
     catch(err) {
@@ -79,6 +81,15 @@ const createTables = async () => {
           userName VARCHAR(255),
           timestamp INTEGER
         )`)
+      await db.query(
+        `CREATE TABLE comments(
+          id SERIAL PRIMARY KEY,
+          userId TEXT,
+          reviewId TEXT,
+          body TEXT,
+          timestamp INTEGER
+        )`
+      )
   
     } catch(err) {
         throw err;
@@ -116,6 +127,16 @@ const insertReviews = async () => {
     console.log('error inserting review seed data', error);
   }
 };
+
+const insertComment = async () => {
+  try {
+    for (comment of comments) {
+      await createComment({user: review.user, review: review.review, body: review.body, timestamp: review.timestamp})
+    }
+  } catch (err) {
+    throw err;
+  }
+}
 
 const seedDatabse = async () => {
     try {
