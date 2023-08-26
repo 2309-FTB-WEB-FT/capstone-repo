@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/show/:name', async (req, res, next) => {
     try {
-        //console.log('hello')
+        console.log('hello')
         const show = await getShowByTitle(req.params.name);
      
         console.log(show);
