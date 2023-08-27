@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
+  // For login
+  const [loginName, setLoginName] = useState('');
   const [password, setPassword] = useState('');
+
   const [message, setMessage] = useState('');
 
+  // For signup
   const [signupUsername, setSignupUsername] = useState('');
   const [signupEmail, setSignupEmail] = useState('')
   const [signupPassword, setSignupPassword] = useState('')
   const [signupMessage, setSignupMessage] = useState('')
   const [showSignup, setShowSignup] = useState(false);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleLoginNameChange = (e) => {
+    setLoginName(e.target.value);
   };
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value); 
-  };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -38,30 +37,24 @@ const Login = () => {
 
   const login = async() => {
     try {
-      let loginIdentifier = email; 
-      if (email.includes('@')) {
-        loginIdentifier = email;
-      } else {
-        loginIdentifier = username;
-      }
-        const response = await fetch('http://localhost:3000/Login', {
+        const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
             }, 
             body: JSON.stringify({
-              loginIdentifier, 
+              loginName, 
               password
             })
         });
         const result = await response.json();
-        console.log(response)
+        console.log(JSON.stringify(result))
         setMessage(result.message);
+        setToken(result.token);
         if(!response.ok) {
           throw(result)
         }
-        setEmail('');
-        setUsername('');
+        setLoginName('');
         setPassword('');
     } catch (err) {
         console.error(`${err.name}: ${err.message}`);
@@ -70,7 +63,7 @@ const Login = () => {
 
   const signup = async () => {
     try {
-      const response = await fetch('http://localhost:3000/Signup', {
+      const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -82,7 +75,9 @@ const Login = () => {
         })
       });
       const result = await response.json();
+      console.log(`signup response: ${JSON.stringify(result)}`);
       setSignupMessage(result.message);
+      setToken(result.token);
       if (!response.ok) {
         throw result;
       }
@@ -114,12 +109,12 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor='email'>Email or Username:</label>
+          <label htmlFor='loginName'>Email or Username:</label>
           <input
             type='text'
-            id='email'
-            value={email}
-            onChange={handleEmailChange}
+            id='loginName'
+            value={loginName}
+            onChange={handleLoginNameChange}
             required
           />
         </div>

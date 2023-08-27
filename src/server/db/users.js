@@ -17,17 +17,40 @@ const createUser = async({ name='first last', email, password }) => {
     }
 }
 
-const getUser = async({email, password}) => {
-    if(!email || !password) {
+const getUser = async({username, password}) => {
+    if(!username || !password) {
         return;
     }
+
     try {
-        const user = await getUserByEmail(email);
+        let user = null;
+        if (username.includes('@')) { 
+            user = await getUserByEmail(username);
+        } else {
+            user = await getUserByName(username);
+        }
         if(!user) return;
+
         const hashedPassword = user.password;
         const passwordsMatch = await bcrypt.compare(password, hashedPassword);
         if(!passwordsMatch) return;
         delete user.password;
+        return user;
+    } catch (err) {
+        throw err;
+    }
+}
+
+const getUserByName = async(name) => {
+    try {
+        const { rows: [ user ] } = await db.query(`
+        SELECT * 
+        FROM users
+        WHERE name=$1;`, [ name ]);
+
+        if(!user) {
+            return;
+        }
         return user;
     } catch (err) {
         throw err;
@@ -55,6 +78,7 @@ const getUserByEmail = async(email) => {
 module.exports = {
     createUser,
     getUser,
-    getUserByEmail,
+    getUserByName,
+    getUserByEmail
     
 };
