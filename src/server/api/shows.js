@@ -1,6 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
-const { getAllShows, getShowByGenre, createShow, updateShow, deleteShow, getShowByID, getShowByTitle } = require('../db/shows');
+const { getAllShows, getShowByGenre, createShow, updateShow, deleteShow, getShowByID, getShowByTitle, searchShowsByQuery } = require('../db/shows');
 const { showData } = require(`../db/showData`)
 
 

@@ -71,4 +71,19 @@ async function getShowByGenre(genre) {
     }
 }
 
-module.exports = {createShow, getAllShows, getShowByTitle, getShowByID, getShowByGenre,}
+//search function?
+async function searchShowsByQuery(query) {
+    try {
+        const searchQuery = `%${query}%`;
+        const { rows } = await db.query(`
+            SELECT * FROM shows
+            WHERE name ILIKE $1 OR genre ILIKE $1 OR description ILIKE $1
+        `, [searchQuery]);
+
+        return rows;
+    } catch (error) {
+        throw error;
+    }
+}
+
+module.exports = {createShow, getAllShows, getShowByTitle, getShowByID, getShowByGenre,searchShowsByQuery }
