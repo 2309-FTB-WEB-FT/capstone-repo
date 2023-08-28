@@ -12,6 +12,7 @@ import SearchResults from './components/SearchResults';
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState('');
 
   const handleSearch = (query) => {
     setSearchResults([
@@ -32,7 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Shows" element={<Shows />} />
-          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
           {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
           <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
         </Routes>

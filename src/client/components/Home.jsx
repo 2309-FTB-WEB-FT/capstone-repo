@@ -17,7 +17,13 @@ useEffect(() => {
 }, [])    
 return (
         <div>
-            <p>home</p>
+            <header>
+                <input />
+                <div className="underline"></div>
+                <h2>TV SHOWS</h2>
+            </header>
+            <section></section>
+            <p>home</p> 
             {
                 allShows.map((show) => {
                     return (
