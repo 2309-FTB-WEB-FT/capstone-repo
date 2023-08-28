@@ -91,15 +91,15 @@
 }
 
 .singleshow {
-  display: grid;
-  width: 540px;
-  grid-template-rows: 120px 120px 220px;
-  align-items: start;
-  justify-content: space-between;
+  min-width: 250px;
+  align-content: normal;
+  justify-content: space-evenly;
   border:solid black 3px;
-  padding: 5em;
+  padding: 2em;
 }
 
-header > h2 {
-   border: solid black 10px;
+.showcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }

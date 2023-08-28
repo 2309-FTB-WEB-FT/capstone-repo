@@ -1,8 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
 const [allShows, setAllShows] = useState([]) 
+const navigate = useNavigate()
+
 useEffect(() => {
     async function fetchData() {
         try{
@@ -16,23 +19,18 @@ useEffect(() => {
     fetchData()
 }, [])    
 return (
-        <div>
-            <header>
-                <input />
-                <div className="underline"></div>
-                <h2>TV SHOWS</h2>
-            </header>
-            <section></section>
-            <p>home</p> 
+         <div className="showcontainer"> 
             {
                 allShows.map((show) => {
                     return (
                     <div className="singleshow" key={show.id}>
                         <p>{show.name}</p>
-                        <img src={show.image}></img>
+                        <img src={show.image} onClick={() =>
+                         navigate('/Shows')}></img>
                         <p>{show.genre}</p>
                     </div>
                     )
+                
                 })
             }
         </div>
