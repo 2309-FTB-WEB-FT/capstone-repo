@@ -49,15 +49,4 @@ router.get('/genre/:genre', async (req, res, next) => {
     }
 })
 
-//search route?
-router.get('/search/:title', async (req, res, next) => {
-    try {
-      const title = req.params.title;
-      const shows = await searchShowsByTitle(title);
-      res.send(shows);
-    } catch (error) {
-      next(error);
-    }
-  });
-
 module.exports = router

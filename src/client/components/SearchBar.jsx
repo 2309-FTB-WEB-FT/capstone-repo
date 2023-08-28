@@ -13,7 +13,7 @@ const SearchBar = ({ onSearch }) => {
         return;
       }
   
-      const response = await fetch(`/api/shows/search/${encodeURIComponent(searchQuery)}`);
+      const response = await fetch(`http://localhost:3000/api/shows/`);
       if (response.ok) {
         try {
           const data = await response.json();
