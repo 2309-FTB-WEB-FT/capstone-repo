@@ -12,4 +12,16 @@ const createComment = async({user, review, body, timestamp}) => {
     }
 }
 
-module.exports = { createComment }
+const getAllComments = async() => {
+    try {
+        console.log('i...am trying')
+        const {rows} = await db.query(`
+            SELECT * FROM comments;
+        `);
+        //console.log(rows)
+        return rows;
+    } catch (error) {
+        throw error;
+}}
+
+module.exports = { createComment, getAllComments }
