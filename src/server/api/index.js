@@ -17,9 +17,11 @@ apiRouter.use(async (req, res, next) => {
   } 
   else if (auth.startsWith('Bearer')) {
     // TODO - Get JUST the token out of 'auth'
-    const token = auth.split(' ')[1]; /// Split the auth header value by a space - second element is the token
+/// Split the auth header value by a space - second element is the token
+    const token = auth.split(' ')[1]; 
     
     try {
+       // parse the JWT token that you split out above.
       const parsedToken = jwt.verify(token, process.env.JWT_SECRET);
       const user = await getUserById(parsedToken.id);
 
@@ -28,8 +30,7 @@ apiRouter.use(async (req, res, next) => {
                 next(); 
             } else {
               res.status(401).send('User not authenticated');
-            }  
-            // parse the JWT token that you split out above.
+            }      
       // TODO - Call 'jwt.verify()' to see if the token is valid. 
       //If it is, use it to get the user's 'id'. 
       //Look up the user with their 'id' and set 'req.user'
