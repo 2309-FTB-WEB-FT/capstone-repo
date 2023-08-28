@@ -3,7 +3,7 @@ const { getUser } = require('../db');
 const { createComment, getAllComments } = require('../db/comments');
 const router = express.Router();
 
-router.post('./comment', async (req, res, next) => {
+router.post('./', async (req, res, next) => {
     try {
         const comment = await createComment(req.body);
         const existingShow = await getVideoGameById(show.id);
@@ -22,15 +22,15 @@ router.post('./comment', async (req, res, next) => {
     }
     
 });
-router.get('./', async( req, res, next) => {
+router.get('./comments', async( req, res, next) => {
     try {
         console.log("hellop?")
-        const comments  = await getAllComments(req.body);
+        const comments  = await getAllComments();
 
         res.send({
             comments
         });
-    } catch (err) {
+    } catch ({err}) {
         next(err)
     }
 });

@@ -17,17 +17,17 @@ const createUser = async({ name='first last', email, password }) => {
     }
 }
 
-const getUser = async({username, password}) => {
-    if(!username || !password) {
+const getUser = async({loginName, password}) => {
+    if(!loginName || !password) {
         return;
     }
 
     try {
         let user = null;
-        if (username.includes('@')) { 
-            user = await getUserByEmail(username);
+        if (loginName.includes('@')) { 
+            user = await getUserByEmail(loginName);
         } else {
-            user = await getUserByName(username);
+            user = await getUserByName(loginName);
         }
         if(!user) return;
 
@@ -72,12 +72,12 @@ const getAllUsers = async () => {
     }
 }
 
-const getUserById = async (id) => { try {
-    const { rows } = await db.query(`
+const getUserById = async (id) => { 
+    try {
+        const { rows } = await db.query(`
         SELECT * 
         FROM users
-        WHERE id = $1;
-    `, [id]);
+        WHERE id = $1;`, [id]);
 
     if (rows.length === 0) {
         return null; 
@@ -115,5 +115,5 @@ module.exports = {
     getUserById,
     getUserByEmail,
     getAllUsers
-    
+  
 };
