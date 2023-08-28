@@ -96,7 +96,7 @@ const Login = () => {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    //signup();
+    signup();
   };
 
   const toggleSignup = () => {
