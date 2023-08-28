@@ -51,12 +51,12 @@ router.get('/genre/:genre', async (req, res, next) => {
 //search route?
 router.get('/search', async (req, res, next) => {
     try {
-        const searchQuery = req.query.query; 
-        const results = await searchShowsByQuery(searchQuery); 
-        res.send(results);
+      const searchQuery = req.query.query; 
+      const results = await searchShowsByQuery(searchQuery);
+      res.send(results);
     } catch (error) {
-        next(error);
+      next(error);
     }
-});
+  });
 
 module.exports = router
