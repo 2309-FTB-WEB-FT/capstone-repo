@@ -1,9 +1,9 @@
 const express = require('express');
 const { getUser } = require('../db');
 const { createComment, getAllComments } = require('../db/comments');
-const router = express.Router();
+const commentRouter = express.Router();
 
-router.post('./comment', async (req, res, next) => {
+commentRouter.post('./comment', async (req, res, next) => {
     try {
         const comment = await createComment(req.body);
         const existingShow = await getVideoGameById(show.id);
@@ -22,7 +22,9 @@ router.post('./comment', async (req, res, next) => {
     }
     
 });
-router.get('./', async( req, res, next) => {
+
+commentRouter.get('/comments', async( req, res, next) => {
+    console.log('uhhhhh')
     try {
         console.log("hellop?")
         const comments  = await getAllComments(req.body);
