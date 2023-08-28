@@ -12,8 +12,8 @@ const SearchBar = ({ onSearch }) => {
         console.error('Search query is empty');
         return;
       }
-  
-      const response = await fetch(`http://localhost:3000/api/shows/`);
+
+      const response = await fetch(`http://localhost:3000/api/shows/search?query=${encodeURIComponent(searchQuery)}`);
       if (response.ok) {
         try {
           const data = await response.json();
