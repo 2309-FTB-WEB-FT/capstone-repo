@@ -53,6 +53,9 @@ apiRouter.use('/users', usersRouter);
 const showRouter = require('./shows');
 apiRouter.use('/shows', showRouter);
 
+const commentRouter = require('./comments');
+apiRouter.use('/comments', commentRouter)
+
 apiRouter.use((err, req, res, next) => {
     res.status(500).send(err)
   })

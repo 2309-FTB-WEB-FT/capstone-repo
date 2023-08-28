@@ -3,11 +3,12 @@ const { getUser } = require('../db');
 const { createComment, getAllComments } = require('../db/comments');
 const commentRouter = express.Router();
 
-commentRouter.post('./comment', async (req, res, next) => {
+commentRouter.post('/', async (req, res, next) => {
+    console.log('hello')
     try {
         const comment = await createComment(req.body);
-        const existingShow = await getVideoGameById(show.id);
-        const user = await getUser(user.id)
+        //const existingShow = await getShowById(show.id);
+        //const user = await getUser(user.id)
         if (existingShow) {
             res.send(comment)
         } else {
@@ -23,10 +24,11 @@ commentRouter.post('./comment', async (req, res, next) => {
     
 });
 
-commentRouter.get('/comments', async( req, res, next) => {
-    console.log('uhhhhh')
+// /api/comments
+commentRouter.get('/', async( req, res, next) => {
+  
     try {
-        console.log("hellop?")
+        
         const comments  = await getAllComments(req.body);
 
         res.send({
@@ -36,3 +38,5 @@ commentRouter.get('/comments', async( req, res, next) => {
         next(err)
     }
 });
+
+module.exports = commentRouter

@@ -13,9 +13,9 @@ const createComment = async({user, review, body, timestamp}) => {
 }
 
 const getAllComments = async() => {
-    console.log('dude')
+ 
     try {
-        console.log('i...am trying')
+        
         const {rows} = await db.query(`
             SELECT * FROM comments;
         `);
