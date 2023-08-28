@@ -1,5 +1,6 @@
 const db = require('./client');
 
+
 const createComment = async({user, review, body, timestamp}) => {
     try {
         const { rows: [comment] } = await db.query(`
@@ -12,4 +13,19 @@ const createComment = async({user, review, body, timestamp}) => {
     }
 }
 
-module.exports = { createComment }
+async function getAllComments {
+    try {
+        console.log('i...am trying')
+        const {rows} = await db.query(`
+            SELECT * FROM comments
+        `);
+        if(!rows) {
+            return;
+        }
+        console.log(rows)
+        return rows;
+    } catch (error) {
+        throw error;
+}}
+
+module.exports = { createComment, getAllComments }
