@@ -26,7 +26,7 @@ return (
                     <div className="singleshow" key={show.id}>
                         <p>{show.name}</p>
                         <img src={show.image} onClick={() =>
-                         navigate('/Shows')}></img>
+                         navigate(`/Shows/${show.id}`)}></img>
                         <p>{show.genre}</p>
                     </div>
                     )
