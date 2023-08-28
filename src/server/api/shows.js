@@ -48,11 +48,11 @@ router.get('/genre/:genre', async (req, res, next) => {
         next (error)
     }
 })
-
+//search route?
 router.get('/search', async (req, res, next) => {
     try {
-        const searchQuery = req.query.query; // Get the search query from the request query parameter
-        const results = await searchShowsByQuery(searchQuery); // Implement this function to search for shows based on the query
+        const searchQuery = req.query.query; 
+        const results = await searchShowsByQuery(searchQuery); 
         res.send(results);
     } catch (error) {
         next(error);
