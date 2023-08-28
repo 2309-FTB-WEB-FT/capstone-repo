@@ -7,11 +7,9 @@ const volleyball = require('volleyball')
 apiRouter.use(volleyball)
 
 
-
 // TO BE COMPLETED - set `req.user` if possible, using token sent in the request header
 apiRouter.use(async (req, res, next) => {
   const auth = req.header('Authorization');
-  
   if (!auth) { 
     next();
   } 
@@ -37,6 +35,7 @@ apiRouter.use(async (req, res, next) => {
     });
   }
 });
+
 
 const usersRouter = require('./users');
 apiRouter.use('/users', usersRouter);
