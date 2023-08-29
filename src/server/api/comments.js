@@ -32,7 +32,7 @@ commentRouter.get('/', async( req, res, next) => {
     try {
         
         const comments  = await getAllComments(req.body);
-=======
+
 
         res.send({
             comments
