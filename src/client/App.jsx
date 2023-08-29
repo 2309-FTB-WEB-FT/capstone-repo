@@ -29,7 +29,7 @@ function App() {
         <h1>Boilerplate</h1>
         <img id="comp-img" src="./computer.png" alt="computer" />
         <p>Replace the starter code in this template with something cool</p>
-        <div className="space"></div>
+      
 
         <Routes>
           <Route path="/" element={<Home />} />

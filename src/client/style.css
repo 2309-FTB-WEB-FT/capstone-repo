@@ -95,7 +95,7 @@
   border-span
 }
 .singleshow {
-  min-width: 250px;
+  width: 250px;
   align-content: normal;
   justify-content: space-evenly;
   /* border:solid black 3px; */
@@ -120,4 +120,8 @@
   flex-wrap: wrap;
   gap: 10px;
   height: 100%;
+}
+
+.showreview {
+  border: solid black;
 }
