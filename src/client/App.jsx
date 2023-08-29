@@ -4,14 +4,13 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Shows from './components/Shows';
-import Profile from './components/Profile';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-
+import UserProfile from './components/UserProfile';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Initialize isLoggedIn state
   const [token, setToken] = useState('');
 
   const handleSearch = (query) => {
@@ -34,7 +33,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Shows" element={<Shows />} />
           <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
-          {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
+          <Navbar isLoggedIn={isLoggedIn} token={token} /> {/* Pass isLoggedIn and token props */}
+          {isLoggedIn && <Route path="/profile/:userId" element={<UserProfile />} />}
           <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
         </Routes>
       </div>
