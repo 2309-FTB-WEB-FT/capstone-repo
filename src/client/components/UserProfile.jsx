@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 const UserProfile = () => {
   const { userId } = useParams(); // route parameter for the user ID
   const [userData, setUserData] = useState({
-    username: 'JohnDoe', // Placeholder
+    username: 'John Doe', // Placeholder
     profilePhoto: 'https://shorturl.at/dxzM3', // Placeholder
     bio: 'This is my profile bio.', // Placeholder
     likedShows: [], // Placeholder
