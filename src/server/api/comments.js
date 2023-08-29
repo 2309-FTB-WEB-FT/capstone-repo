@@ -1,6 +1,6 @@
 const express = require('express');
 const { getUser } = require('../db');
-const { createComment, getAllComments } = require('../db/comments');
+const { createComment, getAllComments, getCommentById, destroyComment } = require('../db/comments');
 const commentRouter = express.Router();
 
 commentRouter.post('/', async (req, res, next) => {
@@ -39,19 +39,26 @@ commentRouter.get('/', async( req, res, next) => {
     }
 });
 
-commentRouter.get('./:id', async( req, res, next) => {
+commentRouter.get('/:id', async( req, res, next) => {
     try {
-        const id = await getCommentByID(req.params.id);
+        console.log('yes')
+        const id = await getCommentById(req.params.id);
         res.send(id)
     } catch (err) {
         next(err)
     }
 })
 
-commentRouter.delete('/', async(req, res, next) => {
+commentRouter.delete('/:id', async(req, res, next) => {
     try {
         const {commentId} = req.params
         const commentToUpdate = await getCommentById(commentId)
+        
+        if(!commentToUpdate) {
+
+        } else {
+            const deletedComment = await destroyComment(commentId)
+            res.send({success: true, ...deletedComment});}
     } catch (err) {
         next(err)
     }

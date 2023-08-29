@@ -25,18 +25,36 @@ const getAllComments = async() => {
         throw error;
 }}
 
-const getCommentById = async() => {
+const getCommentById = async(id) => {
     try {
-        const {rows: {num}} = await db.query(`
+        console.log('test')
+        const {rows: [comment]} = await db.query(`
         SELECT * FROM comments
         WHERE id = $1
         `,[id])
-    
-        return num;
+        return comment;
 
     } catch (err) {
         next (err)
     }
 }
 
-module.exports = { createComment, getAllComments, getCommentById }
+const destroyComment = async(id) => {
+    try {
+        await client.query(`
+        DELETE FROM comments 
+        WHERE "commentId" = $1;
+    `, [id]);
+    const {rows: [comment]} = await client.query(`
+        DELETE FROM comments
+        WHERE id = $1
+        RETURNING *
+    `, [id]);
+    return comment;
+
+    } catch (err){ 
+        next (err)
+    }
+}
+
+module.exports = { createComment, getAllComments, getCommentById, destroyComment }
