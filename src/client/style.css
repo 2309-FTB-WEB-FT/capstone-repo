@@ -90,14 +90,30 @@
   height: auto; 
 }
 
+.space {
+  border: solid black;
+  border-span
+}
 .singleshow {
   min-width: 250px;
   align-content: normal;
   justify-content: space-evenly;
   /* border:solid black 3px; */
   padding: 2em;
-  margin-top: 25;
 }
+
+.showtitle {
+  font-size: large;
+  font-weight: bold;
+
+}
+
+.imgbutton:hover {
+  transform: scale(2);
+  border-radius: 25px;
+}
+
+
 
 .showcontainer {
   display: flex;

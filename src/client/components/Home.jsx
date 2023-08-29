@@ -24,10 +24,10 @@ return (
                 allShows.map((show) => {
                     return (
                     <div className="singleshow" key={show.id}>
-                        <p>{show.name}</p>
-                        <img src={show.image} onClick={() =>
+                        <img src={show.image} className="imgbutton" onClick={() =>
                          navigate(`/Shows/${show.id}`)}></img>
-                        <p>{show.genre}</p>
+                         <p className="showtitle">{show.name}</p>
+                        <p className="genre">{show.genre}</p>
                     </div>
                     )
                 
