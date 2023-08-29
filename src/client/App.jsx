@@ -32,7 +32,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Shows" element={<Shows />} />
+          <Route path="/Shows/:showId" element={<Shows />} />
           <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
           {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
           <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />

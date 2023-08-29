@@ -91,6 +91,17 @@
 }
 
 .singleshow {
-  border:solid black 3px;
+  min-width: 250px;
+  align-content: normal;
+  justify-content: space-evenly;
+  /* border:solid black 3px; */
+  padding: 2em;
+  margin-top: 25;
 }
 
+.showcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 100%;
+}
