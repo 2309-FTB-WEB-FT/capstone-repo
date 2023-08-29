@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = () => {
+const Login = ({setToken}) => {
   // For login
   const [loginName, setLoginName] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +17,6 @@ const Login = () => {
   const handleLoginNameChange = (e) => {
     setLoginName(e.target.value);
   };
-
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -37,7 +36,7 @@ const Login = () => {
 
   const login = async() => {
     try {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('http://localhost:3000/api/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -63,13 +62,13 @@ const Login = () => {
 
   const signup = async () => {
     try {
-      const response = await fetch('http://localhost:3000/register', {
+      const response = await fetch('http://localhost:3000/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          username: signupUsername,
+          name: signupUsername,
           email: signupEmail,
           password: signupPassword
         })
