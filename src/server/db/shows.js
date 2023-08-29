@@ -71,20 +71,22 @@ async function getShowByGenre(genre) {
     }
 }
 
-//search function?
-async function searchShowsByQuery(query) {
+async function searchShows(searchQuery) {
     try {
-      const searchQuery = `%${query}%`;
-      const { rows } = await db.query(`
-        SELECT * FROM shows
-        WHERE name ILIKE $1 OR genre ILIKE $1 OR description ILIKE $1
-      `, [searchQuery]);
-      
-      return rows;
-    } catch (error) {
-      throw error;
-    }
-  }
-  
+        const showsByTitle = await getShowByTitle(null, searchQuery);
+        const showsByGenre = await getShowByGenre(searchQuery);
 
-module.exports = {createShow, getAllShows, getShowByTitle, getShowByID, getShowByGenre,searchShowsByQuery }
+        // You can combine and process the results as needed
+        const searchResults = {
+            byTitle: showsByTitle,
+            byGenre: showsByGenre
+        };
+
+        return searchResults;
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+module.exports = {createShow, getAllShows, getShowByTitle, getShowByID, getShowByGenre,searchShows }

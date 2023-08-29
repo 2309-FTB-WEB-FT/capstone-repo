@@ -1,6 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
-const { getAllShows, getShowByGenre, createShow, updateShow, deleteShow, getShowByID, getShowByTitle, searchShowsByQuery } = require('../db/shows');
+const { getAllShows, getShowByGenre, createShow, updateShow, deleteShow, getShowByID, getShowByTitle, searchShows } = require('../db/shows');
 const { showData } = require(`../db/showData`)
 
 
@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-router.get('/show/:name', async (req, res, next) => {
+router.get('/:name', async (req, res, next) => {
     try {
         //console.log('hello')
         const show = await getShowByTitle(req.params.name);
@@ -49,14 +49,18 @@ router.get('/genre/:genre', async (req, res, next) => {
     }
 })
 //search route?
-router.get('/search', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
-      const searchQuery = req.query.query; 
-      const results = await searchShowsByQuery(searchQuery);
-      res.send(results);
+        if (req.query.search) {
+            const searchResults = await searchShows(req.query.search);
+            res.send(searchResults);
+        } else {
+            const shows = await getAllShows();
+            res.send(shows);
+        }
     } catch (error) {
-      next(error);
+        next(error);
     }
-  });
-
+});
+  
 module.exports = router
