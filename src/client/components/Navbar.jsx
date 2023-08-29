@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 
-const Navbar = ({ isLoggedIn, token }) => { 
+const Navbar = ({ isLoggedIn, token }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -24,15 +24,13 @@ const Navbar = ({ isLoggedIn, token }) => {
           {!isLoggedIn ? (
             <li><Link to="/Login">Login</Link></li>
           ) : (
-            <>
-              <Link to={`/profile/${token}`}>Profile</Link>
-              {/* Add Logout link if desired */}
-            </>
+            <li><Link to={`/profile/${token}`}>Profile</Link></li>
           )}
         </ul>
       </div>
     </div>
   );
 };
+
 
 export default Navbar;

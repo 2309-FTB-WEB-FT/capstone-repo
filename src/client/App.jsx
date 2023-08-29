@@ -10,7 +10,7 @@ import UserProfile from './components/UserProfile';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Initialize isLoggedIn state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
 
   const handleSearch = (query) => {
@@ -20,11 +20,10 @@ function App() {
   };
 
   return (
-
     <BrowserRouter>
       <div className="App">
         <SearchBar onSearch={handleSearch} />
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} token={token} />
         <h1>Boilerplate</h1>
         <img id="comp-img" src="./computer.png" alt="computer" />
         <p>Replace the starter code in this template with something cool</p>
@@ -32,14 +31,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Shows" element={<Shows />} />
-          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
-          <Navbar isLoggedIn={isLoggedIn} token={token} /> {/* Pass isLoggedIn and token props */}
-          {isLoggedIn && <Route path="/profile/:userId" element={<UserProfile />} />}
+          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken} />} />
+          <Route path="/profile/:userId" element={<UserProfile />} />
           <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
         </Routes>
       </div>
     </BrowserRouter>
   );
 }
-
 export default App;
