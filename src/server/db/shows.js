@@ -17,13 +17,13 @@ const createShow = async({ name, genre, image, description, averageLength }) => 
 
 async function getShowByID(id){
     try {
-        //console.log('test')
+        console.log('test')
         const {rows: [num]} = await db.query(`
         SELECT * FROM shows
         WHERE id = $1
         `,[id])
         
-        //console.log(num);
+        console.log(num);
         return num;
     } catch(error) {
         throw error;

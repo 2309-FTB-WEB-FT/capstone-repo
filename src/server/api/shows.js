@@ -29,9 +29,9 @@ router.get('/:name', async (req, res, next) => {
     }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/show/:id', async (req, res, next) => {
     try {
-        //console.log('yellow')
+        console.log('yellow')
         const id = await getShowByID(req.params.id);
         console.log(id)
         res.send(id)
