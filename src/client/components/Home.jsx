@@ -19,7 +19,7 @@ useEffect(() => {
     fetchData()
 }, [])    
 return (
-         <div className="showcontainer"> 
+         <div className="showcontainer">
             {
                 allShows.map((show) => {
                     return (
