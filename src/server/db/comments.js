@@ -10,7 +10,7 @@ const createComment = async({user, review, body, timestamp}) => {
         return comment
     } catch (err) {
         throw err;
-    }
+    }}
 
 const getAllComments = async() => {
 
