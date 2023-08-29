@@ -3,6 +3,7 @@ const { getUser } = require('../db');
 const { createComment, getAllComments, getCommentById, destroyComment } = require('../db/comments');
 const commentRouter = express.Router();
 
+
 commentRouter.post('/', async (req, res, next) => {
     console.log('hello')
     try {
@@ -24,17 +25,19 @@ commentRouter.post('/', async (req, res, next) => {
     
 });
 
+
 // /api/comments
 commentRouter.get('/', async( req, res, next) => {
   
     try {
         
         const comments  = await getAllComments(req.body);
+=======
 
         res.send({
             comments
         });
-    } catch (err) {
+    } catch ({err}) {
         next(err)
     }
 });

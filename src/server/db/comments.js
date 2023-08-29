@@ -1,5 +1,6 @@
 const db = require('./client');
 
+
 const createComment = async({user, review, body, timestamp}) => {
     try {
         const { rows: [comment] } = await db.query(`
@@ -10,16 +11,18 @@ const createComment = async({user, review, body, timestamp}) => {
     } catch (err) {
         throw err;
     }
-}
 
 const getAllComments = async() => {
- 
+
     try {
         
         const {rows} = await db.query(`
-            SELECT * FROM comments;
+            SELECT * FROM comments
         `);
-        //console.log(rows)
+        if(!rows) {
+            return;
+        }
+        console.log(rows)
         return rows;
     } catch (error) {
         throw error;
