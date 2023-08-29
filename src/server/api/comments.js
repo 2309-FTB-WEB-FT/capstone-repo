@@ -39,4 +39,22 @@ commentRouter.get('/', async( req, res, next) => {
     }
 });
 
+commentRouter.get('./:id', async( req, res, next) => {
+    try {
+        const id = await getCommentByID(req.params.id);
+        res.send(id)
+    } catch (err) {
+        next(err)
+    }
+})
+
+commentRouter.delete('/', async(req, res, next) => {
+    try {
+        const {commentId} = req.params
+        const commentToUpdate = await getCommentById(commentId)
+    } catch (err) {
+        next(err)
+    }
+})
+
 module.exports = commentRouter

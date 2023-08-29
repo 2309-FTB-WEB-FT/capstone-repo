@@ -25,4 +25,18 @@ const getAllComments = async() => {
         throw error;
 }}
 
-module.exports = { createComment, getAllComments }
+const getCommentById = async() => {
+    try {
+        const {rows: {num}} = await db.query(`
+        SELECT * FROM comments
+        WHERE id = $1
+        `,[id])
+    
+        return num;
+
+    } catch (err) {
+        next (err)
+    }
+}
+
+module.exports = { createComment, getAllComments, getCommentById }
