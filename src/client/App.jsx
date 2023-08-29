@@ -7,6 +7,7 @@ import Shows from './components/Shows';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
 import UserProfile from './components/UserProfile';
+import Logout from './components/Logout';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Shows" element={<Shows />} />
           <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken} />} />
+          <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/profile/:userId" element={<UserProfile />} />
           <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
         </Routes>
