@@ -8,6 +8,7 @@ const Shows = () => {
   const [showReviewForm, setShowReviewForm] = useState(false);
   let { showId } = useParams();
   const navigate = useNavigate()
+  const [singleShow, setSingleShow] = useState({})
  
 
   const handleWriteReview = () => {
@@ -21,9 +22,9 @@ const Shows = () => {
   useEffect(() => {
     async function fetchData() {
         try{
-            const response = await fetch("http://localhost:3000/api/shows/show/id")
+            const response = await fetch(`http://localhost:3000/api/shows/show/${showId}`)
             const result = await response.json();
-            console.log(result)
+            setSingleShow(result)
         } catch (error) {
             console.error(error)
         }
@@ -33,32 +34,21 @@ const Shows = () => {
 
   return (
     <div>
-      <h1>Explore Shows</h1>
-      <p>Selected Show {showId}</p>
+      <h1>{singleShow.name}</h1>
+      <h2>{singleShow.genre}</h2>
+      <img src={singleShow.image}></img>
+      <div className='showdescription' dangerouslySetInnerHTML={{ __html: singleShow.description }}></div>
+      <br />
       <button className="submit-button" onClick={handleWriteReview}>Write a Review</button>
       {showReviewForm && (
         <div className="overlay">
           <div className="popup">
             <button className="close-button" onClick={handleCloseReviewForm}>X</button>
             <ReviewForm onClose={handleCloseReviewForm} />
-            <img src={showId.image}></img>
           </div>
         </div>
       )}
-    <div className="showspage"> 
-            {
-                showsId.map((showsId) => {
-                <div className="showreview" key={showsId.id}>
-                        <img src={showId.image}></img>
-                         <p>{showsId.name}</p>
-                        <p>{showsId.genre}</p>
-                        <div dangerouslySetInnerHTML={{ __html: showsId.description }}></div>                    </div>
-                    
-                
-                })
-            }
-        </div>
-
+    
       {/* Rest of the page content */}
     </div>
   );
