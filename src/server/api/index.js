@@ -9,23 +9,19 @@ const volleyball = require('volleyball')
 apiRouter.use(volleyball)
 
 
-// TO BE COMPLETED - set `req.user` if possible, using token sent in the request header
 apiRouter.use(async (req, res, next) => {
-  const auth = req.header('Authorization');
+  const auth = req.header('Authorization'); 
 
-  // Here do:
-  // if req.url === '/users/login' || req.url === '/users/register
-  if (!auth) { 
-    next();
-  } 
-  else if (auth.startsWith('Bearer')) {
-    console.log('ENFORCING AUTH');
-    // TODO - Get JUST the token out of 'auth'
-/// Split the auth header value by a space - second element is the token
-    const token = auth.split(' ')[1]; 
-    
+    if (req.url === '/users/login' || req.url === '/users/register') {
+      next();
+    } else if (!auth) { 
+      res.status(401).json({ error: 'Unauthorized' });
+    } 
+    else if (auth.startsWith('Bearer')) {
+      console.log('ENFORCING AUTH');
+      const token = auth.split(' ')[1]; 
+      
     try {
-       // parse the JWT token that you split out above.
       const parsedToken = jwt.verify(token, process.env.JWT_SECRET);
       const user = await getUserById(parsedToken.id);
 
@@ -36,9 +32,7 @@ apiRouter.use(async (req, res, next) => {
       } else {
         res.status(401).send('User not authenticated');
       }      
-      // TODO - Call 'jwt.verify()' to see if the token is valid. 
-      //If it is, use it to get the user's 'id'. 
-      //Look up the user with their 'id' and set 'req.user'
+  
 
     } catch (error) {
       console.log(`GOT AN ERROR WHILE AUTH-ING: ${error.message}`);
