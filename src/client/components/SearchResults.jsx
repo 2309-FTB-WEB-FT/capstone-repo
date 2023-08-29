@@ -84,28 +84,31 @@ const SearchResults = ({ results }) => {
 
          {/* Display search results, pagination, and result counter */}
          {currentResults.length > 0 ? (
-          <div>
-            {currentResults.map((result) => (
-              <div key={result.id} className="search-result">
-                {/* Display the sorted and filtered result content */}
-                <h3>{result.title}</h3>
-                {/* ... (other result content) */}
-              </div>
-            ))}
-            <div className="pagination">
-              {Array.from({ length: Math.ceil(filteredResults.length / resultsPerPage) }).map((_, index) => (
-                <button key={index} onClick={() => paginate(index + 1)}>
-                  {index + 1}
-                </button>
-              ))}
+        <div>
+          {currentResults.map((result) => (
+            <div key={result.id} className="search-result">
+              {/* Display the result content */}
+              <h3>{result.name}</h3>
+              <img src={result.image} alt={result.name} />
+              <p>{result.description}</p>
+              {/* ... (other result content) */}
             </div>
-            <p>{filteredResults.length} results found</p>
+          ))}
+          {/* Pagination buttons */}
+          <div className="pagination">
+            {Array.from({ length: Math.ceil(filteredResults.length / resultsPerPage) }).map((_, index) => (
+              <button key={index} onClick={() => paginate(index + 1)}>
+                {index + 1}
+              </button>
+            ))}
           </div>
-        ) : (
-          <p>No results</p>
-        )}
-      </div>
-    );
-  }
+          <p>{filteredResults.length} results found</p>
+        </div>
+      ) : (
+        <p>No results</p>
+      )}
+    </div>
+  );
+}
 
 export default SearchResults;
