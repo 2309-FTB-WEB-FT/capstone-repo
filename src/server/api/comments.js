@@ -8,7 +8,7 @@ commentRouter.post('/', async (req, res, next) => {
     try {
         const comment = await createComment(req.body);
         //const existingShow = await getShowById(show.id);
-        //const user = await getUser(user.id)
+        const user = await getUser(user.id)
         if (existingShow) {
             res.send(comment)
         } else {
