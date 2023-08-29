@@ -1,0 +1,33 @@
+
+.user-profile {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid columns */
+    gap: 20px; /* Gap between grid items */
+    padding: 20px;
+  }
+  
+  .profile-header {
+    grid-column: span 2; /* Span two columns for header */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .profile-photo img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .profile-info h2 {
+    margin: 0;
+  }
+  
+  .liked-shows {
+    /* WIP */
+  }
+  
+  .past-reviews {
+    /* WIP */
+  }
+  

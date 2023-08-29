@@ -26,7 +26,7 @@ function App() {
         <SearchBar onSearch={handleSearch} />
         <Navbar isLoggedIn={isLoggedIn} token={token} />
         <h1>Boilerplate</h1>
-        <img id="comp-img" src="./computer.png" alt="computer" />
+        <img id="comp-img" src="public/computer.png" alt="computer" />
         <p>Replace the starter code in this template with something cool</p>
 
         <Routes>

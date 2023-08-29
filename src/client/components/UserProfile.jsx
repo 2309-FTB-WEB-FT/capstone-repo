@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './UserProfile.css';
 
 const UserProfile = () => {
   const { userId } = useParams(); // route parameter for the user ID
@@ -17,14 +18,14 @@ const UserProfile = () => {
 
   return (
     <div className="user-profile">
-      <h2>{userData.username}</h2>
-      <div className="profile-photo">
-        <img src={userData.profilePhoto} alt="Profile" />
-      </div>
-      <div className="bio">
-        <h3>Bio</h3>
-        <p>{userData.bio}</p>
-        {/* Add an editable textarea for updating bio */}
+      <div className="profile-header">
+        <div className="profile-photo">
+          <img src={userData.profilePhoto} alt="Profile" />
+        </div>
+        <div className="profile-info">
+          <h2>{userData.username}</h2>
+          <p>{userData.bio}</p>
+        </div>
       </div>
       <div className="liked-shows">
         <h3>Liked Shows</h3>
