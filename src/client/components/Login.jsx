@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = ({setToken}) => {
+const Login = ({ setIsLoggedIn, setToken }) => {
   // For login
   const [loginName, setLoginName] = useState('');
   const [password, setPassword] = useState('');
