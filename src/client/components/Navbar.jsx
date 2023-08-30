@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 
-const Navbar = ({ isLoggedIn, token }) => {
+const Navbar = ({ isLoggedIn }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {

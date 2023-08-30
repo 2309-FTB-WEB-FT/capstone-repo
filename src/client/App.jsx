@@ -24,17 +24,17 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <SearchBar onSearch={handleSearch} />
-        <Navbar isLoggedIn={isLoggedIn} token={token} />
-        <h1>Boilerplate</h1>
-        <img id="comp-img" src="public/bingeit.png" alt="computer" />
-        <p>Replace the starter code in this template with something cool</p>
+        <Navbar isLoggedIn={isLoggedIn} />
+        <div className= "App-header">
+          {/*<img id="comp-img" src="./bingeit.png" alt="logo" />*/}
+        </div>
+          
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Shows" element={<Shows />} />
-          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken} />} />
-          <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/profile/:userId" element={<UserProfile />} />
+          <Route path="/Shows/:showId" element={<Shows />} />
+          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
+          {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
           <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
         </Routes>
       </div>
