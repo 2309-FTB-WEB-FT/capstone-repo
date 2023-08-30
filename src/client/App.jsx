@@ -27,7 +27,7 @@ function App() {
         <SearchBar onSearch={handleSearch} />
         <Navbar isLoggedIn={isLoggedIn} />
         <div className= "App-header">
-          <img id="comp-img" src="./bingeit.png" alt="logo" />
+          {/*<img id="comp-img" src="./bingeit.png" alt="logo" />*/}
         </div>
           
 
