@@ -2,6 +2,7 @@
 
 .navbar {
     display: grid;
+    background: linear-gradient(177deg, rgba(112,193,179,1) 0%, rgba(0,72,102,1) 67%, rgba(0,0,0,1) 98%);
     height: 105vh;
     position: fixed;
     z-index: 1;
@@ -11,7 +12,7 @@
   
   .sidebar {
     width: 150px;
-    background-color: #333;
+    background: linear-gradient(177deg, rgba(112,193,179,1) 0%, rgba(0,72,102,1) 67%, rgba(0,0,0,1) 98%);
     color: white;
     overflow: hidden;
     transition: width 0.3s;
@@ -31,6 +32,11 @@
   }
   
   .nav-links a {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color:aliceblue;
     display: block;
     padding: 10px 20px;
     color: white;
@@ -39,14 +45,14 @@
   }
   
   .nav-links a:hover {
-    background-color: #444;
+    background-color: #FF1654;
   }
   
   .toggle-button {
     font-size: 24px;
     cursor: pointer;
     padding: 10px;
-    background-color: #333;
+    background: linear-gradient(177deg, rgba(112,193,179,1) 0%, rgba(0,72,102,1) 67%, rgba(0,0,0,1) 98%);
     color: white;
   }
   
