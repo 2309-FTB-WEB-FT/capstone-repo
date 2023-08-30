@@ -30,7 +30,6 @@ function App() {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Shows/:showId" element={<Shows />} />
           <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
           <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/UserProfile" element={<UserProfile token={token} />} />

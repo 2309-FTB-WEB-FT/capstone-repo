@@ -7,7 +7,6 @@ const UserProfile = ({ token }) => {
   const [userData, setUserData] = useState({
     name: '',
     profilePhoto: 'https://shorturl.at/dxzM3',
-    bio: '',
     likedShows: [],
     pastReviews: [],
   });
@@ -22,7 +21,12 @@ const UserProfile = ({ token }) => {
           },
         });
         const result = await response.json();
-        setUserData(result);
+
+        setUserData({
+          ...result,
+          likedShows: result.likedShows || [],
+          pastReviews: result.pastReviews || [],
+        });
       } catch (error) {
         console.error(error);
       }
@@ -35,11 +39,10 @@ const UserProfile = ({ token }) => {
     <div className="user-profile">
       <div className="profile-header">
         <div className="profile-photo">
-          <img src={userData.profilePhoto} alt="Profile" />
+          <img src="https://shorturl.at/dxzM3" alt="Profile" />
         </div>
         <div className="profile-info">
-          <h2>{userData.username}</h2>
-          <p>{userData.bio}</p>
+          <h2>{userData.name}</h2>
         </div>
       </div>
       <div className="liked-shows">

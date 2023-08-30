@@ -5,7 +5,8 @@ const {
     createUser,
     getUser,
     getUserByEmail,
-    getAllUsers
+    getAllUsers,
+    getUserById
 } = require('../db');
 
 const jwt = require('jsonwebtoken')
@@ -97,4 +98,23 @@ usersRouter.post('/register', async(req, res, next) => {
 });
 
 
+usersRouter.get('/:userId', async (req, res, next) => {
+    try {
+      const userId = req.params.userId;
+      console.log('Fetching user with ID:', userId);
+      
+      const user = await getUserById(userId);
+      if (!user) {
+        return res.status(404).send({ message: 'User not found' });
+      }
+      
+      console.log('User data:', user);
+      
+      res.send(user);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  });
+  
 module.exports = usersRouter;

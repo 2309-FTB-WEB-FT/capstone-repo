@@ -20,7 +20,6 @@ const Navbar = ({ isLoggedIn, token }) => {
         </div>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/Shows">Shows</Link></li>
           {isLoggedIn ? (
             <>
               <Link to={`/userprofile/`}>Profile</Link>
