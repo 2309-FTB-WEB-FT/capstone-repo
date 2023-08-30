@@ -1,0 +1,46 @@
+.login-container {
+    background: linear-gradient(177deg, rgba(243,255,189,1) 13%, rgb(232, 153, 174) 100%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 600px;
+    margin: auto;
+    color:#247BA0;
+  }
+  
+  .button {
+    background-color: #e6e8ed;
+    color: #247BA0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .button:hover {
+    background-color: #FF1654 ;
+    color:aliceblue;
+  }
+
+ /* .signup-button {
+    background-color: #FF1654;
+    color: white;
+    font-size: 18px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signup-button:hover {
+    background-color: #FF004D;
+    transform: scale(1.05);
+  }*/
+
+  /*.message {
+    color: #ff3333;
+    font-size: 14px;
+    margin-top: 10px;
+  }*/

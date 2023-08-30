@@ -106,9 +106,9 @@ const Login = ({setToken}) => {
   return (
     <div className='login-container'>
       <h1>Login or Sign up!</h1>
-      <h2 className='login-section'>Login</h2>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className='input-group'>
+        <div>
           <label htmlFor='loginName'>Email or Username:</label>
           <input
             type='text'
@@ -118,7 +118,7 @@ const Login = ({setToken}) => {
             required
           />
         </div>
-        <div className='input-group'>
+        <div>
           <label htmlFor='password'>Password:</label>
           <input
             type='password'
@@ -128,14 +128,14 @@ const Login = ({setToken}) => {
             required
           />
         </div >
-        <button type='submit' className='submit-button'>Login</button>
+        <button type='submit' className='button'>Login</button>
       </form>
       <p className="message">{message}</p>
-      <div className='signup-link'>
+      <div>
         {!showSignup ? (
           <p>
             Dont have an account?{''}
-            <button onClick={toggleSignup}>Sign up here!</button>
+            <button onClick={toggleSignup} className='button'>Sign up here!</button>
           </p>
         ) : ( 
         <div>
@@ -171,7 +171,7 @@ const Login = ({setToken}) => {
               required
             />
           </div>
-          <button type='submit' className='submit-button'>Sign Up</button>
+          <button type='submit' className='button'>Sign Up</button>
         </form>
         <p>{signupMessage}</p>
       </div>
