@@ -6,6 +6,8 @@ const UserProfile = ({ token }) => {
   const { userId } = useParams();
   const [userData, setUserData] = useState({
     name: '',
+    id: '',
+    email: '',
     profilePhoto: 'https://shorturl.at/dxzM3',
     likedShows: [],
     pastReviews: [],
