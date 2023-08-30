@@ -4,10 +4,10 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Shows from './components/Shows';
-import Profile from './components/Profile';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
-
+import UserProfile from './components/UserProfile';
+import Logout from './components/Logout';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
@@ -21,7 +21,6 @@ function App() {
   };
 
   return (
-
     <BrowserRouter>
       <div className="App">
         <SearchBar onSearch={handleSearch} />
@@ -42,5 +41,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = ({setToken}) => {
+const Login = ({ setIsLoggedIn, setToken }) => {
   // For login
   const [loginName, setLoginName] = useState('');
   const [password, setPassword] = useState('');
@@ -50,15 +50,16 @@ const Login = ({setToken}) => {
         console.log(JSON.stringify(result))
         setMessage(result.message);
         setToken(result.token);
-        if(!response.ok) {
-          throw(result)
+        setIsLoggedIn(true);
+        if (!response.ok) {
+          throw result;
         }
         setLoginName('');
         setPassword('');
-    } catch (err) {
+      } catch (err) {
         console.error(`${err.name}: ${err.message}`);
-    }
-  }
+      }
+    };
 
   const signup = async () => {
     try {
