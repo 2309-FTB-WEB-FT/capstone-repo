@@ -2,19 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './UserProfile.css';
 
-const UserProfile = () => {
-  const { userId } = useParams(); // route parameter for the user ID
+const UserProfile = ({ token }) => {
+  const { userId } = useParams();
   const [userData, setUserData] = useState({
-    username: 'John Doe', // Placeholder
-    profilePhoto: 'https://shorturl.at/dxzM3', // Placeholder
-    bio: 'This is my profile bio.', // Placeholder
-    likedShows: [], // Placeholder
-    pastReviews: [], // Placeholder
+    username: 'John Doe',
+    profilePhoto: 'https://shorturl.at/dxzM3',
+    bio: 'This is my profile bio.',
+    likedShows: [],
+    pastReviews: [],
   });
 
   useEffect(() => {
-    // Fetch user data 
-  }, [userId]);
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/user/${userId}`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const result = await response.json();
+        setUserData(result);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserData();
+  }, [token, userId]);
 
   return (
     <div className="user-profile">

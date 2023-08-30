@@ -24,21 +24,20 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <SearchBar onSearch={handleSearch} />
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} token={token} />
         <div className= "App-header">
           {/*<img id="comp-img" src="./bingeit.png" alt="logo" />*/}
         </div>
-          
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Shows/:showId" element={<Shows />} />
           <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
-          {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
+          <Route path="/UserProfile" element={<UserProfile token={token} />} />
           <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
         </Routes>
       </div>
     </BrowserRouter>
   );
 }
+
 export default App;
