@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.css';
 
 const Login = ({setToken}) => {
   // For login
@@ -103,11 +104,11 @@ const Login = ({setToken}) => {
   };
 
   return (
-    <div>
+    <div className='login-container'>
       <h1>Login or Sign up!</h1>
-      <h2>Login</h2>
+      <h2 className='login-section'>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='input-group'>
           <label htmlFor='loginName'>Email or Username:</label>
           <input
             type='text'
@@ -117,7 +118,7 @@ const Login = ({setToken}) => {
             required
           />
         </div>
-        <div>
+        <div className='input-group'>
           <label htmlFor='password'>Password:</label>
           <input
             type='password'
@@ -126,11 +127,11 @@ const Login = ({setToken}) => {
             onChange={handlePasswordChange}
             required
           />
-        </div>
-        <button type='submit'>Login</button>
+        </div >
+        <button type='submit' className='submit-button'>Login</button>
       </form>
-      <p>{message}</p>
-      <div>
+      <p className="message">{message}</p>
+      <div className='signup-link'>
         {!showSignup ? (
           <p>
             Dont have an account?{''}
@@ -170,7 +171,7 @@ const Login = ({setToken}) => {
               required
             />
           </div>
-          <button type='submit'>Sign Up</button>
+          <button type='submit' className='submit-button'>Sign Up</button>
         </form>
         <p>{signupMessage}</p>
       </div>
