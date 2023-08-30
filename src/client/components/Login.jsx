@@ -134,8 +134,7 @@ const Login = ({setToken}) => {
       <div>
         {!showSignup ? (
           <p>
-            Dont have an account?{''}
-            <button onClick={toggleSignup} className='button'>Sign up here!</button>
+            <button onClick={toggleSignup} className='noaccount-button'>Don't have an account? Sign up here!</button>
           </p>
         ) : ( 
         <div>
