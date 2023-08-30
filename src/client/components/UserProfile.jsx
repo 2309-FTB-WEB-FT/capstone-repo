@@ -5,9 +5,9 @@ import './UserProfile.css';
 const UserProfile = ({ token }) => {
   const { userId } = useParams();
   const [userData, setUserData] = useState({
-    username: 'John Doe',
+    name: '',
     profilePhoto: 'https://shorturl.at/dxzM3',
-    bio: 'This is my profile bio.',
+    bio: '',
     likedShows: [],
     pastReviews: [],
   });
@@ -15,7 +15,7 @@ const UserProfile = ({ token }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/user/${userId}`, {
+        const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -44,7 +44,6 @@ const UserProfile = ({ token }) => {
       </div>
       <div className="liked-shows">
         <h3>Liked Shows</h3>
-        {/* list of liked shows */}
         {userData.likedShows.map((show) => (
           <div key={show.id}>
             <p>{show.title}</p>
@@ -54,7 +53,6 @@ const UserProfile = ({ token }) => {
       </div>
       <div className="past-reviews">
         <h3>Past Reviews</h3>
-        {/* list of past reviews */}
         {userData.pastReviews.map((review) => (
           <div key={review.id}>
             <p>Review for: {review.showTitle}</p>
