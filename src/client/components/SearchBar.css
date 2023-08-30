@@ -1,21 +1,21 @@
 /* Placeholder styling, we can give it more swag later */
 .search-bar-container {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 25px;
+  right: 20px;
   display: flex;
   align-items: center;
 }
 
 .search-input {
   padding: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #F3FFBD;
   border-radius: 4px;
   flex-grow: 1;
 }
 
 .search-button {
-  background-color: #9ce763;
+  background-color: #ff2761;
   color: white;
   border: none;
   border-radius: 4px;
@@ -27,7 +27,7 @@
 
 /* Add hover styling */
 .search-button:hover {
-  background-color: #7fc041;
+  background-color: #70C1B3;
 }
 
 /* Dropdown menu styles */
