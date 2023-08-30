@@ -1,15 +1,16 @@
 const express = require('express');
-const { getUser } = require('../db');
+const { getUserById } = require('../db/users');
 const { createComment, getAllComments, getCommentById, destroyComment } = require('../db/comments');
+const { getReviewById } = require('../db/reviews');
 const commentRouter = express.Router();
 
 
-commentRouter.post('/', async (req, res, next) => {
+commentRouter.post('/', requireUser, async (req, res, next) => {
     console.log('hello')
     try {
         const comment = await createComment(req.body);
-        //const existingShow = await getShowById(show.id);
-        const user = await getUser(user.id)
+        const existingShow = await getReviewById(review.id);
+        const user = await getUserById(parsedToken.id);
         if (existingShow) {
             res.send(comment)
         } else {
