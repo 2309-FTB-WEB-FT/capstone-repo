@@ -28,7 +28,7 @@ return (
                          navigate(`/Shows/${show.id}`)}></img>
                          <p className="showtitle">{show.name}</p>
                         <p className="genre">{show.genre}</p>
-                    </div>
+                        <div dangerouslySetInnerHTML={{ __html: show.description }}></div>                    </div>
                     )
                 
                 })
