@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 
-const Navbar = ({ isLoggedIn }) => { // Accept isLoggedIn prop
+const Navbar = ({ isLoggedIn }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -16,7 +16,7 @@ const Navbar = ({ isLoggedIn }) => { // Accept isLoggedIn prop
       </div>
       <div className="sidebar">
         <div className="logo">
-          <img src="/computer.png" alt="placeholder logo" />
+          <img src="/bingeit.png" alt="logo" />
         </div>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
