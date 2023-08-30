@@ -16,7 +16,7 @@ const Navbar = ({ isLoggedIn, token }) => {
       </div>
       <div className="sidebar">
         <div className="logo">
-          <img src="/computer.png" alt="placeholder logo" />
+          <img src="/bingeit.png" alt="logo" />
         </div>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
