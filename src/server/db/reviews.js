@@ -15,7 +15,8 @@ const createReview = async({title, body, showName, userName, timestamp}) => {
 
 const postReview = async(review) => {
     try {
-        const response = await fetch('/shows/show/:id/reviews', {
+        console.log('test')
+        const response = await fetch('/shows/show/:id', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -29,7 +30,7 @@ const postReview = async(review) => {
     }
 }
 
-function renderNewReviewForm() {
+/*function renderNewReviewForm() {
     const newReviewForm = document.querySelector('#new-review-form');
     newReviewForm.innerHTML = `
       <form>
@@ -46,9 +47,9 @@ function renderNewReviewForm() {
         <button type="submit">Submit</button>
       </form>
     `;
-  }
+  }*/
 
-  const getAllReviews = async() => {
+const getAllReviews = async() => {
  
     try {
         
@@ -61,4 +62,15 @@ function renderNewReviewForm() {
         throw error;
 }}
 
-module.exports = {createReview, postReview, renderNewReviewForm, getAllReviews}
+const getReviewById = async(id) => {
+  try {
+    console.log('test')
+    const {rows: [num]} = await db.query(`
+    SELECT * FROM reviews
+    WHERE id = $1;`, [id]);
+    return num;
+  } catch(err) {
+    throw err;
+  }
+}
+module.exports = {createReview, postReview, getAllReviews, getReviewById}
