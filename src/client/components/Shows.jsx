@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import ReviewForm from './ReviewForm'; // Import the ReviewForm component
+import ReviewForm from './ReviewForm'; 
 import './ReviewForm.css';
+import { useParams } from 'react-router-dom'
 
 const Shows = () => {
   const [showReviewForm, setShowReviewForm] = useState(false);
+  let { showId } = useParams();
 
   const handleWriteReview = () => {
     setShowReviewForm(true);
@@ -16,6 +18,7 @@ const Shows = () => {
   return (
     <div>
       <h1>Explore Shows</h1>
+      <p>Selected Show {showId}</p>
       <button className="submit-button" onClick={handleWriteReview}>Write a Review</button>
 
       {showReviewForm && (

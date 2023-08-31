@@ -4,7 +4,9 @@ const usersRouter = express.Router();
 const {
     createUser,
     getUser,
-    getUserByEmail
+    getUserByEmail,
+    getAllUsers,
+    getUserById
 } = require('../db');
 
 const jwt = require('jsonwebtoken')
@@ -12,7 +14,6 @@ const jwt = require('jsonwebtoken')
 usersRouter.get('/', async( req, res, next) => {
     try {
         const users = await getAllUsers();
-
         res.send({
             users
         });
@@ -21,22 +22,25 @@ usersRouter.get('/', async( req, res, next) => {
     }
 });
 
-console.log('hi')
+//console.log('hi')
+usersRouter.post('/hello', async(req,res, next) => {
+    res.send({one: '1'});
+});
 
 usersRouter.post('/login', async(req, res, next) => {
-    const { email, password } = req.body;
-    if(!email || !password) {
+    const { loginName, password } = req.body;
+    if(!loginName || !password) {
         next({
             name: 'MissingCredentialsError',
-            message: 'Please supply both an email and password'
+            message: 'Please supply a password and an email or username'
         });
     }
     try {
-        const user = await getUser({email, password});
+        const user = await getUser({loginName, password});
         if(user) {
             const token = jwt.sign({
                 id: user.id,
-                email
+                email: user.email
             }, process.env.JWT_SECRET, {
                 expiresIn: '1w'
             });
@@ -53,6 +57,7 @@ usersRouter.post('/login', async(req, res, next) => {
             });
         }
     } catch(err) {
+        console.log(err.message);
         next(err);
     }
 });
@@ -90,6 +95,26 @@ usersRouter.post('/register', async(req, res, next) => {
     } catch({name, message}) {
         next({name, message})
     }
-})
+});
 
+
+usersRouter.get('/:userId', async (req, res, next) => {
+    try {
+      const userId = req.params.userId;
+      console.log('Fetching user with ID:', userId);
+      
+      const user = await getUserById(userId);
+      if (!user) {
+        return res.status(404).send({ message: 'User not found' });
+      }
+      
+      console.log('User data:', user);
+      
+      res.send(user);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  });
+  
 module.exports = usersRouter;

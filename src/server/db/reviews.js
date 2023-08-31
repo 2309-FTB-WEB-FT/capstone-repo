@@ -48,4 +48,17 @@ function renderNewReviewForm() {
     `;
   }
 
-module.exports = {createReview, postReview, renderNewReviewForm}
+  const getAllReviews = async() => {
+ 
+    try {
+        
+        const {rows} = await db.query(`
+            SELECT * FROM reviews;
+        `);
+        //console.log(rows)
+        return rows;
+    } catch (error) {
+        throw error;
+}}
+
+module.exports = {createReview, postReview, renderNewReviewForm, getAllReviews}

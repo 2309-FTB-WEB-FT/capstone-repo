@@ -13,13 +13,16 @@ router.get('/', async (req, res, next) => {
     }
   });
 
-  router.get('/:name', async (req, res, next) => {
+router.get('/:name', async (req, res, next) => {
     try {
-      const searchQuery = req.query.query;
-      const show = await getShowByTitle(req.params.name, searchQuery);
-      res.send(show);
-    } catch (error) {
-      next(error);
+        console.log('hello')
+        const show = await getShowByTitle(req.params.name);
+     
+        console.log(show);
+        res.send(show);
+
+   } catch (error) {
+        next(error);
     }
   });
 

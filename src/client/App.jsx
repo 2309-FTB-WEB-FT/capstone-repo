@@ -4,13 +4,15 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Shows from './components/Shows';
-import Profile from './components/Profile';
 import SearchBar from './components/SearchBar';
 import SearchResults from './components/SearchResults';
+import UserProfile from './components/UserProfile';
+import Logout from './components/Logout';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState('');
 
   const handleSearch = async (query) => {
     try {
@@ -40,21 +42,16 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <SearchBar onSearch={handleSearch} />
-        <Navbar isLoggedIn={isLoggedIn} />
-        <h1>Boilerplate</h1>
-        <img id="comp-img" src="./computer.png" alt="computer" />
-        <p>Replace the starter code in this template with something cool</p>
-
+        <Navbar isLoggedIn={isLoggedIn} token={token} />
+        <div className= "App-header">
+          {/*<img id="comp-img" src="./bingeit.png" alt="logo" />*/}
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Shows" element={<Shows />} />
-          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
-          {/* Pass search results directly as a prop */}
-          <Route
-            path="/SearchResults"
-            element={<SearchResults results={searchResults} />}
-          />
+          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
+          <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/UserProfile" element={<UserProfile token={token} />} />
+          <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
         </Routes>
       </div>
     </BrowserRouter>
