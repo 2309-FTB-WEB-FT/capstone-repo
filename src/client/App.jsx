@@ -14,11 +14,29 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
 
-  const handleSearch = (query) => {
-    setSearchResults([
-      { id: 1, title: 'Search Result Placeholder' },
-    ]);
+  const handleSearch = async (query) => {
+    try {
+      if (!query) {
+        console.error('Search query is empty');
+        return;
+      }
+
+      const response = await fetch(`/api/shows/:name/${query}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          setSearchResults(data); // Update search results with fetched data
+        } else {
+          console.error('Empty response or invalid JSON format');
+        }
+      } else {
+        console.error('Failed to fetch show data');
+      }
+    } catch (error) {
+      console.error('Error fetching show data:', error);
+    }
   };
+
 
   return (
     <BrowserRouter>

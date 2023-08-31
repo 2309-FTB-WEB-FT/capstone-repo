@@ -3,18 +3,15 @@ const router = express.Router();
 const { getAllShows, getShowByGenre, createShow, updateShow, deleteShow, getShowByID, getShowByTitle } = require('../db/shows');
 const { showData } = require(`../db/showData`)
 
-
-
 router.get('/', async (req, res, next) => {
     try {
-       
-        const shows = await getAllShows();
-        console.log(shows)
-        res.send(shows);
-   } catch (error) {
-        next(error);
+      const searchQuery = req.query.query; // Get the search query from the query parameter
+      const shows = await getAllShows(searchQuery); 
+      res.send(shows);
+    } catch (error) {
+      next(error);
     }
-});
+  });
 
 router.get('/:name', async (req, res, next) => {
     try {
@@ -27,26 +24,25 @@ router.get('/:name', async (req, res, next) => {
    } catch (error) {
         next(error);
     }
-});
+  });
 
-router.get('/:id', async (req, res, next) => {
+  router.get('/:id', async (req, res, next) => {
     try {
-        //console.log('yellow')
-        const id = await getShowByID(req.params.id);
-        console.log(id)
-        res.send(id)
+      const id = await getShowByID(req.params.id);
+      res.send(id);
     } catch (error) {
-        next (error);
+      next(error);
     }
-});
+  });
 
-router.get('/genre/:genre', async (req, res, next) => {
+  router.get('/genre/:genre', async (req, res, next) => {
     try {
-        const genre = await getShowByGenre(req.params.genre);
-        res.send(genre)
+      const searchQuery = req.query.query; 
+      const genre = await getShowByGenre(req.params.genre, searchQuery);
+      res.send(genre);
     } catch (error) {
-        next (error)
+      next(error);
     }
-})
-
+  });
+  
 module.exports = router
