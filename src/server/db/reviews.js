@@ -13,7 +13,7 @@ const createReview = async({title, body, showName, userName, timestamp}) => {
     }
 }
 
-const postReview = async(review) => {
+/*const postReview = async(review) => {
     try {
         console.log('working??')
         const response = await fetch('/shows/show/:id', {
@@ -28,7 +28,7 @@ const postReview = async(review) => {
     } catch (err) {
         throw err;
     }
-}
+}*/
 
 /*function renderNewReviewForm() {
     const newReviewForm = document.querySelector('#new-review-form');
