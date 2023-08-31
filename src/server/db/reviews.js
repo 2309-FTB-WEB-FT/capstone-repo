@@ -15,7 +15,7 @@ const createReview = async({title, body, showName, userName, timestamp}) => {
 
 const postReview = async(review) => {
     try {
-        console.log('test')
+        console.log('working??')
         const response = await fetch('/shows/show/:id', {
             method: 'POST',
             headers: {

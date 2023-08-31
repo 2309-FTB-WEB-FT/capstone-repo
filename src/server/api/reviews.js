@@ -2,6 +2,7 @@ const express = require('express');
 const reviewRouter = express.Router();
 const { getAllReviews, getReviewById, createReview, postReview } = require('../db/reviews')
 const { getUserById } = require('../db/users')
+const {requireUser} = require('./utilis')
 
 reviewRouter.get('/', async( req, res, next) => {
   
@@ -28,13 +29,14 @@ reviewRouter.get('/review/:id', async( req, res, next) => {
     }
 });
 
-reviewRouter.post('/', async( req, res, next) => {
+reviewRouter.post('/', requireUser, async( req, res, next) => {
       const { title, body } = req.body
     try {
-        
+        console.log('test')
         //const user = await getUserById(parsedToken.id);
-
-        const review = await postReview(id);
+        console.log(req.user)
+        const review = await createReview(req.body);
+        //const user = req.user
         const newReview = await review
         res.send(newReview);
 
