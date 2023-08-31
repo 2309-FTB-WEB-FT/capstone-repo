@@ -73,4 +73,4 @@ const getReviewById = async(id) => {
     throw err;
   }
 }
-module.exports = {createReview, postReview, getAllReviews, getReviewById}
+module.exports = {createReview, getAllReviews, getReviewById}

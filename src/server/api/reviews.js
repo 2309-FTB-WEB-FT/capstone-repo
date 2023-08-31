@@ -1,6 +1,6 @@
 const express = require('express');
 const reviewRouter = express.Router();
-const { getAllReviews, getReviewById, createReview, postReview } = require('../db/reviews')
+const { getAllReviews, getReviewById, createReview, } = require('../db/reviews')
 const { getUserById } = require('../db/users')
 const {requireUser} = require('./utilis')
 
