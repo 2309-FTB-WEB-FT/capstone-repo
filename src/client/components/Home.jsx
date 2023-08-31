@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import { FaSearch } from "react-icons/fa";
+
+import "./SearchBar.css";
 
 const Home = () => {
   const [allShows, setAllShows] = useState([]);
@@ -37,13 +40,14 @@ const Home = () => {
 
   return (
     <div>
-      {/* Search Bar */}
+      <div className="input-wrapper">
+      <FaSearch id="search-icon" />
       <input
-        type="text"
-        placeholder="Search shows..."
+        placeholder="Type to search..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
+      </div>
       {/* Display Filtered Shows */}
       <div className="showcontainer">
         {filteredShows.map((show) => (
