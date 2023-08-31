@@ -54,7 +54,6 @@ function App() {
       <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken} />} />
       <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
       <Route path="/UserProfile" element={<UserProfile token={token} />} />
-      <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
     </Routes>
   </div>
 </BrowserRouter>

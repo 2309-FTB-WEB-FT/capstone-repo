@@ -1,51 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './SearchBar.css';
+import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
-const SearchBar = ({ onSearch }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const navigate = useNavigate();
+import "./SearchBar.css";
 
-  const handleSearch = async () => {
-    try {
-      if (!searchQuery) {
-        console.error('Search query is empty');
-        return;
-      }
+const SearchBar = ({ setFilteredShows, allShows }) => {
+  const [input, setInput] = useState("");
 
-      const response = await fetch(`http://localhost:3000/api/shows?query=${encodeURIComponent(searchQuery)}`);
-      if (response.ok) {
-        try {
-          const data = await response.json();
-          if (data) {
-            onSearch(data);
-            navigate('/SearchResults'); 
-          } else {
-            console.error('Empty response or invalid JSON format');
-          }
-        } catch (error) {
-          console.error('Error parsing JSON:', error);
-        }
-      } else {
-        console.error('Failed to fetch show data');
-      }
-    } catch (error) {
-      console.error('Error fetching show data:', error);
-    }
-  };  
+  const handleChange = (value) => {
+    setInput(value);
+    const filteredShows = allShows.filter((show) =>
+      show.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredShows(filteredShows);
+  };
 
   return (
-    <div className="search-bar-container">
+    <div className="input-wrapper">
+      <FaSearch id="search-icon" />
       <input
-        className="search-input"
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search..."
+        placeholder="Type to search..."
+        value={input}
+        onChange={(e) => handleChange(e.target.value)}
       />
-      <button className="search-button" onClick={handleSearch}>
-        Search
-      </button>
     </div>
   );
 };
