@@ -14,6 +14,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+      <div class="chromatic-aberration-overlay"></div>
+      <div class="scanlines-overlay"></div>
+      <div class="grainy-overlay"></div>
         <Navbar isLoggedIn={isLoggedIn} token={token} />
         <div className="App-header">
           {/*<img id="comp-img" src="./bingeit.png" alt="logo" />*/}
