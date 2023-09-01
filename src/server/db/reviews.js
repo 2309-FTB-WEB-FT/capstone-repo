@@ -1,11 +1,12 @@
 const db = require('./client');
 
-const createReview = async({title, body, showName, userName, timestamp}) => {
+const createReview = async({title, body, showName, userName, timestamp=Date.now()}) => {
     try {
+        console.log(title, body, showName, userName, timestamp)
         const { rows } = await db.query(`
-        INSERT INTO reviews( title, body, showName, userName, timestamp )
+        INSERT INTO reviews( title, body, showname, username, timestamp )
         VALUES($1, $2, $3, $4, $5)
-        RETURNING *`,  [title, body, showName, userName, timestamp]);
+        RETURNING *;`,  [title, body, showName, userName, timestamp]);
 
         return rows;
     } catch (err) {

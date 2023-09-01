@@ -40,7 +40,7 @@ router.get('/:name', async (req, res, next) => {
     }
 });
 
-<<<<<<< HEAD
+
 router.get('/show/:id', async (req, res, next) => {
     try {
         console.log('yellow')
@@ -51,8 +51,7 @@ router.get('/show/:id', async (req, res, next) => {
         next (error);
     }
 });
-=======
->>>>>>> 88886e59d563605ced5f8ac473553913540e3848
+
 
 router.get('/genre/:genre', async (req, res, next) => {
     try {

@@ -31,17 +31,11 @@ reviewRouter.get('/review/:id', async( req, res, next) => {
 
 reviewRouter.post('/', requireUser, async( req, res, next) => {
       const newReview = req.body
-      console.log(req.user)
       newReview.userName = req.user.name
-      console.log(newReview)
+      console.log('line 36', newReview)
     try {
-        console.log('test')
-        //const user = await getUserById(parsedToken.id);
-        console.log(req.user)
-        const review = await createReview(req.body);
-        const user = req.user.id
-        const newReview = await review
-        res.send(newReview);
+        const review = await createReview(newReview);
+        res.send(review);
 
         
     } catch(err) {
