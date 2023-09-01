@@ -16,6 +16,17 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/show/:id', async (req, res, next) => {
+    try {
+        // console.log('yellow')
+        const id = await getShowByID(req.params.id);
+        console.log(id)
+        res.send(id)
+    } catch (error) {
+        next (error);
+    }
+});
+
 router.get('/:name', async (req, res, next) => {
     try {
         console.log('hello')
@@ -29,6 +40,7 @@ router.get('/:name', async (req, res, next) => {
     }
 });
 
+<<<<<<< HEAD
 router.get('/show/:id', async (req, res, next) => {
     try {
         console.log('yellow')
@@ -39,6 +51,8 @@ router.get('/show/:id', async (req, res, next) => {
         next (error);
     }
 });
+=======
+>>>>>>> 88886e59d563605ced5f8ac473553913540e3848
 
 router.get('/genre/:genre', async (req, res, next) => {
     try {
