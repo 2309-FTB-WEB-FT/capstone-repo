@@ -10,21 +10,20 @@ const UserProfile = ({ token }) => {
     likedShows: [],
     pastReviews: [],
   });
-  const [username, setUsername] = useState(''); // Initialize username state
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Use the username from the URL parameter or the one fetched from the server
         const targetUsername = paramUsername || username;
-    
+
         const response = await fetch(`http://localhost:3000/api/users/${targetUsername}`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-    
+
         if (response.ok) {
           const result = await response.json();
           setUserData({
@@ -33,19 +32,17 @@ const UserProfile = ({ token }) => {
             pastReviews: result.pastReviews || [],
           });
         } else {
-          // Handle API error
           console.error('API error:', response.status, response.statusText);
         }
       } catch (error) {
         console.error('API request error:', error);
       }
-    };    
+    };
 
     fetchUserData();
   }, [token, username, paramUsername]);
 
   useEffect(() => {
-    // Fetch the username if it's not available in the URL parameter
     if (!paramUsername && token) {
       const fetchUsername = async () => {
         try {
@@ -60,7 +57,6 @@ const UserProfile = ({ token }) => {
             const result = await response.json();
             setUsername(result.username);
           } else {
-            // Handle API error
             console.error('API error');
           }
         } catch (error) {

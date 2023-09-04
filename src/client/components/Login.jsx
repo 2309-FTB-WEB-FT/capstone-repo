@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 
 const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
-  // For login
   const [loginName, setLoginName] = useState('');
   const [password, setPassword] = useState('');
-
   const [message, setMessage] = useState('');
-
-  // For signup
   const [signupUsername, setSignupUsername] = useState('');
   const [signupEmail, setSignupEmail] = useState('');
   const [signupPassword, setSignupPassword] = useState('');
@@ -47,11 +43,10 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
         }),
       });
       const result = await response.json();
-      console.log(JSON.stringify(result));
       setMessage(result.message);
       setToken(result.token);
       setIsLoggedIn(true);
-      onLogin(result.loginName, result.token); 
+      onLogin(result.loginName, result.token);
       if (!response.ok) {
         throw result;
       }
@@ -75,6 +70,7 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
   const toggleSignup = () => {
     setShowSignup(!showSignup);
   };
+
 
   return (
     <div>
@@ -107,49 +103,49 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
       <div>
         {!showSignup ? (
           <p>
-            Dont have an account?{''}
+            Don't have an account?{' '}
             <button onClick={toggleSignup}>Sign up here!</button>
           </p>
-        ) : ( 
-        <div>
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSignupSubmit}>
+        ) : (
           <div>
-            <label htmlFor='signup-username'>Username:</label>
-            <input
-              type='text'
-              id='signup-username'
-              value={signupUsername}
-              onChange={handleSignupUsernameChange}
-              required
-            />
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSignupSubmit}>
+              <div>
+                <label htmlFor='signup-username'>Username:</label>
+                <input
+                  type='text'
+                  id='signup-username'
+                  value={signupUsername}
+                  onChange={handleSignupUsernameChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='signup-email'>Email:</label>
+                <input
+                  type='email'
+                  id='signup-email'
+                  value={signupEmail}
+                  onChange={handleSignupEmailChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='signup-password'>Password:</label>
+                <input
+                  type='password'
+                  id='signup-password'
+                  value={signupPassword}
+                  onChange={handleSignupPasswordChange}
+                  required
+                />
+              </div>
+              <button type='submit'>Sign Up</button>
+            </form>
+            <p>{signupMessage}</p>
           </div>
-          <div>
-            <label htmlFor='signup-email'>Email:</label>
-            <input
-              type='email'
-              id='signup-email'
-              value={signupEmail}
-              onChange={handleSignupEmailChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor='signup-password'>Password:</label>
-            <input
-              type='password'
-              id='signup-password'
-              value={signupPassword}
-              onChange={handleSignupPasswordChange}
-              required
-            />
-          </div>
-          <button type='submit'>Sign Up</button>
-        </form>
-        <p>{signupMessage}</p>
+        )}
       </div>
-      )}
-     </div> 
     </div>
   );
 };
