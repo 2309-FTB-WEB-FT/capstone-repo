@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 
 const UserProfile = ({ token }) => {
-  const { username: paramUsername } = useParams();
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -10,14 +8,11 @@ const UserProfile = ({ token }) => {
     likedShows: [],
     pastReviews: [],
   });
-  const [username, setUsername] = useState('');
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const targetUsername = paramUsername || username;
-
-        const response = await fetch(`http://localhost:3000/api/users/${targetUsername}`, {
+        const response = await fetch('http://localhost:3000/api/users/me', {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -40,39 +35,13 @@ const UserProfile = ({ token }) => {
     };
 
     fetchUserData();
-  }, [token, username, paramUsername]);
-
-  useEffect(() => {
-    if (!paramUsername && token) {
-      const fetchUsername = async () => {
-        try {
-          const response = await fetch('http://localhost:3000/api/users/username', {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
-          if (response.ok) {
-            const result = await response.json();
-            setUsername(result.username);
-          } else {
-            console.error('API error');
-          }
-        } catch (error) {
-          console.error('API request error:', error);
-        }
-      };
-
-      fetchUsername();
-    }
-  }, [token, paramUsername]);
+  }, [token]);
 
   return (
     <div className="user-profile">
       <div className="profile-header">
         <div className="profile-photo">
-          <img src="https://shorturl.at/dxzM3" alt="Profile" />
+          <img src={userData.profilePhoto} alt="Profile" />
         </div>
         <div className="profile-info">
           <h2>{userData.name}</h2>

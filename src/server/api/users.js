@@ -62,40 +62,47 @@ usersRouter.post('/login', async(req, res, next) => {
     }
 });
 
-usersRouter.post('/register', async(req, res, next) => {
-    const { name, email, password } = req.body;
-
-    try {
-        const _user = await getUserByEmail(email);
-
-        if(_user) {
-            next({
-                name: 'UserExistsError',
-                message: 'A user with that email already exists'
-            });
-        }
-
-        const user = await createUser({
-            name,
-            email,
-            password
-        });
-
-        const token = jwt.sign({
-            id: user.id,
-            email
-        }, process.env.JWT_SECRET, {
-            expiresIn: '1w'
-        });
-
-        res.send({
-            message: 'Sign up successful!',
-            token
-        });
-    } catch({name, message}) {
-        next({name, message})
+usersRouter.post('/login', async (req, res, next) => {
+    const { loginName, password } = req.body;
+    if (!loginName || !password) {
+      next({
+        name: 'MissingCredentialsError',
+        message: 'Please supply a password and an email or username',
+      });
     }
-});
+    try {
+      const user = await getUser({ loginName, password });
+      if (user) {
+        const token = jwt.sign(
+          {
+            id: user.id,
+            email: user.email,
+            username: user.username, // Include username in the token payload
+          },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: '1w',
+          }
+        );
+  
+        // Include user data in the response
+        res.send({
+          message: 'Login successful!',
+          token,
+          user, // Include user data in the response
+        });
+      } else {
+        next({
+          name: 'IncorrectCredentialsError',
+          message: 'Username or password is incorrect',
+        });
+      }
+    } catch (err) {
+      console.error(err.message);
+      next(err);
+    }
+  });
+  
 
 
 usersRouter.get('/:userId', async (req, res, next) => {
@@ -117,26 +124,25 @@ usersRouter.get('/:userId', async (req, res, next) => {
     }
   });
 
-    usersRouter.get('/:userName', async (req, res, next) => {
-        try {
-          const { userName } = req.params;
-          console.log('Fetching user by name:', userName);
+  usersRouter.get('/me', async (req, res, next) => {
+    try {
       
-          const user = await getUserByName(userName);
-          if (!user) {
-            return res.status(404).send({ message: 'User not found' });
-          }
-      
-          console.log('User data:', user);
-      
-          res.send(user);
-        } catch (error) {
-          console.error(error);
-          next(error);
-        }
-      });
-      
+      const token = req.headers.authorization.split(' ')[1];
   
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
   
+      const user = await getUserById(decoded.id);
+  
+      if (!user) {
+        return res.status(404).send({ message: 'User not found' });
+      }
+  
+      res.send(user);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  });
+      
   
 module.exports = usersRouter;
