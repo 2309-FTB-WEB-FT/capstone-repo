@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './UserProfile.css';
 
-const UserProfile = ({ token }) => {
-  const { userId } = useParams();
+const UserProfile = ({ token, username }) => {
+  const { username: paramUsername } = useParams();
   const [userData, setUserData] = useState({
     name: '',
-    id: '',
     email: '',
     profilePhoto: 'https://shorturl.at/dxzM3',
     likedShows: [],
@@ -16,26 +14,34 @@ const UserProfile = ({ token }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
+        // Use the username from the URL parameter or the one passed as a prop
+        const targetUsername = paramUsername || username;
+
+        const response = await fetch(`http://localhost:3000/api/users/${targetUsername}`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        const result = await response.json();
 
-        setUserData({
-          ...result,
-          likedShows: result.likedShows || [],
-          pastReviews: result.pastReviews || [],
-        });
+        if (response.ok) {
+          const result = await response.json();
+          setUserData({
+            ...result,
+            likedShows: result.likedShows || [],
+            pastReviews: result.pastReviews || [],
+          });
+        } else {
+          // Handle API error
+          console.error('API error');
+        }
       } catch (error) {
-        console.error(error);
+        console.error('API request error:', error);
       }
     };
 
     fetchUserData();
-  }, [token, userId]);
+  }, [token, username, paramUsername]);
 
   return (
     <div className="user-profile">

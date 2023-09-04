@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = ({ setIsLoggedIn, setToken }) => {
+const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
   // For login
   const [loginName, setLoginName] = useState('');
   const [password, setPassword] = useState('');
@@ -9,9 +9,9 @@ const Login = ({ setIsLoggedIn, setToken }) => {
 
   // For signup
   const [signupUsername, setSignupUsername] = useState('');
-  const [signupEmail, setSignupEmail] = useState('')
-  const [signupPassword, setSignupPassword] = useState('')
-  const [signupMessage, setSignupMessage] = useState('')
+  const [signupEmail, setSignupEmail] = useState('');
+  const [signupPassword, setSignupPassword] = useState('');
+  const [signupMessage, setSignupMessage] = useState('');
   const [showSignup, setShowSignup] = useState(false);
 
   const handleLoginNameChange = (e) => {
@@ -26,65 +26,38 @@ const Login = ({ setIsLoggedIn, setToken }) => {
     setSignupUsername(e.target.value);
   };
 
-  const handleSignupEmailChange =(e) => {
+  const handleSignupEmailChange = (e) => {
     setSignupEmail(e.target.value);
-  }
+  };
 
-  const handleSignupPasswordChange =(e) => {
+  const handleSignupPasswordChange = (e) => {
     setSignupPassword(e.target.value);
   };
 
-  const login = async() => {
+  const login = async () => {
     try {
-        const response = await fetch('http://localhost:3000/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            }, 
-            body: JSON.stringify({
-              loginName, 
-              password
-            })
-        });
-        const result = await response.json();
-        console.log(JSON.stringify(result))
-        setMessage(result.message);
-        setToken(result.token);
-        setIsLoggedIn(true);
-        if (!response.ok) {
-          throw result;
-        }
-        setLoginName('');
-        setPassword('');
-      } catch (err) {
-        console.error(`${err.name}: ${err.message}`);
-      }
-    };
-
-  const signup = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/api/users/register', {
+      const response = await fetch('http://localhost:3000/api/users/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: signupUsername,
-          email: signupEmail,
-          password: signupPassword
-        })
+          loginName,
+          password,
+        }),
       });
       const result = await response.json();
-      console.log(`signup response: ${JSON.stringify(result)}`);
-      setSignupMessage(result.message);
+      console.log(JSON.stringify(result));
+      setMessage(result.message);
       setToken(result.token);
+      setIsLoggedIn(true);
+      onLogin(result.loginName, result.token); 
       if (!response.ok) {
         throw result;
       }
-      setSignupUsername('');
-      setSignupEmail('');
-      setSignupPassword('');
-    }catch(err) {
+      setLoginName('');
+      setPassword('');
+    } catch (err) {
       console.error(`${err.name}: ${err.message}`);
     }
   };

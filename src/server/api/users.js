@@ -116,5 +116,27 @@ usersRouter.get('/:userId', async (req, res, next) => {
       next(error);
     }
   });
+
+    usersRouter.get('/:userName', async (req, res, next) => {
+        try {
+          const { userName } = req.params;
+          console.log('Fetching user by name:', userName);
+      
+          const user = await getUserByName(userName);
+          if (!user) {
+            return res.status(404).send({ message: 'User not found' });
+          }
+      
+          console.log('User data:', user);
+      
+          res.send(user);
+        } catch (error) {
+          console.error(error);
+          next(error);
+        }
+      });
+      
+  
+  
   
 module.exports = usersRouter;

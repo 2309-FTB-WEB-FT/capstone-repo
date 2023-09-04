@@ -5,11 +5,17 @@ const Logout = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoggedIn(false); 
-    navigate('/'); // Redirect to the homepage
+
+    localStorage.clear();
+    
+
+    setIsLoggedIn(false);
+
+
+    navigate('/');
   }, [setIsLoggedIn, navigate]);
 
-  return null; 
+  return null;
 };
 
 export default Logout;

@@ -41,21 +41,24 @@ const getUser = async({loginName, password}) => {
     }
 }
 
-const getUserByName = async(name) => {
+const getUserByName = async (name) => {
     try {
-        const { rows: [ user ] } = await db.query(`
+      const { rows } = await db.query(`
         SELECT * 
         FROM users
-        WHERE name=$1;`, [ name ]);
-
-        if(!user) {
-            return;
-        }
-        return user;
+        WHERE name = $1;`, [name]);
+  
+      if (rows.length === 0) {
+        return null; 
+      }
+  
+      return rows[0]; 
     } catch (err) {
-        throw err;
+      throw err;
     }
-}
+  };
+  
+  
 
 const getAllUsers = async () => {
     try {
