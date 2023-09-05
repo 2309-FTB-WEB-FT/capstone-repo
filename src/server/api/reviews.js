@@ -1,6 +1,6 @@
 const express = require('express');
 const reviewRouter = express.Router();
-const { getAllReviews, getReviewById, createReview, destroyReview } = require('../db/reviews')
+const { getAllReviews, getReviewById, createReview, destroyReview, getReviewByShow } = require('../db/reviews')
 const { getUserById } = require('../db/users')
 const {requireUser} = require('./utilis')
 
@@ -29,7 +29,17 @@ reviewRouter.get('/review/:id', async( req, res, next) => {
     }
 });
 
-reviewRouter.post('/', requireUser, async( req, res, next) => {
+reviewRouter.get('/review/:showname', async( req, res, next) => {
+    try {
+        const reviewByShow= await getReviewByShow(req.params.id)
+        res.send(reviewByShow)
+
+    } catch(err) {
+        next(err)
+    }
+})
+
+reviewRouter.post('/post', requireUser, async( req, res, next) => {
       const newReview = req.body
       newReview.userName = req.user.id
       //console.log('line 36', newReview)

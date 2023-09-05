@@ -41,7 +41,7 @@ const ReviewForm = ({ onClose, singleShow }) => {
             body: reviewText,
             showName: singleShow,
           })
-        })
+        }) 
       } catch (err) {
         throw (err)
       }
