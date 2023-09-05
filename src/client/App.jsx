@@ -4,39 +4,42 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Shows from './components/Shows';
-import Profile from './components/Profile';
-import SearchBar from './components/SearchBar';
-import SearchResults from './components/SearchResults';
-
+import UserProfile from './components/UserProfile';
+import Logout from './components/Logout';
+import useToken from './components/useToken'; 
+//Import useToken which gets tokeb from local storage
 
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState('');
+  const { token, setToken } = useToken(); //initialize token
 
-  const handleSearch = (query) => {
-    setSearchResults([
-      { id: 1, title: 'Search Result Placeholder' },
-    ]);
+  const handleLogin = (loginName, userToken) => {
+    console.log("Received userToken:", userToken);
+    setToken(userToken); //Set token when user logs in
+    setIsLoggedIn(true);
   };
 
   return (
-
     <BrowserRouter>
       <div className="App">
-        <SearchBar onSearch={handleSearch} />
-        <Navbar isLoggedIn={isLoggedIn} />
-        <div className= "App-header">
-          {/*<img id="comp-img" src="./bingeit.png" alt="logo" />*/}
-        </div>
-          
-
+        <div className= "grainy-overlay"></div>
+        <div className= "scanlines-overlay"></div>
+        <Navbar isLoggedIn={isLoggedIn} token={token} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Shows/:showId" element={<Shows />} />
-          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>} />
-          {isLoggedIn && <Route path="/Profile" element={<Profile />} />}
-          <Route path="/SearchResults" element={<SearchResults results={searchResults} standalone />} />
+          <Route
+            path="/Login"
+            element={
+              <Login
+                setIsLoggedIn={setIsLoggedIn}
+                setToken={setToken}
+                onLogin={handleLogin}
+              />
+            }
+          />
+          <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/UserProfile" element={<UserProfile token={token} />} /> 
+          {/* Render UserProfile component */}
         </Routes>
       </div>
     </BrowserRouter>
