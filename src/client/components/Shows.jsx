@@ -44,7 +44,7 @@ const Shows = () => {
         <div className="overlay">
           <div className="popup">
             <button className="close-button" onClick={handleCloseReviewForm}>X</button>
-            <ReviewForm singleShow={singleShow.name} onClose={handleCloseReviewForm} 
+            <ReviewForm singleShow={singleShow.id} onClose={handleCloseReviewForm} 
               />
           </div>
         </div>
