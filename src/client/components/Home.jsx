@@ -50,7 +50,7 @@ const Home = () => {
       </div>
       {/* Display Filtered Shows */}
       <div>
-        <h1>BINGE IT</h1>
+        <h1 className="bingeit">BINGE IT</h1>
       </div>
       <div className="showcontainer">
         {filteredShows.map((show) => (
