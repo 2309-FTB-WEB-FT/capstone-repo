@@ -45,7 +45,7 @@ const UserProfile = ({ token }) => {
     <div className="user-profile">
       <div className="profile-header">
         <div className="profile-photo">
-          <img src={userData.profilePhoto} alt="Profile" />
+          <img src='https://shorturl.at/dxzM3' alt="Profile" />
         </div>
         <div className="profile-info">
           <h2>{userData.name}</h2>
