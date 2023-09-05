@@ -59,7 +59,7 @@ const Home = () => {
               src={show.image}
               alt={show.name}
               className="imgbutton"
-              onClick={() => navigate(`/Shows/${show.id}`)}
+              onClick={() => navigate(`/shows/show/${show.id}`)}
             />
             <p className="showtitle">{show.name}</p>
             <p className="genre">{show.genre}</p>

@@ -113,7 +113,7 @@ html {
 
 .showdescription {
   width: 400px;
-
+}
 /* new search bar styling */
 .search-bar-container {
   padding-top: 20vh;
@@ -136,5 +136,4 @@ html {
   letter-spacing: 20px;
   text-transform:uppercase;
   color:rgb(248, 242, 211);
->
 }
