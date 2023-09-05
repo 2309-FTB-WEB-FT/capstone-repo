@@ -51,6 +51,7 @@ const Login = ({setToken}) => {
         console.log(JSON.stringify(result))
         setMessage(result.message);
         setToken(result.token);
+        localStorage.setItem('token', result.token)
         if(!response.ok) {
           throw(result)
         }

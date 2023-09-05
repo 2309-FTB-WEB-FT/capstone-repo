@@ -1,11 +1,12 @@
 const db = require('./client');
 
-const createReview = async({title, body, showName, userName, timestamp}) => {
+const createReview = async({title, body, showName, userName}) => {
     try {
+        console.log(title, body, showName, userName)
         const { rows } = await db.query(`
-        INSERT INTO reviews( title, body, showName, userName, timestamp )
-        VALUES($1, $2, $3, $4, $5)
-        RETURNING *`,  [title, body, showName, userName, timestamp]);
+        INSERT INTO reviews( title, body, showname, username )
+        VALUES($1, $2, $3, $4)
+        RETURNING *;`,  [title, body, showName, userName]);
 
         return rows;
     } catch (err) {
@@ -13,9 +14,10 @@ const createReview = async({title, body, showName, userName, timestamp}) => {
     }
 }
 
-const postReview = async(review) => {
+/*const postReview = async(review) => {
     try {
-        const response = await fetch('/shows/show/:id/reviews', {
+        console.log('working??')
+        const response = await fetch('/shows/show/:id', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -27,9 +29,9 @@ const postReview = async(review) => {
     } catch (err) {
         throw err;
     }
-}
+}*/
 
-function renderNewReviewForm() {
+/*function renderNewReviewForm() {
     const newReviewForm = document.querySelector('#new-review-form');
     newReviewForm.innerHTML = `
       <form>
@@ -46,9 +48,9 @@ function renderNewReviewForm() {
         <button type="submit">Submit</button>
       </form>
     `;
-  }
+  }*/
 
-  const getAllReviews = async() => {
+const getAllReviews = async() => {
  
     try {
         
@@ -61,4 +63,45 @@ function renderNewReviewForm() {
         throw error;
 }}
 
-module.exports = {createReview, postReview, renderNewReviewForm, getAllReviews}
+const getReviewById = async(id) => {
+  try {
+    console.log('test')
+    const {rows: [num]} = await db.query(`
+    SELECT * FROM reviews
+    WHERE id = $1;`, [id]);
+    return num;
+  } catch(err) {
+    throw err;
+  }
+}
+
+const getReviewByShow = async(showId) => {
+  try {
+    const {rows} = await db.query(`
+    SELECT * FROM reviews 
+    WHERE showId = $1`, [showId])
+  } catch(err) {
+    throw err;
+  }
+}
+
+const destroyReview = async(id) => {
+  try {
+      await client.query(`
+      DELETE FROM reviews 
+      WHERE "reviewId" = $1;
+  `, [id]);
+  const {rows: [review]} = await client.query(`
+      DELETE FROM reviews
+      WHERE id = $1
+      RETURNING *
+  `, [id]);
+  return review;
+
+  } catch (err){ 
+      next (err)
+  }
+}
+
+
+module.exports = {createReview, getAllReviews, getReviewById, destroyReview, getReviewByShow}

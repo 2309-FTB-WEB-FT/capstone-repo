@@ -44,7 +44,6 @@ const reviews = [
 const comments = [
   {
     body: 'Wow you are so funny!!',
-    timestamp: ''
   }
 ]
 
@@ -71,7 +70,7 @@ const createTables = async () => {
             email VARCHAR(255) UNIQUE NOT NULL,
             password VARCHAR(255) NOT NULL
         )`)
-      await db.query(
+     await db.query(
         `CREATE TABLE shows(
           id SERIAL PRIMARY KEY,
           name VARCHAR(255) DEFAULT 'name',
@@ -85,16 +84,14 @@ const createTables = async () => {
           title TEXT,
           body TEXT,
           showName INTEGER REFERENCES shows(id),
-          userName INTEGER REFERENCES users(id),
-          timestamp INTEGER
+          userName INTEGER REFERENCES users(id)
         )`)
       await db.query(
         `CREATE TABLE comments(
           id SERIAL PRIMARY KEY,
           userId INTEGER REFERENCES users(id),
           reviewId INTEGER REFERENCES reviews(id),
-          body TEXT,
-          timestamp INTEGER
+          body TEXT
         )`
       )
   
@@ -128,7 +125,7 @@ const insertShows = async () => {
 const insertReviews = async () => {
   try {
     for ( review of reviews ) {
-      await createReview({title: review.title, body: review.body, show: review.showName, user: review.userName, timestamp: review.timestamp})
+      await createReview({title: review.title, body: review.body, show: review.showName, user: review.userName})
     }
   } catch (error) {
     console.log('error inserting review seed data', error);
@@ -138,7 +135,7 @@ const insertReviews = async () => {
 const insertComment = async () => {
   try {
     for (comment of comments) {
-      await createComment({user: review.user, review: review.review, body: review.body, timestamp: review.timestamp})
+      await createComment({user: review.user, review: review.review, body: review.body})
     }
   } catch (err) {
     throw err;

@@ -51,6 +51,18 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
+router.get('/show/:id', async (req, res, next) => {
+    try {
+        console.log('yellow')
+        const id = await getShowByID(req.params.id);
+        console.log(id)
+        res.send(id)
+    } catch (error) {
+        next (error);
+    }
+});
+
+
 router.get('/genre/:genre', async (req, res, next) => {
     try {
         const genre = await getShowByGenre(req.params.genre);
