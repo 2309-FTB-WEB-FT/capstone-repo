@@ -30,6 +30,12 @@ const Navbar = ({ isLoggedIn, token, username }) => {
             <li><Link to="/Login">Login</Link></li>
           )}
         </ul>
+        {/* Add the promotional blurb here */}
+        <div className="promo-blurb">
+  <p className="promo-text">
+    🚀 Ready to dive into the world of TV shows? Join <strong>BINGE IT</strong> and share your binge-worthy reviews with fellow TV enthusiasts! 🍿
+    </p>
+        </div>
       </div>
     </div>
   );

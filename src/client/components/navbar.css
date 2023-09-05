@@ -55,7 +55,6 @@
     cursor: pointer;
     padding: 10px;
     background: linear-gradient(177deg, rgba(243,255,189,1) 13%, rgba(255,22,84,1) 100%);
-    color:#247BA0;
   }
   
   .open .sidebar {
@@ -77,4 +76,26 @@
     width: 70%;
     max-width: 100px;
     height: auto; 
+  }
+
+  .promo-blurb {
+    margin-top: 150px;
+    max-width: 100px;
+    margin-left: 20px;
+    text-align: left;
+    padding: 10px; 
+    border-radius: 8px;
+    bottom: 10px;
+  }
+  
+  .promo-text {
+    font-size: 14px; 
+    color: #ffcfc0; 
+    text-align: left; 
+    line-height: 1.8; 
+  }
+  
+  
+  .promo-text strong {
+    color: #f3ffbd; 
   }
