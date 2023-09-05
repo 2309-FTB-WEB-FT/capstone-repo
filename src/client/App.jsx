@@ -21,6 +21,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <div className= "grainy-overlay"></div>
+        <div className= "scanlines-overlay"></div>
         <Navbar isLoggedIn={isLoggedIn} token={token} />
         <Routes>
           <Route path="/" element={<Home />} />

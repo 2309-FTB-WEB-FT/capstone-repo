@@ -49,6 +49,9 @@ const Home = () => {
       />
       </div>
       {/* Display Filtered Shows */}
+      <div>
+        <h1>BINGE IT</h1>
+      </div>
       <div className="showcontainer">
         {filteredShows.map((show) => (
           <div className="singleshow" key={show.id}>
