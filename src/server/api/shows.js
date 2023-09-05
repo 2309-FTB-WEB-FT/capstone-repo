@@ -13,6 +13,17 @@ router.get('/', async (req, res, next) => {
     }
   });
 
+router.get('/show/:id', async (req, res, next) => {
+    try {
+        // console.log('yellow')
+        const id = await getShowByID(req.params.id);
+        console.log(id)
+        res.send(id)
+    } catch (error) {
+        next (error);
+    }
+});
+
 router.get('/:name', async (req, res, next) => {
     try {
         console.log('hello')
@@ -35,7 +46,20 @@ router.get('/:name', async (req, res, next) => {
     }
   });
 
-  router.get('/genre/:genre', async (req, res, next) => {
+router.get('/show/:id', async (req, res, next) => {
+    try {
+        console.log('yellow')
+        const id = await getShowByID(req.params.id);
+        console.log(id)
+        res.send(id)
+    } catch (error) {
+        next (error);
+    }
+});
+
+
+router.get('/genre/:genre', async (req, res, next) => {
+
     try {
       const searchQuery = req.query.query; 
       const genre = await getShowByGenre(req.params.genre, searchQuery);

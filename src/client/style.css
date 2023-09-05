@@ -96,6 +96,12 @@ html {
 .showcontainer {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
+  height: 100%;
+}
+
+.showreview {
+  border: solid black;
   height: 100vh;
   bottom: 0px ;
   margin-left: 140px;
@@ -103,6 +109,10 @@ html {
   border-radius: 25px;
   background: linear-gradient(177deg, rgba(243,255,189,1) 13%, rgba(255,22,84,1) 100%);
 }
+
+
+.showdescription {
+  width: 400px;
 
 /* new search bar styling */
 .search-bar-container {
@@ -126,4 +136,5 @@ html {
   letter-spacing: 20px;
   text-transform:uppercase;
   color:rgb(248, 242, 211);
+>
 }

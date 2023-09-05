@@ -17,14 +17,18 @@ async function createShow({ name, genre, image, description, averageLength }) {
   
   async function getShowByID(id) {
     try {
-      const { rows: [num] } = await db.query(`
+
+        console.log('test')
+        const {rows: [num]} = await db.query(`
         SELECT * FROM shows
         WHERE id = $1
-      `, [id]);
-  
-      return num;
-    } catch (error) {
-      throw error;
+        `,[id])
+        
+        console.log(num);
+        return num;
+    } catch(error) {
+        throw error;
+
     }
   }
   

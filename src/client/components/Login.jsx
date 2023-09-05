@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Login.css';
 
 const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
   const [loginName, setLoginName] = useState('');
@@ -30,7 +31,36 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
     setSignupPassword(e.target.value);
   };
 
-  const login = async () => {
+
+  const login = async() => {
+    try {
+        const response = await fetch('http://localhost:3000/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            }, 
+            body: JSON.stringify({
+              loginName, 
+              password
+            })
+        });
+        const result = await response.json();
+        console.log(JSON.stringify(result))
+        setMessage(result.message);
+        setToken(result.token);
+        localStorage.setItem('token', result.token)
+        if(!response.ok) {
+          throw(result)
+        }
+        setLoginName('');
+        setPassword('');
+    } catch (err) {
+        console.error(`${err.name}: ${err.message}`);
+    }
+  }
+
+  const signup = async () => {
+
     try {
       const response = await fetch('http://localhost:3000/api/users/login', {
         method: 'POST',
@@ -73,7 +103,7 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
 
 
   return (
-    <div>
+    <div className='login-container'>
       <h1>Login or Sign up!</h1>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
@@ -96,15 +126,16 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
             onChange={handlePasswordChange}
             required
           />
-        </div>
-        <button type='submit'>Login</button>
+        </div >
+        <button type='submit' className='button'>Login</button>
       </form>
-      <p>{message}</p>
+      <p className="message">{message}</p>
       <div>
         {!showSignup ? (
           <p>
-            Don't have an account?{' '}
-            <button onClick={toggleSignup}>Sign up here!</button>
+
+            <button onClick={toggleSignup} className='noaccount-button'>Don't have an account? Sign up here!</button>
+
           </p>
         ) : (
           <div>
@@ -144,7 +175,11 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
             </form>
             <p>{signupMessage}</p>
           </div>
-        )}
+
+          <button type='submit' className='button'>Sign Up</button>
+        </form>
+        <p>{signupMessage}</p>
+
       </div>
     </div>
   );

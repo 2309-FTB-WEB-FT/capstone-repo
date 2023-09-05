@@ -1,12 +1,12 @@
 const db = require('./client');
 
 
-const createComment = async({user, review, body, timestamp}) => {
+const createComment = async({user, review, body}) => {
     try {
         const { rows: [comment] } = await db.query(`
-        INSERT INTO comments(userId, reviewId, body, timestamp)
-        VALUES($1, $2, $3, $4)
-        RETURNING *`,  [user, review, body, timestamp]);
+        INSERT INTO comments(userId, reviewId, body)
+        VALUES($1, $2, $3)
+        RETURNING *`,  [user, review, body]);
         return comment
     } catch (err) {
         throw err;
