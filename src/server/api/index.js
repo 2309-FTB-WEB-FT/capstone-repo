@@ -54,8 +54,8 @@ apiRouter.use('/users', usersRouter);
 const showRouter = require('./shows');
 apiRouter.use('/shows', showRouter);
 
-const commentRouter = require('./comments');
-apiRouter.use('/comments', commentRouter)
+/*const commentRouter = require('./comments');
+apiRouter.use('/comments', commentRouter)*/
 
 const reviewRouter = require('./reviews');
 apiRouter.use('/reviews', reviewRouter)

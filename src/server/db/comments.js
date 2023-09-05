@@ -1,4 +1,4 @@
-const db = require('./client');
+/*const db = require('./client');
 
 
 const createComment = async({user, review, body}) => {
@@ -60,4 +60,4 @@ const destroyComment = async(id) => {
     }
 }
 
-module.exports = { createComment, getAllComments, getCommentById, destroyComment }
+module.exports = { createComment, getAllComments, getCommentById, destroyComment }*/

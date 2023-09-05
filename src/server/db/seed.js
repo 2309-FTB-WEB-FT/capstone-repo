@@ -3,7 +3,7 @@ const { showData } = require('./showData');
 const { createUser } = require('./users');
 const { createShow } = require('./shows');
 const { createReview } = require('./reviews');
-const { createComment } = require('./comments')
+//const { createComment } = require('./comments')
 
 const users = [
   {
@@ -86,14 +86,14 @@ const createTables = async () => {
           showName INTEGER REFERENCES shows(id),
           userName INTEGER REFERENCES users(id)
         )`)
-      await db.query(
+     /* await db.query(
         `CREATE TABLE comments(
           id SERIAL PRIMARY KEY,
           userId INTEGER REFERENCES users(id),
           reviewId INTEGER REFERENCES reviews(id),
           body TEXT
         )`
-      )
+      )*/
   
     } catch(err) {
         throw err;
@@ -132,7 +132,7 @@ const insertReviews = async () => {
   }
 };
 
-const insertComment = async () => {
+/*const insertComment = async () => {
   try {
     for (comment of comments) {
       await createComment({user: review.user, review: review.review, body: review.body})
@@ -140,7 +140,7 @@ const insertComment = async () => {
   } catch (err) {
     throw err;
   }
-}
+}*/
 
 const seedDatabse = async () => {
     try {
@@ -150,7 +150,7 @@ const seedDatabse = async () => {
         await insertUsers();
         await insertShows();
         await insertReviews();
-        await insertComment();
+       // await insertComment();
     }
     catch (err) {
         throw err;
