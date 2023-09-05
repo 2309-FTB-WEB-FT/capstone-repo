@@ -104,9 +104,28 @@ usersRouter.post('/login', async (req, res, next) => {
     }
   });
   
+//Route for requesting user information?
+usersRouter.get('/me', verifyToken, async (req, res, next) => {
+  console.log("me")
+  try {
+    //const userId = req.user.id; //Extract ID
+  console.log(req.user)
+    //const user = await getUserById(userId); //Fetch data with ID
+//Error for user not found
+    //if (!user) {
+      //return res.status(err).json({ message: 'User not found' });
+    //}
+//Respond with user profile or I want it to at least
+    res.json(req.user);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
 
 
 usersRouter.get('/:userId', async (req, res, next) => {
+  console.log("id")
     try {
       const userId = req.params.userId;
       console.log('Fetching user with ID:', userId);
@@ -123,26 +142,7 @@ usersRouter.get('/:userId', async (req, res, next) => {
       console.error(error);
       next(error);
     }
-  });
+  }); //
 
-//Route for requesting user information?
-  usersRouter.get('/me', verifyToken, async (req, res, next) => {
-    try {
-      const userId = req.user.id; //Extract ID
-    console.log(req.user)
-      //const user = await getUserById(userId); //Fetch data with ID
-  //Error for user not found
-      if (!user) {
-        return res.status(err).json({ message: 'User not found' });
-      }
-  //Respond with user profile or I want it to at least
-      res.json(user);
-    } catch (error) {
-      console.error(error);
-      next(error);
-    }
-  });
-  
-      
   
 module.exports = usersRouter;
