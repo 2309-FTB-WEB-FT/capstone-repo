@@ -1,8 +1,12 @@
 const express = require('express');
-const { getUser } = require('../db/users');
+
+
+const { getUserById } = require('../db/users');
+
 const { createComment, getAllComments, getCommentById, destroyComment } = require('../db/comments');
 const { getReviewById } = require('../db/reviews');
 const commentRouter = express.Router();
+
 
 
 commentRouter.post('/', getUser, async (req, res, next) => {
@@ -21,7 +25,6 @@ commentRouter.post('/', getUser, async (req, res, next) => {
          
       
      
-    
             res.send(comment)
         } else {
             next({
