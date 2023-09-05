@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchResults = ({ results, standalone }) => {
+const SearchResults = ({ results }) => {
   const [sortBy, setSortBy] = useState('relevance'); // Default sorting option
   const [filterByGenre, setFilterByGenre] = useState('all'); // Default genre filter
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,11 +39,10 @@ const SearchResults = ({ results, standalone }) => {
     setCurrentPage(1); // Reset to first page when changing results per page
   };
 
-  if (standalone) {
-    return (
-      <div>
-        <h2>Search Results</h2>
-        <div className="select-container">
+  return (
+    <div>
+      <h2>Search Results</h2>
+      <div className="select-container">
           {/* Sorting dropdown */}
           <select value={sortBy} onChange={handleSortChange}>
             <option value="relevance">Relevance</option>
@@ -85,29 +84,31 @@ const SearchResults = ({ results, standalone }) => {
 
          {/* Display search results, pagination, and result counter */}
          {currentResults.length > 0 ? (
-          <div>
-            {currentResults.map((result) => (
-              <div key={result.id} className="search-result">
-                {/* Display the sorted and filtered result content */}
-                <h3>{result.title}</h3>
-                {/* ... (other result content) */}
-              </div>
-            ))}
-            <div className="pagination">
-              {Array.from({ length: Math.ceil(filteredResults.length / resultsPerPage) }).map((_, index) => (
-                <button key={index} onClick={() => paginate(index + 1)}>
-                  {index + 1}
-                </button>
-              ))}
+        <div>
+          {currentResults.map((result) => (
+            <div key={result.id} className="search-result">
+              {/* Display the result content */}
+              <h3>{result.name}</h3>
+              <img src={result.image} alt={result.name} />
+              <p>{result.description}</p>
+              {/* ... (other result content) */}
             </div>
-            <p>{filteredResults.length} results found</p>
+          ))}
+          {/* Pagination buttons */}
+          <div className="pagination">
+            {Array.from({ length: Math.ceil(filteredResults.length / resultsPerPage) }).map((_, index) => (
+              <button key={index} onClick={() => paginate(index + 1)}>
+                {index + 1}
+              </button>
+            ))}
           </div>
-        ) : (
-          <p>No results</p>
-        )}
-      </div>
-    );
-  }
-};
+          <p>{filteredResults.length} results found</p>
+        </div>
+      ) : (
+        <p>No results</p>
+      )}
+    </div>
+  );
+}
 
 export default SearchResults;

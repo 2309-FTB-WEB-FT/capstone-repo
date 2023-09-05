@@ -1,12 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
+.scanlines-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px);
+  pointer-events: none; 
+  z-index: 9999; 
+}
+
+.grainy-overlay {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: contrast(90%) brightness(100%);
+  background: 
+    linear-gradient(182deg, rgb(247, 196, 113), rgb(197, 110, 110)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' stitchTiles='stitch'/%3E%3C/filter%3E%3C/svg%3E");
+  pointer-events: none; 
+  z-index: 9999; 
+  opacity: 0.4;
+  mix-blend-mode: hard-light;
+}
+
+
 * {
   font-family: 'Montserrat', sans-serif;
 }
 
 html {
-  background-image: url("public/background2.png");
+  background-image: url("/background2.png");
 }
+
 .App {
   display: flex;
   flex-direction: column;
@@ -44,6 +74,7 @@ html {
 }
 
 .showtitle {
+  text-shadow: 1px 1px 2px #ff2761;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 1px;
@@ -79,6 +110,31 @@ html {
   background: linear-gradient(177deg, rgba(243,255,189,1) 13%, rgba(255,22,84,1) 100%);
 }
 
+
 .showdescription {
   width: 400px;
+
+/* new search bar styling */
+.search-bar-container {
+  padding-top: 20vh;
+  width: 40%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+
+.bingeit {
+  text-shadow: 1px 1px 2px #44bfda;
+  font-size: 50px;
+  margin-left: 270px;
+  margin-top: 100px;
+  margin-bottom: 15px;
+  transform: scale(1.3, 1.7);
+  font-weight: bold;
+  letter-spacing: 20px;
+  text-transform:uppercase;
+  color:rgb(248, 242, 211);
+>
 }

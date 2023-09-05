@@ -41,21 +41,24 @@ const getUser = async({loginName, password}) => {
     }
 }
 
-const getUserByName = async(name) => {
+const getUserByName = async (name) => {
     try {
-        const { rows: [ user ] } = await db.query(`
+      const { rows } = await db.query(`
         SELECT * 
         FROM users
-        WHERE name=$1;`, [ name ]);
-
-        if(!user) {
-            return;
-        }
-        return user;
+        WHERE name = $1;`, [name]);
+  
+      if (rows.length === 0) {
+        return null; 
+      }
+  
+      return rows[0]; 
     } catch (err) {
-        throw err;
+      throw err;
     }
-}
+  };
+  
+  
 
 const getAllUsers = async () => {
     try {
@@ -105,8 +108,23 @@ const getUserByEmail = async(email) => {
         throw err;
     }
 }
-
-
+//Verifies token authenticity
+const verifyToken = (req, res, next) => {
+    const token = req.headers.authorization;
+  //gives error if no token is provided
+    if (!token) {
+      return res.status(401).json({ message: 'Token not provided' });
+    }
+  //Gives error if no token is invalid
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(error).json({ message: 'Invalid token' });
+      }
+  //Stores user information I hope?
+      req.user = decoded;
+      next();
+    });
+  };
 
 module.exports = {
     createUser,
@@ -114,6 +132,7 @@ module.exports = {
     getUserByName,
     getUserById,
     getUserByEmail,
-    getAllUsers
+    getAllUsers,
+    verifyToken
   
 };

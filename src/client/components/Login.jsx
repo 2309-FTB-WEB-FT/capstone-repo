@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-const Login = ({setToken}) => {
-  // For login
+const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
   const [loginName, setLoginName] = useState('');
   const [password, setPassword] = useState('');
-
   const [message, setMessage] = useState('');
-
-  // For signup
   const [signupUsername, setSignupUsername] = useState('');
-  const [signupEmail, setSignupEmail] = useState('')
-  const [signupPassword, setSignupPassword] = useState('')
-  const [signupMessage, setSignupMessage] = useState('')
+  const [signupEmail, setSignupEmail] = useState('');
+  const [signupPassword, setSignupPassword] = useState('');
+  const [signupMessage, setSignupMessage] = useState('');
   const [showSignup, setShowSignup] = useState(false);
 
   const handleLoginNameChange = (e) => {
@@ -27,13 +23,14 @@ const Login = ({setToken}) => {
     setSignupUsername(e.target.value);
   };
 
-  const handleSignupEmailChange =(e) => {
+  const handleSignupEmailChange = (e) => {
     setSignupEmail(e.target.value);
-  }
+  };
 
-  const handleSignupPasswordChange =(e) => {
+  const handleSignupPasswordChange = (e) => {
     setSignupPassword(e.target.value);
   };
+
 
   const login = async() => {
     try {
@@ -63,29 +60,29 @@ const Login = ({setToken}) => {
   }
 
   const signup = async () => {
+
     try {
-      const response = await fetch('http://localhost:3000/api/users/register', {
+      const response = await fetch('http://localhost:3000/api/users/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: signupUsername,
-          email: signupEmail,
-          password: signupPassword
-        })
+          loginName,
+          password,
+        }),
       });
       const result = await response.json();
-      console.log(`signup response: ${JSON.stringify(result)}`);
-      setSignupMessage(result.message);
+      setMessage(result.message);
       setToken(result.token);
+      setIsLoggedIn(true);
+      onLogin(result.loginName, result.token);
       if (!response.ok) {
         throw result;
       }
-      setSignupUsername('');
-      setSignupEmail('');
-      setSignupPassword('');
-    }catch(err) {
+      setLoginName('');
+      setPassword('');
+    } catch (err) {
       console.error(`${err.name}: ${err.message}`);
     }
   };
@@ -132,53 +129,58 @@ const Login = ({setToken}) => {
         <button type='submit' className='button'>Login</button>
       </form>
       <p className="message">{message}</p>
-      <div>
         {!showSignup ? (
           <p>
+
             <button onClick={toggleSignup} className='noaccount-button'>Don't have an account? Sign up here!</button>
+
           </p>
-        ) : ( 
-        <div>
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSignupSubmit}>
+        ) : (
           <div>
-            <label htmlFor='signup-username'>Username:</label>
-            <input
-              type='text'
-              id='signup-username'
-              value={signupUsername}
-              onChange={handleSignupUsernameChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor='signup-email'>Email:</label>
-            <input
-              type='email'
-              id='signup-email'
-              value={signupEmail}
-              onChange={handleSignupEmailChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor='signup-password'>Password:</label>
-            <input
-              type='password'
-              id='signup-password'
-              value={signupPassword}
-              onChange={handleSignupPasswordChange}
-              required
-            />
-          </div>
+            <h2>Sign Up</h2>
+            <form onSubmit={handleSignupSubmit}>
+              <div>
+                <label htmlFor='signup-username'>Username:</label>
+                <input
+                  type='text'
+                  id='signup-username'
+                  value={signupUsername}
+                  onChange={handleSignupUsernameChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='signup-email'>Email:</label>
+                <input
+                  type='email'
+                  id='signup-email'
+                  value={signupEmail}
+                  onChange={handleSignupEmailChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='signup-password'>Password:</label>
+                <input
+                  type='password'
+                  id='signup-password'
+                  value={signupPassword}
+                  onChange={handleSignupPasswordChange}
+                  required
+                />
+              </div>
+              <button type='submit'>Sign Up</button>
+            </form>
+            <p>{signupMessage}</p>
+           
+        
           <button type='submit' className='button'>Sign Up</button>
-        </form>
+        
         <p>{signupMessage}</p>
-      </div>
-      )}
-     </div> 
-    </div>
-  );
+        </div>
+ ) 
+        }
+         </div>)
 };
 
 export default Login;
