@@ -51,7 +51,7 @@ reviewRouter.get('/review/:username', async( req, res, next) => {
 reviewRouter.post('/post', requireUser, async( req, res, next) => {
       const newReview = req.body
       newReview.userName = req.user.id
-      //console.log('line 36', newReview)
+      console.log('line 36', newReview)
     try {
         const review = await createReview(newReview);
         res.send(review);
