@@ -78,7 +78,7 @@ usersRouter.post('/login', async (req, res, next) => {
           {
             id: user.id,
             email: user.email,
-            username: user.username, // Include username in the token payload
+            username: user.username,
           },
           process.env.JWT_SECRET,
           {
@@ -90,7 +90,7 @@ usersRouter.post('/login', async (req, res, next) => {
         res.send({
           message: 'Login successful!',
           token,
-          user, // Include user data in the response
+          user, 
         });
       } else {
         next({
@@ -125,16 +125,17 @@ usersRouter.get('/:userId', async (req, res, next) => {
     }
   });
 
+//Route for requesting user information?
   usersRouter.get('/me', verifyToken, async (req, res, next) => {
     try {
-      const userId = req.user.id;
- 
-      const user = await getUserById(userId);
-  
+      const userId = req.user.id; //Extract ID
+    console.log(req.user)
+      //const user = await getUserById(userId); //Fetch data with ID
+  //Error for user not found
       if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        return res.status(err).json({ message: 'User not found' });
       }
-  
+  //Respond with user profile or I want it to at least
       res.json(user);
     } catch (error) {
       console.error(error);

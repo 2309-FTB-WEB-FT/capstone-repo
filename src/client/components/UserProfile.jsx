@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import './UserProfile.css';
 
+//Profile
 const UserProfile = ({ token }) => {
   const [userData, setUserData] = useState({
     name: '',
     email: '',
-    profilePhoto: 'https://shorturl.at/dxzM3', 
-    likedShows: [],
+    profilePhoto: 'https://shorturl.at/dxzM3', //Default pfp
+    likedShows: [], //Set to be an empty array bc our users don't have these right now
     pastReviews: [],
   });
+  const Token = localStorage.getItem('token');
 
+  //The fetch call is the part that I honestly don't know how to do?
+  //Should I even be making an API call if the token is what I'm trying to use?
+  //I'm not sure how the tokens are set up in the database
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        console.log(Token)
         const response = await fetch('http://localhost:3000/api/users/me', {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${Token}`, 
           },
         });
 
@@ -34,6 +40,7 @@ const UserProfile = ({ token }) => {
     fetchUserData();
   }, [token]);
 
+  // The HTML for the profile
   return (
     <div className="user-profile">
       <div className="profile-header">

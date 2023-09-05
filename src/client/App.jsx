@@ -7,14 +7,15 @@ import Shows from './components/Shows';
 import UserProfile from './components/UserProfile';
 import Logout from './components/Logout';
 import useToken from './components/useToken'; 
+//Import useToken which gets tokeb from local storage
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { token, setToken } = useToken(); 
+  const { token, setToken } = useToken(); //initialize token
 
   const handleLogin = (loginName, userToken) => {
     console.log("Received userToken:", userToken);
-    setToken(userToken);
+    setToken(userToken); //Set token when user logs in
     setIsLoggedIn(true);
   };
 
@@ -37,7 +38,8 @@ function App() {
             }
           />
           <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/UserProfile" element={<UserProfile token={token} />} />
+          <Route path="/UserProfile" element={<UserProfile token={token} />} /> 
+          {/* Render UserProfile component */}
         </Routes>
       </div>
     </BrowserRouter>
