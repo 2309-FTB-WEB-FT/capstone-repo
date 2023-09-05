@@ -31,36 +31,35 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
     setSignupPassword(e.target.value);
   };
 
-
-  const login = async() => {
+  const login = async () => {
     try {
-        const response = await fetch('http://localhost:3000/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            }, 
-            body: JSON.stringify({
-              loginName, 
-              password
-            })
-        });
-        const result = await response.json();
-        console.log(JSON.stringify(result))
-        setMessage(result.message);
-        setToken(result.token);
-        localStorage.setItem('token', result.token)
-        if(!response.ok) {
-          throw(result)
-        }
-        setLoginName('');
-        setPassword('');
+      const response = await fetch('http://localhost:3000/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          loginName,
+          password,
+        }),
+      });
+      const result = await response.json();
+      console.log((result));
+      setMessage(result.message);
+      setIsLoggedIn(true);
+      setToken(result.token);
+      localStorage.setItem('token', result.token);
+      if (!response.ok) {
+        throw result;
+      }
+      setLoginName('');
+      setPassword('');
     } catch (err) {
-        console.error(`${err.name}: ${err.message}`);
+      console.error(`${err.name}: ${err.message}`);
     }
-  }
+  };
 
   const signup = async () => {
-
     try {
       const response = await fetch('http://localhost:3000/api/users/login', {
         method: 'POST',
@@ -101,7 +100,6 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
     setShowSignup(!showSignup);
   };
 
-
   return (
     <div className='login-container'>
       <h1>Login or Sign up!</h1>
@@ -126,16 +124,18 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
             onChange={handlePasswordChange}
             required
           />
-        </div >
-        <button type='submit' className='button'>Login</button>
+        </div>
+        <button type='submit' className='button'>
+          Login
+        </button>
       </form>
-      <p className="message">{message}</p>
+      <p className='message'>{message}</p>
       <div>
         {!showSignup ? (
           <p>
-
-            <button onClick={toggleSignup} className='noaccount-button'>Don't have an account? Sign up here!</button>
-
+            <button onClick={toggleSignup} className='noaccount-button'>
+              Don't have an account? Sign up here!
+            </button>
           </p>
         ) : (
           <div>
@@ -175,11 +175,7 @@ const Login = ({ setIsLoggedIn, setToken, onLogin }) => {
             </form>
             <p>{signupMessage}</p>
           </div>
-
-          <button type='submit' className='button'>Sign Up</button>
-        </form>
-        <p>{signupMessage}</p>
-
+        )}
       </div>
     </div>
   );
