@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import './UserProfile.css';
 
 const UserProfile = ({ token }) => {
   const [userData, setUserData] = useState({
     name: '',
     email: '',
-    profilePhoto: 'https://shorturl.at/dxzM3',
+    profilePhoto: 'https://shorturl.at/dxzM3', 
     likedShows: [],
     pastReviews: [],
   });
@@ -21,11 +22,7 @@ const UserProfile = ({ token }) => {
 
         if (response.ok) {
           const result = await response.json();
-          setUserData({
-            ...result,
-            likedShows: result.likedShows || [],
-            pastReviews: result.pastReviews || [],
-          });
+          setUserData(result); 
         } else {
           console.error('API error:', response.status, response.statusText);
         }
@@ -45,6 +42,7 @@ const UserProfile = ({ token }) => {
         </div>
         <div className="profile-info">
           <h2>{userData.name}</h2>
+          <p>Email: {userData.email}</p>
         </div>
       </div>
       <div className="liked-shows">

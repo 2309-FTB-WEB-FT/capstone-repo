@@ -23,7 +23,7 @@ const Navbar = ({ isLoggedIn, token, username }) => {
           {isLoggedIn ? (
             <>
               {/* Link to the UserProfile using the username */}
-              <li><Link to={`/UserProfile/${username}`}>Profile</Link></li>
+              <li><Link to="/UserProfile">Profile</Link></li>
               <li><Link to="/logout">Logout</Link></li>
             </>
           ) : (

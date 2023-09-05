@@ -6,7 +6,8 @@ const {
     getUser,
     getUserByEmail,
     getAllUsers,
-    getUserById
+    getUserById,
+    verifyToken
 } = require('../db');
 
 const jwt = require('jsonwebtoken')
@@ -124,25 +125,23 @@ usersRouter.get('/:userId', async (req, res, next) => {
     }
   });
 
-  usersRouter.get('/me', async (req, res, next) => {
+  usersRouter.get('/me', verifyToken, async (req, res, next) => {
     try {
-      
-      const token = req.headers.authorization.split(' ')[1];
-  
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  
-      const user = await getUserById(decoded.id);
+      const userId = req.user.id;
+ 
+      const user = await getUserById(userId);
   
       if (!user) {
-        return res.status(404).send({ message: 'User not found' });
+        return res.status(404).json({ message: 'User not found' });
       }
   
-      res.send(user);
+      res.json(user);
     } catch (error) {
       console.error(error);
       next(error);
     }
   });
+  
       
   
 module.exports = usersRouter;

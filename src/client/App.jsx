@@ -6,14 +6,14 @@ import Home from './components/Home';
 import Shows from './components/Shows';
 import UserProfile from './components/UserProfile';
 import Logout from './components/Logout';
+import useToken from './components/useToken'; 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState('');
-  const [username, setUsername] = useState('');
+  const { token, setToken } = useToken(); 
 
   const handleLogin = (loginName, userToken) => {
-    setUsername(loginName);
+    console.log("Received userToken:", userToken);
     setToken(userToken);
     setIsLoggedIn(true);
   };
@@ -21,12 +21,21 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Navbar isLoggedIn={isLoggedIn} token={token} username={username} />
+        <Navbar isLoggedIn={isLoggedIn} token={token} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<Login setIsLoggedIn={setIsLoggedIn} setToken={setToken} onLogin={handleLogin} />} />
+          <Route
+            path="/Login"
+            element={
+              <Login
+                setIsLoggedIn={setIsLoggedIn}
+                setToken={setToken}
+                onLogin={handleLogin}
+              />
+            }
+          />
           <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/UserProfile/:username" element={<UserProfile token={token} />} />
+          <Route path="/UserProfile" element={<UserProfile token={token} />} />
         </Routes>
       </div>
     </BrowserRouter>
