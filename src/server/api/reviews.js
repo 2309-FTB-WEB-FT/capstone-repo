@@ -1,6 +1,6 @@
 const express = require('express');
 const reviewRouter = express.Router();
-const { getAllReviews, getReviewById, createReview, } = require('../db/reviews')
+const { getAllReviews, getReviewById, createReview, destroyReview } = require('../db/reviews')
 const { getUserById } = require('../db/users')
 const {requireUser} = require('./utilis')
 
@@ -32,7 +32,7 @@ reviewRouter.get('/review/:id', async( req, res, next) => {
 reviewRouter.post('/', requireUser, async( req, res, next) => {
       const newReview = req.body
       newReview.userName = req.user.name
-      console.log('line 36', newReview)
+      //console.log('line 36', newReview)
     try {
         const review = await createReview(newReview);
         res.send(review);
@@ -43,7 +43,21 @@ reviewRouter.post('/', requireUser, async( req, res, next) => {
     }
 });
 
-reviewRouter.delete
+reviewRouter.delete('/:id', async(req, res, next) => {
+    try {
+        const {reviewId} = req.params
+        const reviewToUpdate = await getReviewById(reviewId)
+        
+        if(!reviewToUpdate) {
+
+        } else {
+            const deletedReview = await destroyReview(reviewId)
+            res.send({success: true, ...deletedReview});}
+    } catch (err) {
+        next(err)
+    }
+})
+
 
 reviewRouter.patch
 
