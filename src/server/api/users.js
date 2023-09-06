@@ -7,8 +7,11 @@ const {
     getUserByEmail,
     getAllUsers,
     getUserById,
-    verifyToken
 } = require('../db');
+
+const {
+  requireUser
+} = require('./utilis')
 
 const jwt = require('jsonwebtoken')
 
@@ -100,17 +103,12 @@ usersRouter.post('/login', async (req, res, next) => {
   });
   
 //Route for requesting user information?
-usersRouter.get('/me', verifyToken, async (req, res, next) => {
+usersRouter.get('/me', requireUser, async (req, res, next) => {
   console.log("me")
   try {
-    //const userId = req.user.id; //Extract ID
+
   console.log(req.user)
-    //const user = await getUserById(userId); //Fetch data with ID
-//Error for user not found
-    //if (!user) {
-      //return res.status(err).json({ message: 'User not found' });
-    //}
-//Respond with user profile or I want it to at least
+
     res.json(req.user);
   } catch (error) {
     console.error(error);

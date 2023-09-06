@@ -86,7 +86,9 @@ const createTables = async () => {
           showName INTEGER REFERENCES shows(id),
           userName INTEGER REFERENCES users(id)
         )`)
+
      /* await db.query(
+
         `CREATE TABLE comments(
           id SERIAL PRIMARY KEY,
           userId INTEGER REFERENCES users(id),

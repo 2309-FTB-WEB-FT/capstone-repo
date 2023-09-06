@@ -45,7 +45,7 @@ const UserProfile = ({ token }) => {
     <div className="user-profile">
       <div className="profile-header">
         <div className="profile-photo">
-          <img src={userData.profilePhoto} alt="Profile" />
+          <img src='https://shorturl.at/dxzM3' alt="Profile" />
         </div>
         <div className="profile-info">
           <h2>{userData.name}</h2>
@@ -54,7 +54,7 @@ const UserProfile = ({ token }) => {
       </div>
       <div className="liked-shows">
         <h3>Liked Shows</h3>
-        {userData.likedShows.map((show) => (
+        {userData.likedShows && userData.likedShows.map((show) => (
           <div key={show.id}>
             <p>{show.title}</p>
             <img src={show.image} alt={show.title} />
@@ -63,7 +63,7 @@ const UserProfile = ({ token }) => {
       </div>
       <div className="past-reviews">
         <h3>Past Reviews</h3>
-        {userData.pastReviews.map((review) => (
+        {userData.pastReviews && userData.pastReviews.map((review) => (
           <div key={review.id}>
             <p>Review for: {review.showTitle}</p>
             <p>{review.content}</p>
