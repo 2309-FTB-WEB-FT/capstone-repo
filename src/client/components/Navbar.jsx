@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './navbar.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "./navbar.css";
 
 const Navbar = ({ isLoggedIn, token, username }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ const Navbar = ({ isLoggedIn, token, username }) => {
   };
 
   return (
-    <div className={`navbar ${isOpen ? 'open' : ''}`}>
+    <div className={`navbar ${isOpen ? "open" : ""}`}>
       <div className="toggle-button" onClick={toggleSidebar}>
         ☰
       </div>
@@ -19,22 +19,30 @@ const Navbar = ({ isLoggedIn, token, username }) => {
           <img src="/bingeit.png" alt="logo" />
         </div>
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
           {isLoggedIn ? (
             <>
-              {/* Link to the UserProfile using the username */}
-              <li><Link to="/UserProfile">Profile</Link></li>
-              <li><Link to="/logout">Logout</Link></li>
+              <li>
+                <Link to="/UserProfile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/logout">Logout</Link>
+              </li>
             </>
           ) : (
-            <li><Link to="/Login">Login</Link></li>
+            <li>
+              <Link to="/Login">Login</Link>
+            </li>
           )}
         </ul>
-        {/* Add the promotional blurb here */}
         <div className="promo-blurb">
-  <p className="promo-text">
-    🚀 Ready to dive into the world of TV shows? Join <strong>BINGE IT</strong> and share your binge-worthy reviews with fellow TV enthusiasts! 🍿
-    </p>
+          <p className="promo-text">
+            🚀 Ready to dive into the world of TV shows? Join{" "}
+            <strong>BINGE IT</strong> and share your binge-worthy reviews with
+            fellow TV enthusiasts! 🍿
+          </p>
         </div>
       </div>
     </div>

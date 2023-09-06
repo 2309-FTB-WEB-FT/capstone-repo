@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import './ReviewForm.css';
-//import { createReview } from '../../server/db/reviews';
-
+import React, { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import "./ReviewForm.css";
 
 const ReviewForm = ({ onClose, singleShow }) => {
-  const [reviewTitle, setReviewTitle] = useState(''); 
-  const [reviewText, setReviewText] = useState('');
-  const [bingeLength, setBingeLength] = useState('');
-  const [bingeScale, setBingeScale] = useState('');
+  const [reviewTitle, setReviewTitle] = useState("");
+  const [reviewText, setReviewText] = useState("");
+  const [bingeLength, setBingeLength] = useState("");
+  const [bingeScale, setBingeScale] = useState("");
 
   const handleReviewTitleChange = (e) => {
     setReviewTitle(e.target.value);
@@ -29,32 +27,36 @@ const ReviewForm = ({ onClose, singleShow }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     async function postReview () {
     try {
       console.log(singleShow)
       const response = await fetch('http://localhost:3000/api/reviews/post', {
           method: 'POST',
+
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify({
-            title: reviewTitle, 
+            title: reviewTitle,
             body: reviewText,
             showName: singleShow,
-          })
-        }) 
+          }),
+        });
       } catch (err) {
-        throw (err)
+        throw err;
       }
-    // Logic to submit the review (API integration will be added later)
-  } 
-  postReview()}
-  
+    }
+    postReview();
+  };
+
   return (
     <div className="overlay">
       <div className="popup">
-        <button className="close-button" onClick={onClose}>X</button>
+        <button className="close-button" onClick={onClose}>
+          X
+        </button>
         <p>{singleShow}</p>
         <form className="review-form" onSubmit={handleSubmit}>
           <input
@@ -85,7 +87,9 @@ const ReviewForm = ({ onClose, singleShow }) => {
               <option value="5">5</option>
             </select>
           </div>
-          <button type="submit" className="submit-button" >Post Review</button>
+          <button type="submit" className="submit-button">
+            Post Review
+          </button>
         </form>
       </div>
     </div>

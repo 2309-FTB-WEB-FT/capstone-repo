@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 import "./SearchBar.css";
@@ -28,27 +28,28 @@ const Home = () => {
     }
     return shows.filter((show) => {
       const lowerCaseQuery = query.toLowerCase();
-      const nameMatches = show.name?.toLowerCase().includes(lowerCaseQuery) ?? false;
-      const genreMatches = show.genre?.toLowerCase().includes(lowerCaseQuery) ?? false;
-      const descriptionMatches = show.description?.toLowerCase().includes(lowerCaseQuery) ?? false;
+      const nameMatches =
+        show.name?.toLowerCase().includes(lowerCaseQuery) ?? false;
+      const genreMatches =
+        show.genre?.toLowerCase().includes(lowerCaseQuery) ?? false;
+      const descriptionMatches =
+        show.description?.toLowerCase().includes(lowerCaseQuery) ?? false;
       return nameMatches || genreMatches || descriptionMatches;
     });
   };
-  
 
   const filteredShows = getFilteredShows(searchQuery, allShows);
 
   return (
     <div>
       <div className="input-wrapper">
-      <FaSearch id="search-icon" />
-      <input
-        placeholder="Type to search..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+        <FaSearch id="search-icon" />
+        <input
+          placeholder="Type to search..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </div>
-      {/* Display Filtered Shows */}
       <div>
         <h1 className="bingeit">BINGE IT</h1>
       </div>
@@ -69,6 +70,5 @@ const Home = () => {
     </div>
   );
 };
-
 
 export default Home;
