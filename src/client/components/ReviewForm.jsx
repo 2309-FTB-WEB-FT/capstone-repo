@@ -32,7 +32,7 @@ const ReviewForm = ({ onClose, singleShow }) => {
     async function postReview () {
     try {
       console.log(singleShow)
-      const response = await fetch('http://localhost:3000/api/reviews', {
+      const response = await fetch('http://localhost:3000/api/reviews/post', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
