@@ -6,15 +6,13 @@ const UserProfile = ({ token }) => {
   const [userData, setUserData] = useState({
     name: '',
     email: '',
-    profilePhoto: 'https://shorturl.at/dxzM3', //Default pfp
-    likedShows: [], //Set to be an empty array bc our users don't have these right now
+    profilePhoto: 'https://shorturl.at/dxzM3', 
+    likedShows: [], 
     pastReviews: [],
   });
   const Token = localStorage.getItem('token');
 
-  //The fetch call is the part that I honestly don't know how to do?
-  //Should I even be making an API call if the token is what I'm trying to use?
-  //I'm not sure how the tokens are set up in the database
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -40,7 +38,7 @@ const UserProfile = ({ token }) => {
     fetchUserData();
   }, [token]);
 
-  // The HTML for the profile
+
   return (
     <div className="user-profile">
       <div className="profile-header">

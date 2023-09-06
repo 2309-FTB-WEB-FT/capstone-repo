@@ -48,7 +48,6 @@ const Home = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       </div>
-      {/* Display Filtered Shows */}
       <div>
         <h1 className="bingeit">BINGE IT</h1>
       </div>

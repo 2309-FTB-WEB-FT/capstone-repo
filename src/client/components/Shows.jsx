@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import ReviewForm from './ReviewForm'; // Import the ReviewForm component
+import ReviewForm from './ReviewForm'; 
 
 import './ReviewForm.css';
 import { useParams } from 'react-router-dom'
@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom'
 const Shows = () => {
   const [showReviewForm, setShowReviewForm] = useState(false);
   let { showId } = useParams();
-  const navigate = useNavigate()
   const [singleShow, setSingleShow] = useState({})
  
 
@@ -52,7 +51,7 @@ const Shows = () => {
         </div>
       )}
     
-      {/* Rest of the page content */}
+
     </div>
   );
 };

@@ -22,7 +22,6 @@ const Navbar = ({ isLoggedIn, token, username }) => {
           <li><Link to="/">Home</Link></li>
           {isLoggedIn ? (
             <>
-              {/* Link to the UserProfile using the username */}
               <li><Link to="/UserProfile">Profile</Link></li>
               <li><Link to="/logout">Logout</Link></li>
             </>
@@ -30,7 +29,6 @@ const Navbar = ({ isLoggedIn, token, username }) => {
             <li><Link to="/Login">Login</Link></li>
           )}
         </ul>
-        {/* Add the promotional blurb here */}
         <div className="promo-blurb">
   <p className="promo-text">
     🚀 Ready to dive into the world of TV shows? Join <strong>BINGE IT</strong> and share your binge-worthy reviews with fellow TV enthusiasts! 🍿

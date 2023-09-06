@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './ReviewForm.css';
-//import { createReview } from '../../server/db/reviews';
 
 
 const ReviewForm = ({ onClose, singleShow }) => {
@@ -47,7 +46,7 @@ const ReviewForm = ({ onClose, singleShow }) => {
       } catch (err) {
         throw (err)
       }
-    // Logic to submit the review (API integration will be added later)
+
   } 
   postReview()}
   
