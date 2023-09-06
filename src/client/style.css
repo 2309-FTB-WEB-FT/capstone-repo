@@ -135,6 +135,11 @@ html {
   text-align: center;
   margin-left: auto;
   margin-right:auto;
+  transition: transform 0.3s ease;
+}
+
+.showdescription:hover {
+  transform: scale(1.1);
 }
 
 .search-bar-container {
@@ -164,7 +169,7 @@ html {
   text-align: center;
   align-content: center;
   padding: 15px;
-  display: grid;
+  display: block;
   border-radius: 25px;
   justify-content: center;
   align-items: center;
@@ -174,15 +179,21 @@ html {
     rgba(255, 22, 84, 1) 100%
   );
 }
+
 .single-show-title {
   text-shadow: 1px 1px 2px #44bfda;
   font-size: 20px;
-  margin-top:auto;
+  margin-top: auto;
   text-align: center;
   font-weight: bold;
   letter-spacing: 15px;
   text-transform: uppercase;
   color: rgba(255, 22, 84, 1);
+  transition: font-size 0.3s ease;
+}
+
+.single-show-title:hover {
+  font-size: 24px; 
 }
 
 .single-show-genre {
@@ -192,10 +203,20 @@ html {
   letter-spacing: 1px;
   text-transform: uppercase;
   color: rgb(255, 250, 211);
+  transition: font-size 0.3s ease; 
+}
+
+.single-show-genre:hover {
+  font-size: 24px; 
 }
 
 .single-show-image {
   background-color: #ff2761;
   padding: 5px;
   border-radius: 20px;
+  transition: transform 0.3s ease; 
+}
+
+.single-show-image:hover {
+  transform: scale(1.1);
 }
