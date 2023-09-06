@@ -5,14 +5,14 @@ const Logout = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.clear();
+    localStorage.clear(); // Clear the local storage to log the user out
 
-    setIsLoggedIn(false);
-
-    navigate("/");
+    setIsLoggedIn(false); // Set "setIsLoggedIn" to "false"
+    
+    navigate("/"); // Navigate the user back to home
   }, [setIsLoggedIn, navigate]);
 
-  return null;
+  return null; // Return null because it doesn't render anything
 };
 
 export default Logout;

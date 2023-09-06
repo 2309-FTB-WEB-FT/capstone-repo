@@ -9,9 +9,13 @@ import Logout from "./components/Logout";
 import useToken from "./components/useToken";
 
 function App() {
+  // track user login status
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // manage authentication token
   const { token, setToken } = useToken();
 
+  // handle user login
   const handleLogin = (loginName, userToken) => {
     console.log("Received userToken:", userToken);
     setToken(userToken);
@@ -21,11 +25,14 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        {/* Retro filters */}
         <div className="grainy-overlay"></div>
         <div className="scanlines-overlay"></div>
+        {/* Render the navbar */}
         <Navbar isLoggedIn={isLoggedIn} token={token} />
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* Route for the Login */}
           <Route
             path="/Login"
             element={
@@ -36,11 +43,14 @@ function App() {
               />
             }
           />
+          {/* Route for the Logout */}
           <Route
             path="/Logout"
             element={<Logout setIsLoggedIn={setIsLoggedIn} />}
           />
+          {/* Route for the UserProfile  */}
           <Route path="/UserProfile" element={<UserProfile token={token} />} />
+          {/* Route for the Shows */}
           <Route path="/Shows/:showId" element={<Shows />} />
         </Routes>
       </div>

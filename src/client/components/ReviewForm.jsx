@@ -4,36 +4,43 @@ import "react-quill/dist/quill.snow.css";
 import "./ReviewForm.css";
 
 const ReviewForm = ({ onClose, singleShow }) => {
+  // Store inputs for Title, Text, Rating, Binge length
   const [reviewTitle, setReviewTitle] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [bingeLength, setBingeLength] = useState("");
   const [bingeScale, setBingeScale] = useState("");
 
+  //update review title
   const handleReviewTitleChange = (e) => {
     setReviewTitle(e.target.value);
   };
 
+  //update review text using React Quill editor
   const handleReviewChange = (text) => {
     setReviewText(text);
   };
 
+  //update binge length
   const handleBingeLengthChange = (e) => {
     setBingeLength(e.target.value);
   };
 
+  //update binge scale
   const handleBingeScaleChange = (e) => {
     setBingeScale(e.target.value);
   };
 
+  // submit form
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    async function postReview () {
-    try {
-      console.log(singleShow)
-      const response = await fetch('http://localhost:3000/api/reviews/post', {
-          method: 'POST',
+    async function postReview() {
+      try {
+        console.log(singleShow);
 
+        // Send a POST request to post a review
+        const response = await fetch('http://localhost:3000/api/reviews/post', {
+          method: 'POST',
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -51,6 +58,7 @@ const ReviewForm = ({ onClose, singleShow }) => {
     postReview();
   };
 
+  // Render the review form
   return (
     <div className="overlay">
       <div className="popup">

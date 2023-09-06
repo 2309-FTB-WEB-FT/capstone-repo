@@ -1,4 +1,7 @@
+/*Import main font*/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+
+/*Retro filters*/
 
 .scanlines-overlay {
   position: fixed;
@@ -33,6 +36,8 @@
   mix-blend-mode: hard-light;
 }
 
+/*Universal styles*/
+
 * {
   font-family: "Montserrat", sans-serif;
 }
@@ -55,17 +60,8 @@ html {
   width: 2000px;
 }
 
-#comp-img {
-  width: 120px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-}
+/*Home page*/
 
-.space {
-  border: solid black;
-}
 .singleshow {
   min-width: 250px;
   color: aliceblue;
@@ -152,6 +148,8 @@ html {
   min-width: 200px;
 }
 
+/*logo*/
+
 .bingeit {
   text-shadow: 1px 1px 2px #44bfda;
   font-size: 50px;
@@ -164,6 +162,8 @@ html {
   text-transform: uppercase;
   color: rgb(248, 242, 211);
 }
+
+/*Single show page*/
 
 .single-show-container {
   text-align: center;

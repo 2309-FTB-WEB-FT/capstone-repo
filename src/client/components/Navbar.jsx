@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
+// Props for login status
 const Navbar = ({ isLoggedIn, token, username }) => {
+  // controls the sidebar's open/close state
   const [isOpen, setIsOpen] = useState(false);
 
+  // toggle the sidebar open/close
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
+  // Render the navbar
   return (
     <div className={`navbar ${isOpen ? "open" : ""}`}>
       <div className="toggle-button" onClick={toggleSidebar}>
@@ -22,6 +26,7 @@ const Navbar = ({ isLoggedIn, token, username }) => {
           <li>
             <Link to="/">Home</Link>
           </li>
+          {/* These paths render only if the user is logged in */}
           {isLoggedIn ? (
             <>
               <li>

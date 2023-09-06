@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css";
 
-//Profile
+// component that displays user information
 const UserProfile = ({ token }) => {
+
   const [userData, setUserData] = useState({
     name: "",
     email: "",
-    profilePhoto: "https://shorturl.at/dxzM3",
+    profilePhoto: "https://shorturl.at/dxzM3", //default pfp
     likedShows: [],
     pastReviews: [],
   });
-  const Token = localStorage.getItem("token");
+  
+  const Token = localStorage.getItem("token"); // Get token from local storage
 
+  //fetch user data when the component mounts
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         console.log(Token);
+        // Send a GET request to retrieve user data
         const response = await fetch("http://localhost:3000/api/users/me", {
           method: "GET",
           headers: {
@@ -25,7 +29,7 @@ const UserProfile = ({ token }) => {
 
         if (response.ok) {
           const result = await response.json();
-          setUserData(result);
+          setUserData(result); // Update user data with the fetched result
         } else {
           console.error("API error:", response.status, response.statusText);
         }
@@ -37,11 +41,12 @@ const UserProfile = ({ token }) => {
     fetchUserData();
   }, [token]);
 
+  // Render the user profile
   return (
     <div className="user-profile">
       <div className="profile-header">
         <div className="profile-photo">
-          <img src="https://shorturl.at/dxzM3" alt="Profile" />
+          <img src={userData.profilePhoto} alt="Profile" />
         </div>
         <div className="profile-info">
           <h2>{userData.name}</h2>
