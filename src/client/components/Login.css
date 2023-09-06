@@ -1,52 +1,54 @@
 .login-container {
-    background: linear-gradient(177deg, rgba(243,255,189,1) 13%, rgb(232, 153, 174) 100%);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    width: 700px;
-    margin: auto;
-    color:#247BA0;
-    font-size: 18px;
-    transition: transform 0.5s ease-in-out;
-  }
+  background: linear-gradient(
+    177deg,
+    rgba(243, 255, 189, 1) 13%,
+    rgb(232, 153, 174) 100%
+  );
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 700px;
+  margin: auto;
+  color: #247ba0;
+  font-size: 18px;
+  transition: transform 0.5s ease-in-out;
+}
 
-  .login-container:hover {
-    transform: scale(1.08);
-  }
-  
-  .button {
-    background-color: #e6e8ed;
-    color: #247BA0;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+.login-container:hover {
+  transform: scale(1.08);
+}
 
-  }
-  
-  .button:hover {
-    background-color: #FF1654 ;
-    color:aliceblue;
-  }
+.button {
+  background-color: #e6e8ed;
+  color: #247ba0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
 
-  .noaccount-button {
-    background-color: #e6e8ed;
-    color: #247BA0;
-    border: double;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 19px;
-    margin-top: 10px;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  }
+.button:hover {
+  background-color: #ff1654;
+  color: aliceblue;
+}
 
-  .noaccount-button:hover{
-    background-color: #FF1654 ;
-    color:aliceblue;
-  }
+.noaccount-button {
+  background-color: #e6e8ed;
+  color: #247ba0;
+  border: double;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 19px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
 
+.noaccount-button:hover {
+  background-color: #ff1654;
+  color: aliceblue;
+}

@@ -1,97 +1,88 @@
-
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-  .popup {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: left;
-  }
-  
+.popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: left;
+}
 
-  .close-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  
+.close-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 
-  .review-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-  .text-input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-    font-family: inherit;
-  }
-  
+.text-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family: inherit;
+}
 
-  .dropdown {
-    position: relative;
-  }
-  
-  .dropdown select {
-    padding: 3px 30px 6px 10px;
-    border: 1px solid #ccc;
-    color:#7d7d7d;
-    border-radius: 4px;
-    appearance: none;
-    cursor: pointer;
-    resize: vertical;
-    transition: border-color 0.3s ease;
-  }
+.dropdown {
+  position: relative;
+}
 
-  
+.dropdown select {
+  padding: 3px 30px 6px 10px;
+  border: 1px solid #ccc;
+  color: #7d7d7d;
+  border-radius: 4px;
+  appearance: none;
+  cursor: pointer;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
 
-  .dropdown::after {
-    content: '\2727';
-    position: absolute;
-    top: 45%;
-    left: 130px;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-  
-  .submit-button {
-    background-color: #9ce763;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
- 
-  .submit-button:hover {
-    background-color: #7fc041;
-  }
-  
-  .close-button {
-    color: white;
-  }
+.dropdown::after {
+  content: "\2727";
+  position: absolute;
+  top: 45%;
+  left: 130px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.submit-button {
+  background-color: #9ce763;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #7fc041;
+}
+
+.close-button {
+  color: white;
+}

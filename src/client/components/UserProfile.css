@@ -1,38 +1,44 @@
-
 .user-profile {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    color:#28b1a6;
-    text-shadow: 1px 1px 2px #f3fbff;
-  }
-  
-  .profile-header {
-    grid-column: span 2;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: linear-gradient(177deg, rgba(243,255,189,1) 47%, rgba(255,153,180,1) 100%);
-    padding: 10px;
-    border-radius: 10px; 
-  }
-  
-  .profile-photo img {
-    max-width: 100px;
-    height: auto;
-    border-radius: 50%;
-  }
-  
-  .profile-info h2 {
-    margin: 0;
-  }
-  
-  .liked-shows,
-  .past-reviews {
-    background: linear-gradient(177deg, rgba(243,255,189,1) 47%, rgba(255,153,180,1) 100%);
-    padding: 10px;
-    border-radius: 10px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  color: #28b1a6;
+  text-shadow: 1px 1px 2px #f3fbff;
+}
+
+.profile-header {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(
+    177deg,
+    rgba(243, 255, 189, 1) 47%,
+    rgba(255, 153, 180, 1) 100%
+  );
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.profile-photo img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.profile-info h2 {
+  margin: 0;
+}
+
+.liked-shows,
+.past-reviews {
+  background: linear-gradient(
+    177deg,
+    rgba(243, 255, 189, 1) 47%,
+    rgba(255, 153, 180, 1) 100%
+  );
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
