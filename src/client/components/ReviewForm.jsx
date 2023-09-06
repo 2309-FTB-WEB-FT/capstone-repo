@@ -27,11 +27,13 @@ const ReviewForm = ({ onClose, singleShow }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    async function postReview() {
-      try {
-        console.log(singleShow);
-        const response = await fetch("http://localhost:3000/api/reviews/post", {
-          method: "POST",
+
+    async function postReview () {
+    try {
+      console.log(singleShow)
+      const response = await fetch('http://localhost:3000/api/reviews/post', {
+          method: 'POST',
+
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
