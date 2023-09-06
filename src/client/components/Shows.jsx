@@ -34,10 +34,10 @@ const Shows = () => {
   }, []);
 
   return (
-    <div>
-      <h1>{singleShow.name}</h1>
-      <h2>{singleShow.genre}</h2>
-      <img src={singleShow.image}></img>
+    <div className="single-show-container">
+      <h1 className= "single-show-title">{singleShow.name}</h1>
+      <img className= "single-show-image" src={singleShow.image}></img>
+      <h2 className= "single-show-genre">{singleShow.genre}</h2>
       <div
         className="showdescription"
         dangerouslySetInnerHTML={{ __html: singleShow.description }}
