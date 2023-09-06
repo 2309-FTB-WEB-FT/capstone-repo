@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 
 
 const { getUserById } = require('../db/users');
@@ -81,4 +81,4 @@ commentRouter.delete('/:id', async(req, res, next) => {
     }
 })
 
-module.exports = commentRouter
+module.exports = commentRouter*/

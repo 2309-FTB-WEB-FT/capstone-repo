@@ -85,6 +85,16 @@ const getReviewByShow = async(showId) => {
   }
 }
 
+const getReviewByUser = async(userId) => {
+  try {
+    const {rows} = await db.query(`
+    SELECT * FROM reviews
+    WHERE userID = $1`, [userId])
+  } catch(err) {
+    throw err;
+  }
+}
+
 const destroyReview = async(id) => {
   try {
       await client.query(`
@@ -104,4 +114,4 @@ const destroyReview = async(id) => {
 }
 
 
-module.exports = {createReview, getAllReviews, getReviewById, destroyReview, getReviewByShow}
+module.exports = {createReview, getAllReviews, getReviewById, destroyReview, getReviewByShow, getReviewByUser}

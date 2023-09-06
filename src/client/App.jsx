@@ -40,6 +40,7 @@ function App() {
           <Route path="/Logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/UserProfile" element={<UserProfile token={token} />} /> 
           {/* Render UserProfile component */}
+          <Route path="/Shows/:showId" element={<Shows />} />
         </Routes>
       </div>
     </BrowserRouter>
