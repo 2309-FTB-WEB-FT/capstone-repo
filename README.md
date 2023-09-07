@@ -1,52 +1,36 @@
-#  🚀 Capstone Boilerplate
+# 🍿 BINGE-IT
 
-A template for building web applications using the PERN (PostgreSQL, Express.js, React, Node.js) stack. 
+A web application for reviewing your favorite TV shows or your least favorite ones! Binge-It allows you to rate your shows based on binge-ability: Was it so good that you were on the edge of your seat? Or so bad that you couldn't take your eyes off it? If you'd like to share your opinion on a TV show, Binge-It has you covered!
 
-##  🏁 Getting Started
+## 🖥️ What is the site built with?
 
-1. **Don't fork or clone this repo!** Instead, create a new, empty directory on your machine and `git init` (or create an _empty_ repo on GitHub and clone it to your local machine)
+Binge-It is a React Vite + Node.js project with a RESTful API.
 
-2. Add this template as a remote and merge it into your own repository
+## 🤝 Who made it?
 
-```bash
-git remote add boilermaker git@github.com:FullstackAcademy/capstone-app-template.git
-git fetch boilermaker
-git merge boilermaker/main
-```
+Binge-It is the Capstone project of Team-4 from the cohort 2306-FTB.
 
-3. Install packages
+- Main Backend Devs: Blake Holcombe and Katie Bowers
+- Main Frontend Devs: Raquel Davis and Nicky Dimatulac
 
-```bash
-npm i
-```
+## 🎞️ What can you do on the site?
 
-4. Add a `.env` file with your secret value for auth
-```
-JWT_SECRET='somesecretvalue'
-```
+- Browse and search TV shows by genre, name, and description.
+- Login/Sign up.
+- Write a review.
+- Rate your show on a five-point binge scale.
 
-5. Create the database
+## 😅 What can't you do on the site? (yet)
 
-```bash
-createdb your-database-name
-```
+- Customize your profile.
+- View the reviews of others.
+- Comment on the reviews of others.
+- Make discussion posts.
 
-6. Update `src/server/db/client.js` to reflect the name of your database
+## 🧑‍🎓 What did we learn as a team?
 
-```js
-const connectionString = process.env.DATABASE_URL || 'https://localhost:5432/your-database-name';
-```
+- The importance of planning ahead! (Scope creep really does catch you off guard)
+- How to be flexible with unforeseen life events.
+- How to work under pressure.
 
-7. Seed the database
-```bash
-npm run seed
-```
-
-8. Start the server
-```bash
-npm run dev
-```
-
-9. Open your browser at `http://localhost:3000`
-
-10. Build something cool! 😎
+## Thank you for visiting!
